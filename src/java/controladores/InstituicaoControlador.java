@@ -48,7 +48,7 @@ public class InstituicaoControlador {
         this.instituicaoRepositorio.alterar(d);
     }
     
-    public Instituicao recuperar(int codigo){
+    public Instituicao recuperar(String codigo){
         return this.instituicaoRepositorio.recuperar(codigo);
     }
     

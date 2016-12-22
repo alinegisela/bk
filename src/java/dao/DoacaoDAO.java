@@ -43,7 +43,7 @@ public class DoacaoDAO  {
     public boolean inserir(int codigo, Doador doador, Instituicao instituicao, StatusEnum status, Date dataDoacao, Date dataVisita) {
         try {
             PreparedStatement insereDoadorSTM = null;
-            String insereDoadorSQL = "insert into doacao (codigo, id_doador, id_instituicao, enumstatus, datadoacao, datavisita)"
+            String insereDoadorSQL = "insert into doacao (codigo, id_doador, id_instituicao, statusenum, datadoacao, datavisita)"
                     + "values (?,?,?,?,?,?)";
             
             insereDoadorSTM = con.prepareStatement(insereDoadorSQL);

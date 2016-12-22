@@ -23,7 +23,7 @@ public class InstituicaoBuilder {
     private String tel;
     private String email;
     private List<MaterialDoacao> prioridades;
-    private List<Doacao> historicoDoacoes;
+    //private List<Doacao> historicoDoacoes;
 
     public String getNome() {
 		return nome;
@@ -81,6 +81,7 @@ public class InstituicaoBuilder {
 		this.prioridades = prioridades;
 	}
 
+        /*
 	public List<Doacao> getHistoricoDoacoes() {
 		return historicoDoacoes;
 	}
@@ -88,7 +89,7 @@ public class InstituicaoBuilder {
 	public void setHistoricoDoacoes(List<Doacao> historicoDoacoes) {
 		this.historicoDoacoes = historicoDoacoes;
 	}
-        
+        */
         public Instituicao build(){
             return new Instituicao(nome, endereco, descricao, cnpj, tel, email);
         }

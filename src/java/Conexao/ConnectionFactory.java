@@ -8,7 +8,7 @@ import java.sql.SQLException;
 		public Connection getConnection() {
 	        try {
 	            return DriverManager.getConnection(
-	          "jdbc:mysql://localhost:3306/doacao2", "root", "root");
+	          "jdbc:mysql://localhost:3306/ppo", "root", "root");
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
