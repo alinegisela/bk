@@ -6,24 +6,60 @@
 package negocio;
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author Cristiane
  */
+@Table
+@Entity
 public class Visita {
+    @Id
+    @Column(length=5)
     private int codigo;
+    @OneToOne
+    @JoinColumn(name = "doador_id")
+    private Doador doador;
+    @OneToOne
+    @JoinColumn(name = "instituicao_id")
     private Instituicao instituicao;
-    private Enum status;
+    @Enumerated(EnumType.STRING)
+    private StatusEnum status;
+    @Temporal(value=TemporalType.DATE)
     private Date data_da_visita;
+    @Column(length=5)
     private String horario;
 
-    public Visita(int codigo,Instituicao instituicao, Enum status, Date data_da_visita, String horario) {
+    public Visita(int codigo, Doador doador, Instituicao instituicao, StatusEnum status, Date data_da_visita, String horario) {
+        this.doador = doador;
         this.codigo = codigo;
         this.instituicao = instituicao;
         this.status = status;
         this.data_da_visita = data_da_visita;
         this.horario = horario;
+    }
+    
+    @Deprecated
+    public Visita(){
+        
+    }
+
+    public Doador getDoador() {
+        return doador;
+    }
+
+    public void setDoador(Doador doador) {
+        this.doador = doador;
     }
 
     public int getCodigo() {
@@ -46,7 +82,7 @@ public class Visita {
         return status;
     }
 
-    public void setStatus(Enum status) {
+    public void setStatus(StatusEnum status) {
         this.status = status;
     }
 

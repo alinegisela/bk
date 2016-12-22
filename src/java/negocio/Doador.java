@@ -5,16 +5,29 @@
  */
 package negocio;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author Cristiane
  */
+@Entity
+@Table
 public class Doador {
 
+ @Column(length = 50)
  private String nome;
+ @Id
+ @Column(length = 50)
  private String cpf;
+ @Column(length = 50)
  private String endereco;
+ @Column(length = 50)
  private String telefone;
+ @Column(length = 50)
  private String email;
 
     public Doador(String nome, String cpf, String endereco, String telefone, String email) {
@@ -25,6 +38,10 @@ public class Doador {
         this.email = email;
     }
 
+    @Deprecated
+    public Doador(){
+    }
+    
     public String getNome() {
         return nome;
     }

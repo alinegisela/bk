@@ -1,43 +1,73 @@
 package negocio;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class Insumo {
-	private String nome;
-	private TipoEnum tipo;
-	private String descricao;
-	
-	@Override
-	public String toString() {
-		return "Insumo - " + nome + "\nTipo: " + tipo + "\nDescrição: " + descricao + "\n";
-	}
 
-	public Insumo(String nome, TipoEnum tipo, String descricao){
-		this.nome = nome;
-		this.tipo = tipo;
-		this.descricao = descricao;
-	}
+    @Column(length = 50)
+    @Id
+    private int codigo;
+    @Column(length = 50)
+    private String nome;
+    @Enumerated(EnumType.STRING)
+    private TipoEnum tipo;
+    @Column(length = 50)
+    private String descricao;
 
-	public String getNome() {
-		return nome;
-	}
+    @Override
+    public String toString() {
+        return "Insumo - \nCódigo: " + codigo + "\nNome: " + nome + "\nTipo: " + tipo + "\nDescrição: " + descricao + "\n";
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public Insumo(int codigo, String nome, TipoEnum tipo, String descricao) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.tipo = tipo;
+        this.descricao = descricao;
+    }
 
-	public TipoEnum getTipo() {
-		return tipo;
-	}
+    @Deprecated
+    public Insumo() {
 
-	public void setTipo(TipoEnum tipo) {
-		this.tipo = tipo;
-	}
+    }
 
-	public String getDescricao() {
-		return descricao;
-	}
+    public int getCodigo() {
+        return codigo;
+    }
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-        
-        
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public TipoEnum getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoEnum tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
 }

@@ -6,7 +6,9 @@
 package builders;
 
 import java.util.Date;
+import negocio.Doador;
 import negocio.Instituicao;
+import negocio.StatusEnum;
 import negocio.Visita;
 
 /**
@@ -15,13 +17,22 @@ import negocio.Visita;
  */
 public class VisitaBuilder {
     private int codigo;
+    private Doador doador;
      private Instituicao instituicao;
-    private Enum status;
+    private StatusEnum status;
     private Date data_da_visita;
     private String horario;
     
     public int getCodigo() {
         return codigo;
+    }
+
+    public Doador getDoador() {
+        return doador;
+    }
+
+    public void setDoador(Doador doador) {
+        this.doador = doador;
     }
 
     public void setCodigo(int codigo) {
@@ -40,7 +51,7 @@ public class VisitaBuilder {
         return status;
     }
 
-    public void setStatus(Enum status) {
+    public void setStatus(StatusEnum status) {
         this.status = status;
     }
 
@@ -61,6 +72,6 @@ public class VisitaBuilder {
     }
     
     public Visita build(){
-        return new Visita(codigo,instituicao, status, data_da_visita, horario);
+        return new Visita(codigo,doador, instituicao, status, data_da_visita, horario);
     }
 }

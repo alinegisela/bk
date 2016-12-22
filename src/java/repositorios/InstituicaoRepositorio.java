@@ -40,5 +40,10 @@ public class InstituicaoRepositorio implements RepositorioGenerico<Instituicao> 
     public List<Instituicao> recuperarTodos() {
         return DaoManagerHiber.getInstance().recover("from Instituicao");
     }
+
+    @Override
+    public void excluir(int codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

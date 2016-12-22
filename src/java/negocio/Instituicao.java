@@ -1,98 +1,124 @@
 package negocio;
+
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import negocio.Doacao;
 import negocio.MaterialDoacao;
 
+@Entity
+@Table
 public class Instituicao {
-	private String nome;
-	private String endereco;
-	private String descricao;
-	private String cnpj;
-	private String tel;
-	private String email;
-	private List<MaterialDoacao> prioridades;
-	private List<Doacao> historicoDoacoes;
-	
-	public Instituicao(String nome, String endereco, String descricao, String cnpj, String tel,
-			String email/*, List prioridades, List historicoDoacoes*/){
-		this.nome = nome;
-		this.endereco = endereco;
-		this.descricao = descricao;
-		this.cnpj = cnpj;
-		this.tel = tel;
-		this.email = email;
-		this.prioridades = new ArrayList<>();
-		this.historicoDoacoes = new ArrayList<>();
-	}
 
-	@Override
-	public String toString() {
-		return "Instituicao " + nome + "\nEndere�o: " + endereco + "\nDescricao: " + descricao + "\nCnpj: " + cnpj
-				+ "\nTelefone: " + tel + "\nEmail: " + email + "\n";
-	}
+    @Column(length = 50)
+    private String nome;
+    @Column(length = 50)
+    private String endereco;
+    @Column(length = 50)
+    private String descricao;
+    @Id
+    @Column(length = 50)
+    private String cnpj;
+    @Column(length = 50)
+    private String tel;
+    @Column(length = 50)
+    private String email;
+    @OneToMany
+    @JoinColumn(name = "material_doacao_id")
+    private List<MaterialDoacao> prioridades;
+    @OneToMany
+    @JoinColumn(name = "doacao_id")
+    private List<Doacao> historicoDoacoes;
 
-	public String getNome() {
-		return nome;
-	}
+    public Instituicao(String nome, String endereco, String descricao, String cnpj, String tel,
+            String email/*, List prioridades, List historicoDoacoes*/) {
+        this.nome = nome;
+        this.endereco = endereco;
+        this.descricao = descricao;
+        this.cnpj = cnpj;
+        this.tel = tel;
+        this.email = email;
+        this.prioridades = new ArrayList<>();
+        this.historicoDoacoes = new ArrayList<>();
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    @Deprecated
+    public Instituicao(){
+        
+    }
+    
+    @Override
+    public String toString() {
+        return "Instituicao " + nome + "\nEndere�o: " + endereco + "\nDescricao: " + descricao + "\nCnpj: " + cnpj
+                + "\nTelefone: " + tel + "\nEmail: " + email + "\n";
+    }
 
-	public String getEndereco() {
-		return endereco;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public String getDescricao() {
-		return descricao;
-	}
+    public String getEndereco() {
+        return endereco;
+    }
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
-	public String getCnpj() {
-		return cnpj;
-	}
+    public String getDescricao() {
+        return descricao;
+    }
 
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
-	public String getTel() {
-		return tel;
-	}
+    public String getCnpj() {
+        return cnpj;
+    }
 
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getTel() {
+        return tel;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
 
-	public List<MaterialDoacao> getPrioridades() {
-		return prioridades;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setPrioridades(List<MaterialDoacao> prioridades) {
-		this.prioridades = prioridades;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public List<Doacao> getHistoricoDoacoes() {
-		return historicoDoacoes;
-	}
+    public List<MaterialDoacao> getPrioridades() {
+        return prioridades;
+    }
 
-	public void setHistoricoDoacoes(List<Doacao> historicoDoacoes) {
-		this.historicoDoacoes = historicoDoacoes;
-	}
+    public void setPrioridades(List<MaterialDoacao> prioridades) {
+        this.prioridades = prioridades;
+    }
+
+    public List<Doacao> getHistoricoDoacoes() {
+        return historicoDoacoes;
+    }
+
+    public void setHistoricoDoacoes(List<Doacao> historicoDoacoes) {
+        this.historicoDoacoes = historicoDoacoes;
+    }
 }
