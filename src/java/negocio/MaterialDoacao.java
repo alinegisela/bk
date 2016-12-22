@@ -27,10 +27,10 @@ public class MaterialDoacao {
     @Enumerated(EnumType.STRING)
     private PrioridadeEnum prioridade;
     @OneToOne
-    @JoinColumn(name = "insumo_id")
     private Insumo insumo;
     
-    public MaterialDoacao(PrioridadeEnum prioridade, Insumo insumo){
+    public MaterialDoacao(int codigo, PrioridadeEnum prioridade, Insumo insumo){
+        this.codigo = codigo;
         this.prioridade = prioridade;
         this.insumo = insumo;
     }
@@ -38,6 +38,14 @@ public class MaterialDoacao {
     @Deprecated
     public MaterialDoacao(){
         
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
     
     public Insumo getInsumo() {

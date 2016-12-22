@@ -48,7 +48,7 @@ public class DoadorControlador {
         this.doadorRepositorio.alterar(d);
     }
     
-    public Doador recuperar(int codigo){
+    public Doador recuperar(String codigo){
         return this.doadorRepositorio.recuperar(codigo);
     }
     

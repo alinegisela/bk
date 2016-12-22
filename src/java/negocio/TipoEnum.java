@@ -11,4 +11,26 @@ public enum TipoEnum {
 	public int getValor(){
 		return valor;
 	}
+        
+        public String toString(int valor) {
+        if (valor == 1) {
+            return "ALIMENTO";
+        } else if (valor == 2) {
+            return "HIGIENE";
+        } else if (valor == 3){
+            return "ROUPA";
+        }
+        return "";
+    }
+
+    public TipoEnum toEnum(String opcao) {
+        if (opcao.equals("ALIMENTO")) {
+            return TipoEnum.ALIMENTO;
+        } else if (opcao.equals("HIGIENE")) {
+            return TipoEnum.HIGIENE;
+        } else if (opcao.equals("ROUPA")) {
+            return (TipoEnum.ROUPA);
+        }
+        return null;
+    }
 }

@@ -2,10 +2,12 @@ package negocio;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import negocio.Doacao;
@@ -28,12 +30,8 @@ public class Instituicao {
     private String tel;
     @Column(length = 50)
     private String email;
-    @OneToMany
-    @JoinColumn(name = "material_doacao_id")
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<MaterialDoacao> prioridades;
-    @OneToMany
-    @JoinColumn(name = "doacao_id")
-    private List<Doacao> historicoDoacoes;
 
     public Instituicao(String nome, String endereco, String descricao, String cnpj, String tel,
             String email/*, List prioridades, List historicoDoacoes*/) {
@@ -44,7 +42,6 @@ public class Instituicao {
         this.tel = tel;
         this.email = email;
         this.prioridades = new ArrayList<>();
-        this.historicoDoacoes = new ArrayList<>();
     }
 
     @Deprecated
@@ -114,11 +111,4 @@ public class Instituicao {
         this.prioridades = prioridades;
     }
 
-    public List<Doacao> getHistoricoDoacoes() {
-        return historicoDoacoes;
-    }
-
-    public void setHistoricoDoacoes(List<Doacao> historicoDoacoes) {
-        this.historicoDoacoes = historicoDoacoes;
-    }
 }

@@ -12,6 +12,7 @@ import negocio.Doacao;
 import negocio.Doador;
 import negocio.Instituicao;
 import negocio.MaterialDoacao;
+import negocio.StatusEnum;
 
 /**
  *
@@ -22,7 +23,7 @@ public class DoacaoBuilder {
      private Doador doador;
     private Instituicao instituicao;
     //private MaterialDoacao materialDoacao;
-    private Enum status;
+    private StatusEnum status;
     private Date dataDoacao;
     private Date dataVisita;
     private List<MaterialDoacao> doacao;
@@ -61,11 +62,11 @@ public class DoacaoBuilder {
         this.instituicao = instituicao;
     }
 
-    public Enum getStatus() {
+    public StatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(Enum status) {
+    public void setStatus(StatusEnum status) {
         this.status = status;
     }
 

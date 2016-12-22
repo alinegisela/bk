@@ -11,14 +11,33 @@ package negocio;
  */
 public enum StatusEnum {
     EM_ANDAMENTO(1), CONCLUIDA(2);
-    
+
     private final int valor;
-	
-	StatusEnum(int valorOpcao){
-		valor = valorOpcao;
-	}
-	
-	public int getValor(){
-		return valor;
-	}
+
+    StatusEnum(int valorOpcao) {
+        valor = valorOpcao;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public String toString(int valor) {
+        if (valor == 1) {
+            return "EM_ANDAMENTO";
+        } else if (valor == 2) {
+            return "CONCLUIDA";
+        }
+        return "";
+    }
+
+    public StatusEnum toEnum(String opcao) {
+        if (opcao.equals("EM_ANDAMENTO")) {
+            return StatusEnum.EM_ANDAMENTO;
+        } else if (opcao.equals("CONCLUIDA")) {
+            return StatusEnum.CONCLUIDA;
+        }
+        return null;
+    }
+
 }

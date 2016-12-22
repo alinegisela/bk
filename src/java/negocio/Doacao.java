@@ -8,6 +8,7 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,6 +16,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -32,28 +34,25 @@ public class Doacao {
     @Id
     @GeneratedValue
     private int codigo;
-    @OneToOne
-    @JoinColumn(name = "doador_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     private Doador doador;
-    @OneToOne
-    @JoinColumn(name = "instituicao_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     private Instituicao instituicao;
     @Enumerated(EnumType.STRING)
-    private Enum status;
+    private StatusEnum statusenum;
     @Temporal(value=TemporalType.DATE)
     private Date dataDoacao;
     @Temporal(value=TemporalType.DATE)
     private Date dataVisita;
-    @OneToMany
-    @JoinColumn(name = "material_doacao_id")
+    @OneToMany(cascade = CascadeType.ALL)
     private List<MaterialDoacao> doacao;
 
-    public Doacao(int codigo, Doador doador, Instituicao instituicao,/*MaterialDoacao materialDoacao, */ Enum status, Date dataDoacao, Date dataVisita) {
+    public Doacao(int codigo, Doador doador, Instituicao instituicao, StatusEnum statusenum, Date dataDoacao, Date dataVisita) {
         this.codigo = codigo;
         this.doador = doador;
         this.instituicao = instituicao;
         //this.materialDoacao = materialDoacao;
-        this.status = status;
+        this.statusenum = statusenum;
         this.dataDoacao = dataDoacao;
         this.dataVisita = dataVisita;
         this.doacao = new ArrayList<>();
@@ -87,12 +86,12 @@ public class Doacao {
         this.instituicao = instituicao;
     }
 
-    public Enum getStatus() {
-        return status;
+    public StatusEnum getStatus() {
+        return statusenum;
     }
 
-    public void setStatus(Enum status) {
-        this.status = status;
+    public void setStatus(StatusEnum status) {
+        this.statusenum = status;
     }
 
     public Date getDataDoacao() {
@@ -121,7 +120,7 @@ public class Doacao {
 
     @Override
     public String toString() {
-        return "Doacao{" + "código=" + codigo + "doador=" + doador + ", instituicao=" + instituicao + ", status=" + status + ", dataDoacao=" + dataDoacao + ", dataVisita=" + dataVisita + ", doacao=" + doacao + '}';
+        return "Doacao{" + "código=" + codigo + "doador=" + doador + ", instituicao=" + instituicao + ", status=" + statusenum + ", dataDoacao=" + dataDoacao + ", dataVisita=" + dataVisita + ", doacao=" + doacao + '}';
     }
 
 }

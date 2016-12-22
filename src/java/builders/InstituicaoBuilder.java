@@ -15,17 +15,17 @@ import negocio.MaterialDoacao;
  * @author Penguin
  */
 public class InstituicaoBuilder {
-    private String nome;
-	private String endereco;
-	private String descricao;
-	private String cnpj;
-	private String tel;
-	private String email;
-	private List<MaterialDoacao> prioridades;
-	private List<Doacao> historicoDoacoes;
-	
 
-	public String getNome() {
+    private String nome;
+    private String endereco;
+    private String descricao;
+    private String cnpj;
+    private String tel;
+    private String email;
+    private List<MaterialDoacao> prioridades;
+    private List<Doacao> historicoDoacoes;
+
+    public String getNome() {
 		return nome;
 	}
 

@@ -6,12 +6,14 @@
 package negocio;
 
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,11 +29,9 @@ public class Visita {
     @Id
     @Column(length=5)
     private int codigo;
-    @OneToOne
-    @JoinColumn(name = "doador_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     private Doador doador;
-    @OneToOne
-    @JoinColumn(name = "instituicao_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     private Instituicao instituicao;
     @Enumerated(EnumType.STRING)
     private StatusEnum status;
@@ -78,7 +78,7 @@ public class Visita {
         this.instituicao = instituicao;
     }
 
-    public Enum getStatus() {
+    public StatusEnum getStatus() {
         return status;
     }
 
