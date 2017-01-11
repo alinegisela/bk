@@ -5,7 +5,11 @@
  */
 package builders;
 
+import dao.DoadorDAO;
+import dao.InstituicaoDAO;
 import java.util.Date;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import negocio.Doador;
 import negocio.Instituicao;
 import negocio.StatusEnum;
@@ -15,13 +19,46 @@ import negocio.Visita;
  *
  * @author Penguin
  */
+@ManagedBean(name = "bVisita")
+@RequestScoped
 public class VisitaBuilder {
     private int codigo;
     private Doador doador;
+    private String cpf;
      private Instituicao instituicao;
+     private String cnpj;
     private StatusEnum status;
     private Date data_da_visita;
+    private String data;
     private String horario;
+
+    public String getData() {
+        return data;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+    
+    
+
+    public void setData(String data) {
+        this.data = data;
+    }
+    
+    
     
     public int getCodigo() {
         return codigo;
@@ -47,7 +84,7 @@ public class VisitaBuilder {
         this.instituicao = instituicao;
     }
 
-    public Enum getStatus() {
+    public StatusEnum getStatus() {
         return status;
     }
 
@@ -71,7 +108,14 @@ public class VisitaBuilder {
         this.horario = horario;
     }
     
-    public Visita build(){
-        return new Visita(codigo,doador, instituicao, status, data_da_visita, horario);
+    public Visita build() throws ClassNotFoundException{
+        int year1, month1, day1;
+        
+        
+        year1 = Integer.parseInt(data.substring(4, 8)) - 1900;
+        month1 = Integer.parseInt(data.substring(2,4)) - 1;
+        day1 = Integer.parseInt(data.substring(0,2));
+        
+        return new Visita(codigo,DoadorDAO.getInstance().recuperar(cpf), InstituicaoDAO.getInstance().recuperar(cnpj), status, new Date(year1,month1,day1), horario);
     }
 }

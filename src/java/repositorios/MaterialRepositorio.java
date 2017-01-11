@@ -7,6 +7,8 @@ package repositorios;
 
 import dao.MaterialDAO;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.MaterialDoacao;
 import negocio.PrioridadeEnum;
 
@@ -18,17 +20,30 @@ public class MaterialRepositorio implements RepositorioGenerico<MaterialDoacao> 
 
     @Override
     public void inserir(MaterialDoacao t) {
-        MaterialDAO.getInstance().inserir(t.getCodigo(), t.getPrioridade(), t.getInsumo());
+        try {
+            MaterialDAO.getInstance().inserir(t.getCodigo(), t.getPrioridade(), t.getInsumo());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MaterialRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void alterar(MaterialDoacao t) {
-        MaterialDAO.getInstance().alterar(t.getCodigo(), t.getPrioridade(), t.getInsumo());
+        try {
+            MaterialDAO.getInstance().alterar(t.getCodigo(), t.getPrioridade(), t.getInsumo());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MaterialRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public MaterialDoacao recuperar(int codigo) {
-        return MaterialDAO.getInstance().recuperar(codigo);
+        try {
+            return MaterialDAO.getInstance().recuperar(codigo);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MaterialRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
@@ -43,12 +58,21 @@ public class MaterialRepositorio implements RepositorioGenerico<MaterialDoacao> 
 
     @Override
     public void excluir(MaterialDoacao t) {
-        MaterialDAO.getInstance().excluir(t);
+        try {
+            MaterialDAO.getInstance().excluir(t);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MaterialRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public List<MaterialDoacao> recuperarTodos() {
-        return MaterialDAO.getInstance().recuperarTodos();
+        try {
+            return MaterialDAO.getInstance().recuperarTodos();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MaterialRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }

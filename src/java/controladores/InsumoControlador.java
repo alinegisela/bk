@@ -6,6 +6,10 @@
 package controladores;
 
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import negocio.Instituicao;
 import negocio.Insumo;
 import repositorios.InstituicaoRepositorio;
@@ -16,6 +20,8 @@ import repositorios.RepositorioGenerico;
  *
  * @author Penguin
  */
+@ManagedBean(name="cInsumo")
+@SessionScoped
 public class InsumoControlador {
     private RepositorioGenerico<Insumo> insumoRepositorio = null;
     private Insumo insumoSelecionado;
@@ -42,10 +48,21 @@ public class InsumoControlador {
     
     public void inserir(Insumo d){
         this.insumoRepositorio.inserir(d);
+        
+        FacesContext.getCurrentInstance().
+                addMessage(null, new FacesMessage("Cadastro concluído com sucesso!"));
+        
+        //return "ApresentaAnimal.xhtml";
     }
     
     public void alterar(Insumo d){
         this.insumoRepositorio.alterar(d);
+        FacesContext.getCurrentInstance().addMessage(null, 
+                 new FacesMessage("Sucessoo animal " + d.getNome() + " foi alterado com sucesso!!"));
+         
+       
+        
+       // return "ApresentaAnimal.xhtml";
     }
     
     public Insumo recuperar(int codigo){

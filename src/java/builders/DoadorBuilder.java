@@ -5,12 +5,16 @@
  */
 package builders;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import negocio.Doador;
 
 /**
  *
  * @author Penguin
  */
+@ManagedBean(name = "bDoador")
+@RequestScoped
 public class DoadorBuilder {
 
     private String nome;
@@ -59,7 +63,7 @@ public class DoadorBuilder {
         this.email = email;
     }
 
-    public Doador buid() {
+    public Doador build() {
         return new Doador(nome, cpf, endereco, telefone, email);
     }
 }

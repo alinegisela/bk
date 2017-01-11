@@ -26,11 +26,11 @@ public class InstituicaoDAO {
     private Connection con;
     
     
-    public InstituicaoDAO() {
+    public InstituicaoDAO() throws ClassNotFoundException {
         this.con = new ConnectionFactory().getConnection();
     }
     
-    public static InstituicaoDAO getInstance() {
+    public static InstituicaoDAO getInstance() throws ClassNotFoundException {
         if (myself == null) {
             myself = new InstituicaoDAO();
         }

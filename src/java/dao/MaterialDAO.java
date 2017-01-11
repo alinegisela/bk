@@ -26,11 +26,11 @@ public class MaterialDAO {
     private static MaterialDAO myself = null;
     private Connection con;
 
-    public MaterialDAO() {
+    public MaterialDAO() throws ClassNotFoundException {
         this.con = new ConnectionFactory().getConnection();
     }
 
-    public static MaterialDAO getInstance() {
+    public static MaterialDAO getInstance() throws ClassNotFoundException {
         if (myself == null) {
             myself = new MaterialDAO();
         }
@@ -41,7 +41,7 @@ public class MaterialDAO {
     public boolean inserir(int codigo, PrioridadeEnum prioridade, Insumo insumo) {
         try {
             PreparedStatement insereMaterialSTM = null;
-            String insereMaterialSQL = "insert into material(codigo, prioridade, insumo)"
+            String insereMaterialSQL = "insert into material(codigo, prioridade, id_insumo)"
                     + "values (?,?,?)";
 
             insereMaterialSTM = con.prepareStatement(insereMaterialSQL);
@@ -94,7 +94,7 @@ public class MaterialDAO {
         }
     }
 
-    public List recuperarTodos() {
+    public List recuperarTodos() throws ClassNotFoundException {
         try {
             List<MaterialDoacao> materialList = new ArrayList<MaterialDoacao>();
             PreparedStatement stmt = this.con.
@@ -119,7 +119,7 @@ public class MaterialDAO {
         }
     }
 
-    public MaterialDoacao recuperar(int codigo) {
+    public MaterialDoacao recuperar(int codigo) throws ClassNotFoundException {
         try {
             List<MaterialDoacao> materialList = new ArrayList<MaterialDoacao>();
             PreparedStatement stmt = this.con.

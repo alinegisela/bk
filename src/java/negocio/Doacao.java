@@ -5,6 +5,8 @@
  */
 package negocio;
 
+import dao.DoadorDAO;
+import dao.InstituicaoDAO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,15 +35,34 @@ public class Doacao {
 
     @Id
     @GeneratedValue
-    private int codigo;
+    private int codigo;//automatico
     @ManyToOne(cascade = CascadeType.ALL)
-    private Doador doador;
+    private Doador doador;//do sistema
+    private String cpf;
+        private String cnpj;
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public StatusEnum getStatusenum() {
+        return statusenum;
+    }
+
+    public void setStatusenum(StatusEnum statusenum) {
+        this.statusenum = statusenum;
+    }
+
     @ManyToOne(cascade = CascadeType.ALL)
     private Instituicao instituicao;
     @Enumerated(EnumType.STRING)
-    private StatusEnum statusenum;
+    private StatusEnum statusenum;//do sistema
     @Temporal(value=TemporalType.DATE)
-    private Date dataDoacao;
+    private Date dataDoacao;//do sistema
     @Temporal(value=TemporalType.DATE)
     private Date dataVisita;
     @OneToMany(cascade = CascadeType.ALL)
@@ -74,16 +95,17 @@ public class Doacao {
         return doador;
     }
 
-    public void setDoador(Doador doador) {
-        this.doador = doador;
+    public void setDoador(Doador d) throws ClassNotFoundException {
+        
+        this.doador = d;
     }
 
     public Instituicao getInstituicao() {
         return instituicao;
     }
 
-    public void setInstituicao(Instituicao instituicao) {
-        this.instituicao = instituicao;
+    public void setInstituicao(Instituicao i) throws ClassNotFoundException {
+        this.instituicao = i;
     }
 
     public StatusEnum getStatus() {
@@ -113,9 +135,22 @@ public class Doacao {
     public List<MaterialDoacao> getDoacao() {
         return doacao;
     }
+ public String getCpf() {
+        return cpf;
+    }
 
+    public void setCpf(String cpf) {
+        
+        this.cpf = cpf;
+    }
     public void setDoacao(List<MaterialDoacao> doacao) {
         this.doacao = doacao;
+    }
+    
+    public void criar() throws ClassNotFoundException{
+        this.setDoador(DoadorDAO.getInstance().recuperar(cpf));
+        this.setInstituicao(InstituicaoDAO.getInstance().recuperar(cnpj));
+        
     }
 
     @Override

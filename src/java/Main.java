@@ -29,33 +29,33 @@ import negocio.TipoEnum;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
         List<MaterialDoacao> materiais = new ArrayList<MaterialDoacao>();
          materiais.add(new MaterialDoacao(1, PrioridadeEnum.ALTA, new Insumo(1, "insumo", TipoEnum.ALIMENTO, "descrição")));
 
          System.out.println("aqui");
         DoadorBuilder b = new DoadorBuilder();
         b.setNome("a");
-        b.setCpf("8828");
+        b.setCpf("28");
         b.setEmail("3");
         b.setEndereco("4");
         b.setTelefone("5");
         DoadorControlador c = new DoadorControlador();
-        c.inserir(b.buid());
+        c.inserir(b.build());
 
         InstituicaoBuilder ib = new InstituicaoBuilder();
-        ib.setCnpj("8882");
+        ib.setCnpj("82");
         ib.setDescricao("descrevendo");
         ib.setEmail("email");
         ib.setEndereco("endereco");
-        ib.setNome("Jambão");
+        ib.setNome("J");
         ib.setPrioridades(materiais);
         ib.setTel("tel");
         InstituicaoControlador ci = new InstituicaoControlador();
         ci.inserir(ib.build());
 
         DoacaoBuilder bdoacao = new DoacaoBuilder();
-        bdoacao.setCodigo(8882);
+        bdoacao.setCodigo(82);
         bdoacao.setDataDoacao(new Date());
         bdoacao.setDataVisita(new Date());
         bdoacao.setDoacao(materiais);
@@ -67,7 +67,7 @@ public class Main {
         dc.inserir(bdoacao.build());
         
         VisitaBuilder v = new VisitaBuilder();
-        v.setCodigo(222);
+        v.setCodigo(212);
         v.setData_da_visita(new Date());
         v.setDoador(c.recuperar("9977"));
         v.setHorario("hora");

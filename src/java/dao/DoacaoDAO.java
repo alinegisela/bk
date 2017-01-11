@@ -26,11 +26,11 @@ public class DoacaoDAO  {
      private static DoacaoDAO myself = null;
     private Connection con;
     
-    public DoacaoDAO() {
+    public DoacaoDAO() throws ClassNotFoundException {
         this.con = new ConnectionFactory().getConnection();
     }
     
-    public static DoacaoDAO getInstance() {
+    public static DoacaoDAO getInstance() throws ClassNotFoundException {
         if (myself == null) {
             myself = new DoacaoDAO();
         }
@@ -104,7 +104,7 @@ public class DoacaoDAO  {
     }
     
     
-    public List recuperarTodos() {
+    public List recuperarTodos() throws ClassNotFoundException {
         try {
             List<Doacao> doacaoList = new ArrayList<Doacao>();
             PreparedStatement stmt = this.con.
@@ -131,7 +131,7 @@ public class DoacaoDAO  {
         }
     }
     
-    public Doacao recuperar(int codigo) {
+    public Doacao recuperar(int codigo) throws ClassNotFoundException {
         try {
             List<Doacao> doacaoList = new ArrayList<Doacao>();
             PreparedStatement stmt = this.con.

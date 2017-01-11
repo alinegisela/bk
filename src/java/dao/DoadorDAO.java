@@ -26,11 +26,11 @@ public class DoadorDAO{
     private static DoadorDAO myself = null;
     private Connection con;
     
-    public DoadorDAO() {
+    public DoadorDAO() throws ClassNotFoundException {
         this.con = new ConnectionFactory().getConnection();
     }
     
-    public static DoadorDAO getInstance() {
+    public static DoadorDAO getInstance() throws ClassNotFoundException {
         if (myself == null) {
             myself = new DoadorDAO();
         }

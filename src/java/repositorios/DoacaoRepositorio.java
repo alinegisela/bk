@@ -10,6 +10,8 @@ import dao.DoacaoDAO;
 import java.util.Date;
 //import dao.GenericDao;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.Doacao;
 import negocio.Doador;
 import negocio.Instituicao;
@@ -23,36 +25,58 @@ public class DoacaoRepositorio implements RepositorioGenerico<Doacao>{
 
     @Override
     public void inserir(Doacao t) {
-        //DaoManagerHiber.getInstance().persist(t);
-      //  int codigo, Doador doador, Instituicao instituicao, StatusEnum status, Date dataDoacao, Date dataVisita
-        DoacaoDAO.getInstance().inserir(t.getCodigo(), t.getDoador(),t.getInstituicao(),t.getStatus(),t.getDataDoacao(),t.getDataVisita());
+        try {
+            //DaoManagerHiber.getInstance().persist(t);
+            //  int codigo, Doador doador, Instituicao instituicao, StatusEnum status, Date dataDoacao, Date dataVisita
+            DoacaoDAO.getInstance().inserir(t.getCodigo(), t.getDoador(),t.getInstituicao(),t.getStatus(),t.getDataDoacao(),t.getDataVisita());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DoacaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void alterar(Doacao t) {
-        //DaoManagerHiber.getInstance().update(t);
-        //GenericDao.getInstance().atualizar(t);
-        DoacaoDAO.getInstance().alterar(t.getCodigo(), t.getDoador(),t.getInstituicao(),t.getStatus(),t.getDataDoacao(),t.getDataVisita());
+        try {
+            //DaoManagerHiber.getInstance().update(t);
+            //GenericDao.getInstance().atualizar(t);
+            DoacaoDAO.getInstance().alterar(t.getCodigo(), t.getDoador(),t.getInstituicao(),t.getStatus(),t.getDataDoacao(),t.getDataVisita());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DoacaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public Doacao recuperar(int codigo) {
-       // return (Doacao)DaoManagerHiber.getInstance().recover("from Doacao where codigo="+codigo).get(0);
-      // return (Doacao)GenericDao.getInstance().encontrar(codigo);
-      return DoacaoDAO.getInstance().recuperar(codigo);
+        try {
+            // return (Doacao)DaoManagerHiber.getInstance().recover("from Doacao where codigo="+codigo).get(0);
+            // return (Doacao)GenericDao.getInstance().encontrar(codigo);
+            return DoacaoDAO.getInstance().recuperar(codigo);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DoacaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public void excluir(Doacao t) {
-       //DaoManagerHiber.getInstance().delete(t);
-       //GenericDao.getInstance().remover(t);
-       DoacaoDAO.getInstance().excluir(t);
+        try {
+            //DaoManagerHiber.getInstance().delete(t);
+            //GenericDao.getInstance().remover(t);
+            DoacaoDAO.getInstance().excluir(t);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DoacaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public List recuperarTodos() {
-       //return DaoManagerHiber.getInstance().recover("from Doacao");
-       return DoacaoDAO.getInstance().recuperarTodos();
+        try {
+            //return DaoManagerHiber.getInstance().recover("from Doacao");
+            return DoacaoDAO.getInstance().recuperarTodos();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DoacaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override

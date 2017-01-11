@@ -6,6 +6,10 @@
 package controladores;
 
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import negocio.Doacao;
 import negocio.Doador;
 import repositorios.DoacaoRepositorio;
@@ -16,6 +20,8 @@ import repositorios.RepositorioGenerico;
  *
  * @author Penguin
  */
+@ManagedBean(name="cDoador")
+@SessionScoped
 public class DoadorControlador {
      private RepositorioGenerico<Doador> doadorRepositorio = null;
     private Doador doadorSelecionado;
@@ -40,12 +46,25 @@ public class DoadorControlador {
         this.doadorSelecionado = doadorSelecionado;
     }
     
-    public void inserir(Doador d){
+    public String inserir(Doador d){
         this.doadorRepositorio.inserir(d);
+        
+        FacesContext.getCurrentInstance().
+                addMessage(null, new FacesMessage("Cadastro concluído com sucesso!"));
+        
+        return "index.xhtml";
     }
     
     public void alterar(Doador d){
         this.doadorRepositorio.alterar(d);
+        
+       
+        FacesContext.getCurrentInstance().addMessage(null, 
+                 new FacesMessage("Sucesso", "o animal " + d.getNome() + " foi alterado com sucesso!!"));
+         
+       
+        
+       // return "ApresentaAnimal.xhtml";
     }
     
     public Doador recuperar(String codigo){

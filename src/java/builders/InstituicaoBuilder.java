@@ -6,6 +6,8 @@
 package builders;
 
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import negocio.Doacao;
 import negocio.Instituicao;
 import negocio.MaterialDoacao;
@@ -14,6 +16,8 @@ import negocio.MaterialDoacao;
  *
  * @author Penguin
  */
+@ManagedBean(name = "bInstituicao")
+@RequestScoped
 public class InstituicaoBuilder {
 
     private String nome;

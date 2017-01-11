@@ -8,6 +8,8 @@ package repositorios;
 import dao.DaoManagerHiber;
 import dao.VisitaDAO;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.Instituicao;
 import negocio.StatusEnum;
 import negocio.Visita;
@@ -20,32 +22,54 @@ public class VisitaRepositorio implements RepositorioGenerico<Visita>{
 
     @Override
     public void inserir(Visita t) {
-      // DaoManagerHiber.getInstance().persist(t);
-      VisitaDAO.getInstance().inserir(t.getCodigo(), t.getDoador(), t.getInstituicao(), t.getStatus(), t.getData_da_visita(), t.getHorario());
+        try {
+            // DaoManagerHiber.getInstance().persist(t);
+            VisitaDAO.getInstance().inserir(t.getCodigo(), t.getDoador(), t.getInstituicao(), t.getStatus(), t.getData_da_visita(), t.getHorario());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VisitaRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void alterar(Visita t) {
-      // DaoManagerHiber.getInstance().update(t);
-      VisitaDAO.getInstance().alterar(t.getCodigo(), t.getDoador(), t.getInstituicao(), t.getStatus(), t.getData_da_visita(), t.getHorario());
+        try {
+            // DaoManagerHiber.getInstance().update(t);
+            VisitaDAO.getInstance().alterar(t.getCodigo(), t.getDoador(), t.getInstituicao(), t.getStatus(), t.getData_da_visita(), t.getHorario());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VisitaRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
    }
 
     @Override
     public Visita recuperar(int codigo) {
-      //return (Visita)DaoManagerHiber.getInstance().recover("from Visita where codigo="+codigo).get(0);
-      return VisitaDAO.getInstance().recuperar(codigo);
+        try {
+            //return (Visita)DaoManagerHiber.getInstance().recover("from Visita where codigo="+codigo).get(0);
+            return VisitaDAO.getInstance().recuperar(codigo);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VisitaRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public void excluir(Visita t) {
-       //DaoManagerHiber.getInstance().delete(t);
-       VisitaDAO.getInstance().excluir(t);
+        try {
+            //DaoManagerHiber.getInstance().delete(t);
+            VisitaDAO.getInstance().excluir(t);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VisitaRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public List<Visita> recuperarTodos() {
-       //return DaoManagerHiber.getInstance().recover("from Visita");
-       return VisitaDAO.getInstance().recuperarTodos();
+        try {
+            //return DaoManagerHiber.getInstance().recover("from Visita");
+            return VisitaDAO.getInstance().recuperarTodos();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VisitaRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override

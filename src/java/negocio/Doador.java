@@ -38,10 +38,9 @@ public class Doador {
         this.email = email;
     }
 
-    @Deprecated
     public Doador(){
     }
-    
+
     public String getNome() {
         return nome;
     }

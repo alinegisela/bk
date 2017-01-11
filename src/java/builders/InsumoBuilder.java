@@ -5,6 +5,8 @@
  */
 package builders;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import negocio.Insumo;
 import negocio.TipoEnum;
 
@@ -12,11 +14,14 @@ import negocio.TipoEnum;
  *
  * @author Penguin
  */
+@ManagedBean(name = "bInsumo")
+@RequestScoped
 public class InsumoBuilder {
      private int codigo;
      private String nome;
      private TipoEnum tipo;
      private String descricao;
+     
 
     public int getCodigo() {
         return codigo;

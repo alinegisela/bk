@@ -44,10 +44,10 @@ public class Instituicao {
         this.prioridades = new ArrayList<>();
     }
 
-    @Deprecated
     public Instituicao(){
         
     }
+
     
     @Override
     public String toString() {

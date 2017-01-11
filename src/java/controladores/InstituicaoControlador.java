@@ -6,6 +6,10 @@
 package controladores;
 
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import negocio.Doador;
 import negocio.Instituicao;
 import repositorios.DoadorRepositorio;
@@ -16,6 +20,8 @@ import repositorios.RepositorioGenerico;
  *
  * @author Penguin
  */
+@ManagedBean(name="cInstituicao")
+@SessionScoped
 public class InstituicaoControlador {
     private RepositorioGenerico<Instituicao> instituicaoRepositorio = null;
     private Instituicao instituicaoSelecionada;
@@ -42,10 +48,22 @@ public class InstituicaoControlador {
     
     public void inserir(Instituicao d){
         this.instituicaoRepositorio.inserir(d);
+        
+        FacesContext.getCurrentInstance().
+                addMessage(null, new FacesMessage("Cadastro concluído com sucesso!"));
+        
+        //return "ApresentaAnimal.xhtml";
     }
     
     public void alterar(Instituicao d){
         this.instituicaoRepositorio.alterar(d);
+        
+        FacesContext.getCurrentInstance().addMessage(null, 
+                 new FacesMessage("Sucesso o animal " + d.getNome() + " foi alterado com sucesso!!"));
+         
+       
+        
+       // return "ApresentaAnimal.xhtml";
     }
     
     public Instituicao recuperar(String codigo){

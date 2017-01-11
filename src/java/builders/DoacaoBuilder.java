@@ -5,9 +5,15 @@
  */
 package builders;
 
+import dao.DoadorDAO;
+import dao.InstituicaoDAO;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import negocio.Doacao;
 import negocio.Doador;
 import negocio.Instituicao;
@@ -18,15 +24,57 @@ import negocio.StatusEnum;
  *
  * @author Penguin
  */
-public class DoacaoBuilder {
+@ManagedBean(name = "bDoacao")
+@RequestScoped
+    public class DoacaoBuilder {
     private int codigo;
      private Doador doador;
+     private String cpf;
     private Instituicao instituicao;
+    private String cnpj;
     //private MaterialDoacao materialDoacao;
     private StatusEnum status;
     private Date dataDoacao;
+    private String dDoacao;
     private Date dataVisita;
+    private String dVisita;
     private List<MaterialDoacao> doacao;
+
+    public String getdDoacao() {
+        return dDoacao;
+    }
+    
+    
+
+    public void setdDoacao(String dDoacao) {
+        this.dDoacao = dDoacao;
+    }
+
+    public String getdVisita() {
+        return dVisita;
+    }
+
+    public void setdVisita(String dVisita) {
+        this.dVisita = dVisita;
+    }
+
+    
+    
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
     
    
     /*
@@ -94,7 +142,16 @@ public class DoacaoBuilder {
         this.doacao = doacao;
     }
 
-    public Doacao build(){
-        return new Doacao(codigo,doador, instituicao, status, dataDoacao, dataVisita);
+    public Doacao build() throws ClassNotFoundException{
+        int year1, month1, day1, year, month, day;
+        year = Integer.parseInt(dDoacao.substring(4, 8)) - 1900;
+        month = Integer.parseInt(dDoacao.substring(2,4)) - 1;
+        day = Integer.parseInt(dDoacao.substring(0,2));
+        
+        year1 = Integer.parseInt(dVisita.substring(4, 8)) - 1900;
+        month1 = Integer.parseInt(dVisita.substring(2,4)) - 1;
+        day1 = Integer.parseInt(dVisita.substring(0,2));
+        
+        return new Doacao(codigo,DoadorDAO.getInstance().recuperar(cpf), InstituicaoDAO.getInstance().recuperar(cnpj), status, new Date(year, month, day), new Date(year1, month1, day1));
     }
 }

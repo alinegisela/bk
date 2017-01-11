@@ -27,11 +27,11 @@ public class VisitaDAO {
      private static VisitaDAO myself = null;
     private Connection con;
     
-    public VisitaDAO() {
+    public VisitaDAO() throws ClassNotFoundException {
         this.con = new ConnectionFactory().getConnection();
     }
     
-    public static VisitaDAO getInstance() {
+    public static VisitaDAO getInstance() throws ClassNotFoundException {
         if (myself == null) {
             myself = new VisitaDAO();
         }
@@ -105,7 +105,7 @@ public class VisitaDAO {
     }
     
     
-    public List recuperarTodos() {
+    public List recuperarTodos() throws ClassNotFoundException {
         try {
             List<Visita> visitaList = new ArrayList<Visita>();
             PreparedStatement stmt = this.con.
@@ -132,7 +132,7 @@ public class VisitaDAO {
         }
     }
     
-    public Visita recuperar(int codigo) {
+    public Visita recuperar(int codigo) throws ClassNotFoundException {
         try {
             List<Visita> visitaList = new ArrayList<Visita>();
             PreparedStatement stmt = this.con.

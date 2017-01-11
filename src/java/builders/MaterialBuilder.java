@@ -5,6 +5,9 @@
  */
 package builders;
 
+import dao.InsumoDAO;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
@@ -16,11 +19,24 @@ import negocio.PrioridadeEnum;
  *
  * @author Penguin
  */
+@ManagedBean(name = "bMaterial")
+@RequestScoped
 public class MaterialBuilder {
     private int codigo;
     private PrioridadeEnum prioridade;
     private Insumo insumo;
+    private int insumocodigo;
 
+    public int getInsumocodigo() {
+        return insumocodigo;
+    }
+
+    public void setInsumocodigo(int insumocodigo) {
+        this.insumocodigo = insumocodigo;
+    }
+
+    
+    
     public int getCodigo() {
         return codigo;
     }
@@ -45,7 +61,7 @@ public class MaterialBuilder {
         this.insumo = insumo;
     }
     
-    public MaterialDoacao build(){
-        return new MaterialDoacao(codigo, prioridade, insumo);
+    public MaterialDoacao build() throws ClassNotFoundException{
+        return new MaterialDoacao(codigo, prioridade, InsumoDAO.getInstance().recuperar(insumocodigo));
     }
 }

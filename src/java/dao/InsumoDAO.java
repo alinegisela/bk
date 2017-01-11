@@ -28,11 +28,11 @@ public class InsumoDAO {
     private static InsumoDAO myself = null;
     private Connection con;
 
-    public InsumoDAO() {
+    public InsumoDAO() throws ClassNotFoundException {
         this.con = new ConnectionFactory().getConnection();
     }
 
-    public static InsumoDAO getInstance() {
+    public static InsumoDAO getInstance() throws ClassNotFoundException {
         if (myself == null) {
             myself = new InsumoDAO();
         }

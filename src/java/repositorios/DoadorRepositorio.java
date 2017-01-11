@@ -8,6 +8,8 @@ package repositorios;
 import dao.DaoManagerHiber;
 import dao.DoadorDAO;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.Doador;
 
 /**
@@ -18,32 +20,54 @@ public class DoadorRepositorio implements RepositorioGenerico<Doador>{
 
     @Override
     public void inserir(Doador t) {
-      //  DaoManagerHiber.getInstance().persist(t);
-        DoadorDAO.getInstance().inserir(t.getNome(), t.getCpf(), t.getEndereco(), t.getTelefone(), t.getEmail());
+        try {
+            //  DaoManagerHiber.getInstance().persist(t);
+            DoadorDAO.getInstance().inserir(t.getNome(), t.getCpf(), t.getEndereco(), t.getTelefone(), t.getEmail());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DoadorRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void alterar(Doador t) {
-       //DaoManagerHiber.getInstance().update(t);
-       DoadorDAO.getInstance().alterar(t.getNome(), t.getCpf(), t.getEndereco(), t.getTelefone(), t.getEmail());
+        try {
+            //DaoManagerHiber.getInstance().update(t);
+            DoadorDAO.getInstance().alterar(t.getNome(), t.getCpf(), t.getEndereco(), t.getTelefone(), t.getEmail());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DoadorRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public Doador recuperar(String cpf) {
-       //return (Doador)DaoManagerHiber.getInstance().recover("from Doador where cpf="+codigo).get(0);
-       return DoadorDAO.getInstance().recuperar(cpf);
+        try {
+            //return (Doador)DaoManagerHiber.getInstance().recover("from Doador where cpf="+codigo).get(0);
+            return DoadorDAO.getInstance().recuperar(cpf);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DoadorRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public void excluir(Doador t) {
-      // DaoManagerHiber.getInstance().delete(t);
-      DoadorDAO.getInstance().excluir(t);
+        try {
+            // DaoManagerHiber.getInstance().delete(t);
+            DoadorDAO.getInstance().excluir(t);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DoadorRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public List<Doador> recuperarTodos() {
-      //return DaoManagerHiber.getInstance().recover("from Doador");
-      return DoadorDAO.getInstance().recuperarTodos();
+        try {
+            //return DaoManagerHiber.getInstance().recover("from Doador");
+            return DoadorDAO.getInstance().recuperarTodos();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DoadorRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override

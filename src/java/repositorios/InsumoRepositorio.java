@@ -7,6 +7,8 @@ package repositorios;
 
 import dao.InsumoDAO;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.Instituicao;
 import negocio.Insumo;
 import negocio.StatusEnum;
@@ -20,17 +22,30 @@ public class InsumoRepositorio implements RepositorioGenerico<Insumo> {
 
     @Override
     public void inserir(Insumo t) {
-        InsumoDAO.getInstance().inserir(t.getCodigo(), t.getNome(), t.getTipo(), t.getDescricao());
+        try {
+            InsumoDAO.getInstance().inserir(t.getCodigo(), t.getNome(), t.getTipo(), t.getDescricao());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(InsumoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void alterar(Insumo t) {
-        InsumoDAO.getInstance().alterar(t.getCodigo(), t.getNome(), t.getTipo(), t.getDescricao());
+        try {
+            InsumoDAO.getInstance().alterar(t.getCodigo(), t.getNome(), t.getTipo(), t.getDescricao());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(InsumoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public Insumo recuperar(int codigo) {
-       return InsumoDAO.getInstance().recuperar(codigo);
+        try {
+            return InsumoDAO.getInstance().recuperar(codigo);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(InsumoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
@@ -40,14 +55,23 @@ public class InsumoRepositorio implements RepositorioGenerico<Insumo> {
 
     @Override
     public void excluir(Insumo insumo) {
-        InsumoDAO.getInstance().excluir(insumo);
+        try {
+            InsumoDAO.getInstance().excluir(insumo);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(InsumoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
    
 
     @Override
     public List<Insumo> recuperarTodos() {
-       return InsumoDAO.getInstance().recuperarTodos();
+        try {
+            return InsumoDAO.getInstance().recuperarTodos();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(InsumoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override

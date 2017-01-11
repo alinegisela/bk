@@ -6,6 +6,10 @@
 package controladores;
 
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import negocio.Instituicao;
 import negocio.MaterialDoacao;
 import repositorios.InstituicaoRepositorio;
@@ -16,6 +20,8 @@ import repositorios.RepositorioGenerico;
  *
  * @author Penguin
  */
+@ManagedBean(name="cMaterial")
+@SessionScoped
 public class MaterialControlador {
     private RepositorioGenerico<MaterialDoacao> materialRepositorio = null;
     private MaterialDoacao materialSelecionado;
@@ -42,10 +48,22 @@ public class MaterialControlador {
     
     public void inserir(MaterialDoacao d){
         this.materialRepositorio.inserir(d);
+        
+         FacesContext.getCurrentInstance().
+                addMessage(null, new FacesMessage("Cadastro concluído com sucesso!"));
+        
+        //return "ApresentaAnimal.xhtml";
     }
     
     public void alterar(MaterialDoacao d){
         this.materialRepositorio.alterar(d);
+        
+        FacesContext.getCurrentInstance().addMessage(null, 
+                 new FacesMessage("Sucessoo animal " + d.getCodigo() + " foi alterado com sucesso!!"));
+         
+       
+        
+       // return "ApresentaAnimal.xhtml";
     }
     
     public MaterialDoacao recuperar(int codigo){
