@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Cadastro de Visitas</title>
+    </h:head>
+    
+    <h:body>
+        <ui:include src="menu.xhtml"/>
+
+        <h:form id="form">
+            <p:wizard>
+                <p:tab id="dadosVisita" title="Dados da visita">
+                    <p:panel header="Insere os dados sobre a visita">
+                        <p:messages/>
+                        <h:panelGrid columns="3">
+
+                            <h:outputText value="Código: "/>
+                            <p:inputText id="inputCodigo" value="#{bVisita.codigo}" required="true"
+                                         requiredMessage="Digite um código"/>
+                            <p:message id="messageCodigo" for="inputCodigo" />
+
+                            <h:outputText value="Cpf do Doador:" />
+                            <p:inputText id="inputDoador" value="#{bVisita.cpf}" 
+                                        required="true" requiredMessage="Doador" />
+                            <p:message id="messageDoador" for="inputDoador"/>
+                            
+                            <h:outputText value="Instituição:" />
+                            <p:inputText id="inputInstituicao" value="#{bVisita.cnpj}" 
+                                        required="true" requiredMessage="Instituição" />
+                            <p:message id="messageInstituicao" for="inputInstituicao"/>
+                            
+                            <h:outputText value="Status:" />
+                            <p:inputText id="inputStatus" value="#{bVisita.status}" 
+                                        required="true" requiredMessage="Status da sua doação:" />
+                            <p:message id="messageStatus" for="inputStatus"/>
+                            
+                            <h:outputText value="Data Da Visita:" />
+                            <p:inputText id="inputDataDaVisita" value="#{bVisita.data}" 
+                                        required="true" requiredMessage="Data da sua visita:" />
+                            <p:message id="messageDataDaVisita" for="inputDataDaVisita"/>
+                            
+                            <h:outputText value="Horário:" />
+                            <p:inputText id="inputHorario" value="#{bVisita.horario}" 
+                                        required="true" requiredMessage="Horário da visita" />
+                            <p:message id="messageHorario" for="inputHorario"/>
+
+                           <h:outputText/>
+
+                        </h:panelGrid>
+                        <p:commandButton value="Agendar visita"  action="#{cVisita.inserir(bVisita.build())}"
+                                     update="form" style="left:600px" ajax="false"/>
+                    </p:panel>
+                </p:tab>
+               
+                <!--
+                <p:tab id="listaInst" title="Lista das Instituicoes">
+                    <p:panel header="Selecione a Instituição para doar:">
+                        <p:messages/>
+                        <h:outputLabel for="menu" value="Selecione a Instituição"/>                      
+                            <p:dataTable 
+                                id="tabelaInst" value="#{controleInstituicao.instituicoa}" var="item"
+                                rowKey="#{item.nome}" paginator="true" rows="10" 
+                                selection="#{controleDoacao.instituicaoSelected}">
+                                <p:column sortBy="#{item.nome}" filterBy="#{item.nome}" headerText="Nome" selectionMode="multiple">
+                                    <h:outputText value="#{item.nome}" />
+                                </p:column>
+                                
+                                <p:column filterBy="#{item.descricao.nome}" headerText="Descricao">
+                                    <h:outputText value="#{item.descricao.nome}" />
+                                </p:column>
+
+                                <p:column headerText="FONE">
+                                    <h:outputText value="#{item.tel}" />
+                                </p:column>
+
+                               
+                            </p:dataTable> 
+                         <p:commandButton value="Cadastrar"  action="#{controleDoacao.inserirDoacao(cDoacao.construirDoacao())}"
+                                         update="form"  style="left:600px"/>
+                    </p:panel>
+                   
+
+                </p:tab>
+                                     
+                <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                    <p:panelGrid id="display" columns="3" columnClasses="label,value">
+
+                        <h:outputText value="Data de Início:" />
+                        <h:outputText value="#{cobra.dataInicio}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+
+                        <h:outputText value="Data de Término:" />
+                        <h:outputText value="#{cobra.dataTermino}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                    </p:panelGrid>
+                </p:dialog>
+                -->
+            </p:wizard>
+        </h:form>
+    </h:body>
+</html>
+

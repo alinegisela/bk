@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Alterar Doação</title>
+    </h:head>
+    <body>
+        <ui:include src="index.xhtml"/>
+
+        <h:form id="form">
+
+            <p:wizard>
+                <p:tab id="dadosDoacao" title="Dados da Doação">
+                    <p:panel header="Insere os dados sobre a Doação">
+                        <p:messages/>
+                        <h:panelGrid columns="3">
+
+                            <p:tab id="nomeDoador" title="Lista Doadores">
+                                <p:panel header="Selecione o Doador para a Doação">
+                                    <p:messages/>
+
+
+                                    <p:dataTable id="tabelaDoador" value="#{cDoador.recuperarTodos()}" var="item"
+                                                 rowKey="#{item.cpf}" paginator="true" rows="6" selectionMode="single" 
+                                                 selection="#{cDoacao.doacaoSelecionada.doador}">
+
+
+                                        <p:column sortBy="#{item.nome}" filterBy="#{item.nome}" headerText="Nome" footerText="Nome">
+                                            <h:outputText value="#{item.nome}"/>
+                                        </p:column>
+
+                                    </p:dataTable>  
+
+                                </p:panel>
+                            </p:tab>
+
+                            <p:tab id="nomeInstituição" title="Lista Instituições">
+                                <p:panel header="Selecione a Instituição para a Doação">
+                                    <p:messages/>
+                                    <h:panelGrid>     
+
+                                        <p:dataTable id="tabelaInstituicao" value="#{cInstituicao.recuperarTodos()}" var="item"
+                                                     rowKey="#{item.cnpj}" paginator="true" rows="6" selectionMode="single" 
+                                                     selection="#{cDoacao.doacaoSelecionada.instituicao}">
+
+
+                                            <p:column sortBy="#{item.nome}" filterBy="#{item.nome}" headerText="Nome" footerText="Nome">
+                                                <h:outputText value="#{item.nome}"/>
+                                            </p:column>
+
+                                        </p:dataTable>  
+                                    </h:panelGrid>
+                                </p:panel>
+                                <h:outputText value="Código: "/>
+                                <p:inputText id="inputCodigo" value="#{cDoacao.doacaoSelecionada.codigo}" required="true"
+                                             requiredMessage="Digite um código"/>
+                                <p:message id="messageCodigo" for="inputCodigo" />
+
+                                <!--
+                                                            <h:outputText value="Cpf do Doador:" />
+                                                            <p:inputText id="inputDoador" value="#{cDoacao.doacaoSelecionada.cpf}" 
+                                                                        required="true" requiredMessage="Doador" />
+                                                            <p:message id="messageDoador" for="inputDoador"/>
+                                                            
+                                                            <h:outputText value="Instituição:" />
+                                                            <p:inputText id="inputInstituicao" value="#{cDoacao.doacaoSelecionada.cnpj}" 
+                                                                        required="true" requiredMessage="Instituição" />
+                                                            <p:message id="messageInstituicao" for="inputInstituicao"/>
+                                -->                        
+                                <h:outputText value="Status:" />
+                                <p:inputText id="inputStatus" value="#{cDoacao.doacaoSelecionada.statusenum}" 
+                                             required="true" requiredMessage="Status da sua doação:" />
+                                <p:message id="messageStatus" for="inputStatus"/>
+
+                                <h:outputText value="Data Da Doação:" />
+                                <p:inputText id="inputDataDaDoacao" value="#{cDoacao.doacaoSelecionada.dataDoacao}" 
+                                             required="true" requiredMessage="Data da sua doação:" />
+                                <p:message id="messageDataDaDoacao" for="inputDataDaDoacao"/>
+
+                                <h:outputText value="Data Da Visita:" />
+                                <p:inputText id="inputDataDaVisita" value="#{cDoacao.doacaoSelecionada.dataVisita}" 
+                                             required="true" requiredMessage="Data da nossa visita:" />
+                                <p:message id="messageDataDaVisita" for="inputDataDaVisita"/>
+
+                                <h:outputText/>
+                            </p:tab>
+                        </h:panelGrid>
+                        <p:commandButton value="Alterar"  action="#{cDoacao.alterar(cDoacao.getDoacaoSelecionada())}"
+                                         update="form" style="left:600px" ajax="false"/>
+                    </p:panel>
+                </p:tab>
+            </p:wizard>
+
+
+            <!--
+            <p:messages/>
+            <p:fieldset legend="Alterar Doação">
+                <p:panelGrid columns="3">
+                    <h:outputText value="Código"/>
+                    <p:inputText id="inputCodigo" value="#{cDoacao.doacaoSelecionada.codigo}" required="true"
+                                 requiredMessage="Digite o Código"/>
+                    <p:message id="messageNome" for="inputCodigo" />
+
+
+                    <h:outputText value="Status"/>
+                    <p:inputText id="inputStatus" value="#{cDoacao.doacaoSelecionada.status}" required="true"
+                                 requiredMessage="Digite o Status"/>
+                    <p:message id="messageStatus" for="inputStatus" />
+
+                </p:panelGrid>
+                <p:tab id="nomeDoador" title="Lista Doadores">
+                    <p:panel header="Selecione o Doador para a Doação">
+                        <p:messages/>
+
+
+                        <p:dataTable id="tabelaDoador" value="#{cDoador.recuperarTodos()}" var="item"
+                                     rowKey="#{item.cpf}" paginator="true" rows="6" selectionMode="single" 
+                                     selection="#{cDoacao.doacaoSelecionada.doador}">
+
+
+                            <p:column sortBy="#{item.nome}" filterBy="#{item.nome}" headerText="Nome" footerText="Nome">
+                                <h:outputText value="#{item.nome}"/>
+                            </p:column>
+
+                        </p:dataTable>  
+
+                    </p:panel>
+                </p:tab>
+
+
+
+                <p:tab id="nomeInstituição" title="Lista Instituições">
+                    <p:panel header="Selecione a Instituição para a Doação">
+                        <p:messages/>
+                        <h:panelGrid>     
+
+                            <p:dataTable id="tabelaInstituicao" value="#{cInstituicao.recuperarTodos()}" var="item"
+                                         rowKey="#{item.cnpj}" paginator="true" rows="6" selectionMode="single" 
+                                         selection="#{cDoacao.doacaoSelecionada.instituicao}">
+
+
+                                <p:column sortBy="#{item.nome}" filterBy="#{item.nome}" headerText="Nome" footerText="Nome">
+                                    <h:outputText value="#{item.nome}"/>
+                                </p:column>
+
+                            </p:dataTable>  
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+
+
+                <p:tab id="dataDoacao" title="Data Doação">
+                    <p:panel header="Selecione a Alteração da Data e/ou Hora da Doação">
+                        <p:messages/>
+                        <h:panelGrid columns="3">
+                            <p:outputLabel for="inputData" value="Data e Hora da Doação:" />
+                            <p:calendar id="inputData" value="#{cDoacao.doacaoSelecionada.dataDoacao}" pattern=" dd/MM/yyyy HH:mm:ss" 
+                                        required="true" requiredMessage="Selecione a Data e a Hora da Doação"/>
+                            <p:message id="messageData" for="inputData"/>
+
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+
+                <p:tab id="dataVisita" title="Data Visita">
+                    <p:panel header="Selecione a Alteração da Data e/ou Hora da Visita">
+                        <p:messages/>
+                        <h:panelGrid columns="3">
+                            <p:outputLabel for="inputData" value="Data e Hora da Visita:" />
+                            <p:calendar id="inputData" value="#{cDoacao.doacaoSelecionada.dataVisita}" pattern=" dd/MM/yyyy HH:mm:ss" 
+                                        required="true" requiredMessage="Selecione a Data e a Hora da Visita"/>
+                            <p:message id="messageData" for="inputData"/>
+
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+
+                <p:tab id="prioridadeDoacao" title="Lista de Materiais de Doação">
+                    <p:panel header="Selecione o Material para a Doação">
+                        <p:messages/>
+                        <h:panelGrid>
+
+                            <p:dataTable id="tabelaMaterialDoacao" value="#{cMaterial.recuperarTodos()}" var="item"
+                                         rowKey="#{item.codigo}" paginator="true" rows="6" selectionMode="single" 
+                                         selection="#{cDoacao.doacaoSelecionada.doacao}">
+
+
+                                <p:column sortBy="#{item.getInsumo().getNome()}" filterBy="#{item.getInsumo().getNome()}" headerText="Insumo" footerText="Nome">
+                                    <div align="center" >
+                                        <h:outputText value="#{item.getInsumo().getNome()}"  />
+                                    </div>
+                                </p:column>
+
+                            </p:dataTable>  
+                        </h:panelGrid>
+                    </p:panel>
+
+                   
+
+
+
+
+
+
+
+                    <p:commandButton value="Alterar" action="#{cDoacao.alterar(cDoacao.doacaoSelecionada)}" 
+                                     update="form" ajax="false"/>
+                  
+                </p:tab>
+
+
+            </p:fieldset>
+            -->
+        </h:form>
+    </body>
+</html>

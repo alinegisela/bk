@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Doações</title>
+    </h:head>
+    <h:body>
+        <p:growl id="gro" showDetail="true" sticky="false" life="3000"
+                 autoUpdate="true"/>
+        <ui:include src="menu.xhtml" />
+        <h:form id="formulario"> 
+            <p:dataTable id="tabelaDoacao" value="#{cDoacao.recuperarTodos()}" var="item"
+                         rowKey="#{item.codigo}" paginator="true" rows="10" selectionMode="single"
+                         selection="#{cDoacao.doacaoSelecionada}">
+
+                <p:column sortBy="#{item.codigo}" filterBy="#{item.codigo}" headerText="Nome" footerText="Nome">
+                    <h:outputText value="#{item.codigo}"/>
+                </p:column>
+                
+            </p:dataTable>
+            <p:commandButton value="Visualizar Doações" 
+                             update="dial1" oncomplete="PF('painel1').show()"/>
+            <p:commandButton value="Alterar" 
+                             oncomplete="location.href='AlteraDoacao.xhtml'"/>
+             <p:commandButton value="Excluir" actionListener="#{cDoacao.deletar(cDoacao.doacaoSelecionada)}" 
+                             update=":formulario:tabelaDoacao">
+                <p:confirm header="ATENÇÃO" message="Realmente deseja excluir esta doação?" icon="ui-icon-alert" />
+            </p:commandButton>
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
+
+            <p:dialog id="dial1" closable="false" resizable="false" modal="true"
+                      visible="false" widgetVar="painel1" header="Dados da Doação">
+
+                <p:panelGrid columns="2">
+                    
+                    <h:outputText value="Identificador"/>
+                    <h:outputText value="#{cDoacao.doacaoSelecionada.codigo}"/>
+
+                    <h:outputText value="Nome"/>
+                    <h:outputText value="#{cDoacao.doacaoSelecionada.status}"/>
+
+                     </p:panelGrid>
+
+                <p:commandLink value="fechar" 
+                               oncomplete="PF('painel1').hide()"/>
+
+            </p:dialog>
+        </h:form>
+    </h:body>
+</html>
