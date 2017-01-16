@@ -23,7 +23,7 @@ public class InstituicaoRepositorio implements RepositorioGenerico<Instituicao> 
     public void inserir(Instituicao t) {
         try {
             //DaoManagerHiber.getInstance().persist(t);
-            InstituicaoDAO.getInstance().inserir(t.getNome(), t.getEndereco(), t.getDescricao(), t.getCnpj(), t.getTel(), t.getEmail());
+            InstituicaoDAO.getInstance().inserir(t.getNome(), t.getEndereco(), t.getDescricao(), t.getCnpj(), t.getTel(), t.getEmail(), t.getSenha());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(InstituicaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
         }

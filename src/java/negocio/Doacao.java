@@ -29,43 +29,17 @@ import javax.persistence.TemporalType;
  *
  * @author Penguin
  */
-@Entity
-@Table
+
 public class Doacao {
 
-    @Id
-    @GeneratedValue
     private int codigo;//automatico
-    @ManyToOne(cascade = CascadeType.ALL)
     private Doador doador;//do sistema
     private String cpf;
-        private String cnpj;
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public StatusEnum getStatusenum() {
-        return statusenum;
-    }
-
-    public void setStatusenum(StatusEnum statusenum) {
-        this.statusenum = statusenum;
-    }
-
-    @ManyToOne(cascade = CascadeType.ALL)
+    private String cnpj;
     private Instituicao instituicao;
-    @Enumerated(EnumType.STRING)
     private StatusEnum statusenum;//do sistema
-    @Temporal(value=TemporalType.DATE)
-    private Date dataDoacao;//do sistema
-    @Temporal(value=TemporalType.DATE)
+    private Date dataDoacao;//do sistema 
     private Date dataVisita;
-    @OneToMany(cascade = CascadeType.ALL)
     private List<MaterialDoacao> doacao;
 
     public Doacao(int codigo, Doador doador, Instituicao instituicao, StatusEnum statusenum, Date dataDoacao, Date dataVisita) {
@@ -83,6 +57,23 @@ public class Doacao {
     public Doacao(){
     }
 
+    
+       public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public StatusEnum getStatusenum() {
+        return statusenum;
+    }
+
+    public void setStatusenum(StatusEnum statusenum) {
+        this.statusenum = statusenum;
+    }
+    
     public int getCodigo() {
         return codigo;
     }

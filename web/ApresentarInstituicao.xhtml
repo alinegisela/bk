@@ -12,49 +12,29 @@ and open the template in the editor.
         <title>Instituições</title>
     </h:head>
     <h:body>
-        <p:growl id="gro" showDetail="true" sticky="false" life="3000"
-                 autoUpdate="true"/>
-        <ui:include src="menu.xhtml" />
+        <ui:include src="menu-doador.xhtml" />
         <h:form>
-            <p:dataTable id="tabelaInstituicao" value="#{controleInstituicao.instituicaoRepositorio}" var="item"
-                         rowKey="#{item.cnpj}" paginator="true" rows="10" selectionMode="single"
-                         selection="#{controleInstituicao.instituicaoSelecionada}">
+            <p:wizard>
+                <p:tab id="dadosDoador" title="Instituições cadastradas"> 
+                    <p:panel >
+                        <p:dataTable var="instituicao" value="#{cInstituicao.recuperarTodos()}" paginator="true" rows="5">
+                            <p:column headerText="Nome" sortBy="#{instituicao.nome}">
+                                <h:outputText value="#{instituicao.nome}"/>
+                            </p:column>
 
-                <p:column sortBy="#{item.cnpj}" filterBy="#{item.cnpj}" headerText="CNPJ" footerText="CNPJ">
-                    <h:outputText value="#{item.cnpj}"/>
-                </p:column>
-                
-            </p:dataTable>
-            <p:commandButton value="Visualizar Instituições" 
-                             update="dial1" oncomplete="PF('painel1').show()"/>
-            <p:commandButton value="Alterar" 
-                             oncomplete="location.href='AlteraInstituicao.xhtml'"/>
-             <p:commandButton value="Excluir" actionListener="#{controleInstituicao.deletar(controleInstituicao.instituicaoSelecionada)}" 
-                             update="tabelaInstituicao">
-                <p:confirm header="ATENÇÃO" message="Realmente deseja excluir esta instituição?" icon="ui-icon-alert" />
-            </p:commandButton>
-            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-            </p:confirmDialog>
+                            <p:column headerText="Local">
+                                <h:outputText value="#{instituicao.endereco}"/>
+                            </p:column>
 
-            <p:dialog id="dial1" closable="false" resizable="false" modal="true"
-                      visible="false" widgetVar="painel1" header="Dados da Instituicao">
+                            <p:column width="120">
+                                <p:commandButton value="Visualizar" action="#{cInstituicao.setInstituicaoSelecionada(instituicao)}" />
+                               <!-- -->
+                            </p:column>
+                        </p:dataTable>
 
-                <p:panelGrid columns="2">
-                    
-                    <h:outputText value="CNPJ"/>
-                    <h:outputText value="#{controleInstituicao.instituicaoSelecionada.cnpj}"/>
-
-                    <h:outputText value="Nome"/>
-                    <h:outputText value="#{controleInstituicao.instituicaoSelecionada.nome}"/>
-
-                     </p:panelGrid>
-
-                <p:commandLink value="fechar" 
-                               oncomplete="PF('painel1').hide()"/>
-
-            </p:dialog>
+                    </p:panel>
+                </p:tab>
+            </p:wizard>
         </h:form>
     </h:body>
 </html>

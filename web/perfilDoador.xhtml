@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Perfil</title>
+    </h:head>
+    <h:body>
+        <ui:include src="menu-doador.xhtml" />
+        
+        <h:form>
+             <p:wizard>
+                <p:tab id="dadosDoador" title="Meus Dados"> 
+                    <p:panel >
+                        <p:messages/>
+                        <h:panelGrid columns="2">
+                            
+                            <h:outputText value="Nome: "/>
+                            <h:outputText value="#{login.doador.nome}" />
+                            
+                            <h:outputText value="Cpf: "/>
+                            <h:outputText value="#{login.doador.cpf}" />
+                            
+                            <h:outputText value="Endereço: "/>
+                            <h:outputText value="#{login.doador.endereco}" />
+                            
+                            <h:outputText value="Telefone: "/>
+                            <h:outputText value="#{login.doador.telefone}" />
+                            
+                            <h:outputText value="Email: "/>
+                            <h:outputText value="#{login.doador.email}" />
+                            
+                            
+                        </h:panelGrid>  
+                        
+                        <p:button value="Alterar" outcome="AlterarDoador" style="left:600px"/>
+                    </p:panel>
+                </p:tab>
+
+
+            
+            </p:wizard>
+        </h:form>
+    </h:body>
+</html>
+

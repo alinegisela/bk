@@ -39,11 +39,11 @@ public class InstituicaoDAO {
     }
     
     
-    public boolean inserir(String nome, String endereco, String descricao, String cnpj, String tel, String email) {
+    public boolean inserir(String nome, String endereco, String descricao, String cnpj, String tel, String email, String senha) {
         try {
             PreparedStatement insereInstituicaoSTM = null;
-            String insereInstituicaoSQL = "insert into instituicao (nome, endereco, descricao, cnpj, tel, email)"
-                    + "values (?,?,?,?,?,?)";
+            String insereInstituicaoSQL = "insert into instituicao (nome, endereco, descricao, cnpj, tel, email, senha)"
+                    + "values (?,?,?,?,?,?,?)";
             
             insereInstituicaoSTM = con.prepareStatement(insereInstituicaoSQL);
             
@@ -53,6 +53,7 @@ public class InstituicaoDAO {
             insereInstituicaoSTM.setString(4, cnpj);
             insereInstituicaoSTM.setString(5,  tel);
             insereInstituicaoSTM.setString(6,  email);
+            insereInstituicaoSTM.setString(7,  senha);
             
             
             if (insereInstituicaoSTM.executeUpdate() == 1) {
@@ -105,7 +106,7 @@ public class InstituicaoDAO {
     
     public List recuperarTodos() {
         try {
-            List<Instituicao> instituicaoList = new ArrayList<Instituicao>();
+            List<Instituicao> instituicaoList = new ArrayList<>();
             PreparedStatement stmt = this.con.
                     prepareStatement("select * from instituicao");
             ResultSet rs = stmt.executeQuery();
@@ -119,7 +120,7 @@ public class InstituicaoDAO {
                 instituicao.setCnpj(rs.getString("cnpj"));
                 instituicao.setTel(rs.getString("tel"));
                 instituicao.setEmail(rs.getString("email"));
-                
+                instituicao.setSenha(rs.getString("senha"));
 
                  
                 // adicionando o objeto à lista

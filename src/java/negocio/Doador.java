@@ -12,34 +12,39 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Cristiane
+ * @author Aline
  */
-@Entity
-@Table
 public class Doador {
 
- @Column(length = 50)
+ final String tipo = "doador";
  private String nome;
- @Id
- @Column(length = 50)
  private String cpf;
- @Column(length = 50)
  private String endereco;
- @Column(length = 50)
  private String telefone;
- @Column(length = 50)
  private String email;
+ private String senha;
 
-    public Doador(String nome, String cpf, String endereco, String telefone, String email) {
+    public Doador(String nome, String cpf, String endereco, String telefone, String email, String senha) {
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
+        this.senha = senha;
     }
 
     public Doador(){
     }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
+    
 
     public String getNome() {
         return nome;

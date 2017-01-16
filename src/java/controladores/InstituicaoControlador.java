@@ -42,17 +42,18 @@ public class InstituicaoControlador {
         return instituicaoSelecionada;
     }
 
-    public void setInstituicaoSelecionada(Instituicao instituicaoSelecionad) {
+    public String setInstituicaoSelecionada(Instituicao instituicaoSelecionada) {
         this.instituicaoSelecionada = instituicaoSelecionada;
+        return "visualizarInstituicao.xhtml";
     }
     
-    public void inserir(Instituicao d){
+    public String inserir(Instituicao d){
         this.instituicaoRepositorio.inserir(d);
         
         FacesContext.getCurrentInstance().
                 addMessage(null, new FacesMessage("Cadastro concluído com sucesso!"));
         
-        //return "ApresentaAnimal.xhtml";
+       return "cadastroConcluido.xhtml";
     }
     
     public void alterar(Instituicao d){

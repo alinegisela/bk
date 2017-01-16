@@ -26,9 +26,20 @@ public class InstituicaoBuilder {
     private String cnpj;
     private String tel;
     private String email;
+    private String senha;
     private List<MaterialDoacao> prioridades;
     //private List<Doacao> historicoDoacoes;
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    
+    
     public String getNome() {
 		return nome;
 	}
@@ -95,6 +106,6 @@ public class InstituicaoBuilder {
 	}
         */
         public Instituicao build(){
-            return new Instituicao(nome, endereco, descricao, cnpj, tel, email);
+            return new Instituicao(nome, endereco, descricao, cnpj, tel, email, senha);
         }
 }

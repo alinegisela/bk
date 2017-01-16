@@ -42,7 +42,7 @@ public class DoadorControlador {
         return doadorSelecionado;
     }
 
-    public void setDoadorSelecionado(Doador doadorSelecionad) {
+    public void setDoadorSelecionado(Doador doadorSelecionado) {
         this.doadorSelecionado = doadorSelecionado;
     }
     
@@ -50,21 +50,26 @@ public class DoadorControlador {
         this.doadorRepositorio.inserir(d);
         
         FacesContext.getCurrentInstance().
+                
                 addMessage(null, new FacesMessage("Cadastro concluído com sucesso!"));
         
-        return "index.xhtml";
+        return "cadastroConcluido.xhtml";
     }
     
-    public void alterar(Doador d){
+    public String redirecionar(){
+        return "CadastroDoador.xhtml";
+    }
+    
+    public String alterar(Doador d){
         this.doadorRepositorio.alterar(d);
         
        
         FacesContext.getCurrentInstance().addMessage(null, 
-                 new FacesMessage("Sucesso", "o animal " + d.getNome() + " foi alterado com sucesso!!"));
+                 new FacesMessage("Alteração concluída com sucesso"));
          
        
         
-       // return "ApresentaAnimal.xhtml";
+       return "perfilDoador.xhtml";
     }
     
     public Doador recuperar(String codigo){

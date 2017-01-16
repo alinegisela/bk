@@ -14,8 +14,10 @@ and open the template in the editor.
         <h:form id="formMenu" >
              <p:growl id="gro" showDetail="true" life="4000" sticky="false"/>
             <p:menubar>
-                <p:menuitem value="home" url="home.xhtml"/>
-                
+                <p:menuitem value="Perfil" url="perfilDoador.xhtml"></p:menuitem>
+                <p:menuitem value="Doação" url="ApresentarDoacao.xhtml"></p:menuitem>
+                <p:menuitem value="Instituição" url="ApresentarInstituicao.xhtml"></p:menuitem>
+                <p:menuitem value="Sair" action="#{login.logout}"></p:menuitem>
             </p:menubar>
             <p:separator/>
         </h:form>

@@ -16,8 +16,8 @@ and open the template in the editor.
 
         <h:form id="form">
             <p:wizard>
-                <p:tab id="dadosInstituicao" title="Dados da Instituição"> 
-                    <p:panel header="Insira os dados da instituição">
+                <p:tab id="dadosInstituicao" title="Insira os dados da instituição"> 
+                    <p:panel >
                         <p:messages/>
                         <h:panelGrid columns="3">
 
@@ -49,63 +49,17 @@ and open the template in the editor.
                             <p:inputText value="#{bInstituicao.email}"/>
                             <h:outputText/>
                             
+                            <h:outputText value="Senha: "/>
+                             <p:password id="inputSenha" value="#{bInstituicao.senha}"/>
+                            <h:outputText/>
+                            
                         </h:panelGrid>  
                         <p:commandButton value="Cadastrar"  action="#{cInstituicao.inserir(bInstituicao.build())}"
                                      update="form" style="left:600px" ajax="false"/>
                     </p:panel>
                 </p:tab>
 
-                <!--
-                <p:tab id="materialNecessario" title="Lista de Materiais">
-                    <p:panel header="Selecione os materiais com maior prioridade">
-                        <p:messages/>
-                        <h:panelGrid>
-                            <p:dataTable id="tabelaMaterialDoacao" value="#{controleMaterialDoacao.material}" var="item"
-                                         rowKey="#{item.id}" paginator="true" rows="10" selectionMode="single"
-                                         selection="#{cMaterial.insumo}">
-
-                                <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="Identificador" footerText="Identificador">
-                                    <h:outputText value="#{item.id}"/>
-                                </p:column>
-
-                                <p:column sortBy="#{item.insumo}" filterBy="#{item.insumo}" headerText="Insumo" footerText="Insumo">
-                                    <h:outputText value="#{item.insumo}"/>
-                                </p:column>
-
-                            </p:dataTable>  
-                        </h:panelGrid>
-                         <p:commandButton value="Cadastrar"  action="#{controleInstituicao.inserirInstituicao(cInstituicao.construirInstituicao())}"
-                                     update="form" style="left:600px"/>
-                    </p:panel>
-                   
-                </p:tab>
-                -->
-                
-               
-              <!--   NAO SEI FAZER ESTA SHIT OBG DE NADA
-              <p:tab id="historicoDeDoacoes" title="Histórico de Doações">
-                    <p:panel header="Seu histórico de recebidos: ">
-                        <p:messages/>
-                        <h:panelGrid>
-                            <p:dataTable id="tabelaMaterialDoacao" value="#{controleMaterialDoacao.material}" var="item"
-                                         rowKey="#{item.id}" paginator="true" rows="10" selectionMode="single"
-                                         selection="#{cMaterial.insumo}">
-
-                                <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="Identificador" footerText="Identificador">
-                                    <h:outputText value="#{item.id}"/>
-                                </p:column>
-
-                                <p:column sortBy="#{item.insumo}" filterBy="#{item.insumo}" headerText="Insumo" footerText="Insumo">
-                                    <h:outputText value="#{item.insumo}"/>
-                                </p:column>
-
-                            </p:dataTable>  
-                        </h:panelGrid>
-                         <p:commandButton value="Cadastrar"  action="#{controleInstituicao.inserirInstituicao(cInstituicao.construirInstituicao())}"
-                                     update="form" style="left:600px"/>
-                    </p:panel>
-                   
-                </p:tab> -->
+              
             </p:wizard>
         </h:form>
     </h:body>

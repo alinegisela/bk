@@ -40,11 +40,11 @@ public class DoadorDAO{
 
     //Funcionannndooooooooooo
     
-    public boolean inserir(String nome, String cpf, String endereco, String telefone, String email) {
+    public boolean inserir(String nome, String cpf, String endereco, String telefone, String email, String senha) {
         try {
             PreparedStatement insereDoadorSTM = null;
-            String insereDoadorSQL = "insert into doador (nome, cpf, endereco, telefone, email)"
-                    + "values (?,?,?,?,?)";
+            String insereDoadorSQL = "insert into doador (nome, cpf, endereco, telefone, email, senha)"
+                    + "values (?,?,?,?,?,?)";
             
             insereDoadorSTM = con.prepareStatement(insereDoadorSQL);
             
@@ -53,6 +53,7 @@ public class DoadorDAO{
             insereDoadorSTM.setString(3, endereco);
             insereDoadorSTM.setString(4, telefone);
             insereDoadorSTM.setString(5, email);
+            insereDoadorSTM.setString(6, senha);
             
             if (insereDoadorSTM.executeUpdate() == 1) {
                 return true;
@@ -65,18 +66,18 @@ public class DoadorDAO{
     }
     
     
-    public boolean alterar(String nome, String cpf, String endereco, String telefone, String email) {
+    public boolean alterar(String nome, String endereco, String telefone, String email, String cpf) {
         
-        String sql = "update doador set nome=?, cpf=?, endereco=?, telefone=?,email=? where cpf=cpf";
+        String sql = "update doador set nome=?, endereco=?, telefone=?,email=? where cpf=?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, nome);
-            stmt.setString(2, cpf);
-            stmt.setString(3, endereco);
+            stmt.setString(2, endereco);
             /*stmt.setDate(4, new Date(contato.getDataNascimento()
                  .getTimeInMillis()));*/
-            stmt.setString(4, telefone);
-            stmt.setString(5, email);
+            stmt.setString(3, telefone);
+            stmt.setString(4, email);
+            stmt.setString(5, cpf);
             
             stmt.execute();
             

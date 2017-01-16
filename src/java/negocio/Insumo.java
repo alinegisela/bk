@@ -7,18 +7,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table
 public class Insumo {
 
-    @Column(length = 50)
-    @Id
     private int codigo;
-    @Column(length = 50)
     private String nome;
-    @Enumerated(EnumType.STRING)
     private TipoEnum tipo;
-    @Column(length = 50)
     private String descricao;
 
     @Override

@@ -22,7 +22,18 @@ public class DoadorBuilder {
     private String endereco;
     private String telefone;
     private String email;
+    private String senha;
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
+    
+    
     public String getNome() {
         return nome;
     }
@@ -64,6 +75,6 @@ public class DoadorBuilder {
     }
 
     public Doador build() {
-        return new Doador(nome, cpf, endereco, telefone, email);
+        return new Doador(nome, cpf, endereco, telefone, email, senha);
     }
 }

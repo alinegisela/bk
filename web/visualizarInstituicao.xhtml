@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Instituição</title>
+    </h:head>
+    <h:body>
+        <ui:include src="menu-doador.xhtml" />
+        
+        <h:form>
+             <p:wizard>
+                 <p:tab id="dadosInstituicao" title="#{cInstituicao.getinstituicaoSelecionada().nome}"> 
+                    <p:panel >
+                        <p:messages/>
+                        <h:panelGrid columns="2">
+                            
+                            <h:outputText value="Sobre nós: "/>
+                            <h:outputText value="#{cInstituicao.getinstituicaoSelecionada().descricao}" />
+                            
+                            <h:outputText value="Endereço: "/>
+                            <h:outputText value="#{cInstituicao.getinstituicaoSelecionada().endereco}" />
+                            
+                            <h:outputText value="Telefone: "/>
+                            <h:outputText value="#{cInstituicao.getinstituicaoSelecionada().tel}" />
+                            
+                            <h:outputText value="Email: "/>
+                            <h:outputText value="#{cInstituicao.getinstituicaoSelecionada().email}" />
+                            
+                            
+                            
+                        </h:panelGrid>  
+                        
+                        <p:button value="Voltar" outcome="ApresentarInstituicao" style="left:490px"/>
+                        <p:button value="Fazer doação" outcome="CadastroDoacao" style="left:500px"/>
+                    </p:panel>
+                </p:tab>
+
+
+            
+            </p:wizard>
+        </h:form>
+    </h:body>
+</html>

@@ -22,7 +22,7 @@ public class DoadorRepositorio implements RepositorioGenerico<Doador>{
     public void inserir(Doador t) {
         try {
             //  DaoManagerHiber.getInstance().persist(t);
-            DoadorDAO.getInstance().inserir(t.getNome(), t.getCpf(), t.getEndereco(), t.getTelefone(), t.getEmail());
+            DoadorDAO.getInstance().inserir(t.getNome(), t.getCpf(), t.getEndereco(), t.getTelefone(), t.getEmail(), t.getSenha());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DoadorRepositorio.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -32,7 +32,7 @@ public class DoadorRepositorio implements RepositorioGenerico<Doador>{
     public void alterar(Doador t) {
         try {
             //DaoManagerHiber.getInstance().update(t);
-            DoadorDAO.getInstance().alterar(t.getNome(), t.getCpf(), t.getEndereco(), t.getTelefone(), t.getEmail());
+            DoadorDAO.getInstance().alterar(t.getNome(), t.getEndereco(), t.getTelefone(), t.getEmail(), t.getCpf());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DoadorRepositorio.class.getName()).log(Level.SEVERE, null, ex);
         }

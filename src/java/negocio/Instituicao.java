@@ -13,42 +13,33 @@ import javax.persistence.Table;
 import negocio.Doacao;
 import negocio.MaterialDoacao;
 
-@Entity
-@Table
 public class Instituicao {
 
-    @Column(length = 50)
     private String nome;
-    @Column(length = 50)
     private String endereco;
-    @Column(length = 50)
     private String descricao;
-    @Id
-    @Column(length = 50)
     private String cnpj;
-    @Column(length = 50)
     private String tel;
-    @Column(length = 50)
     private String email;
-    @ManyToMany(cascade = CascadeType.ALL)
+    private String senha;
     private List<MaterialDoacao> prioridades;
 
     public Instituicao(String nome, String endereco, String descricao, String cnpj, String tel,
-            String email/*, List prioridades, List historicoDoacoes*/) {
+            String email, String senha/*, List prioridades, List historicoDoacoes*/) {
         this.nome = nome;
         this.endereco = endereco;
         this.descricao = descricao;
         this.cnpj = cnpj;
         this.tel = tel;
         this.email = email;
+        this.senha = senha;
         this.prioridades = new ArrayList<>();
     }
 
-    public Instituicao(){
-        
+    public Instituicao() {
+
     }
 
-    
     @Override
     public String toString() {
         return "Instituicao " + nome + "\nEndere�o: " + endereco + "\nDescricao: " + descricao + "\nCnpj: " + cnpj
@@ -63,6 +54,16 @@ public class Instituicao {
         this.nome = nome;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    
+    
     public String getEndereco() {
         return endereco;
     }

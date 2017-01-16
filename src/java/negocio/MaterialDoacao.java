@@ -18,15 +18,10 @@ import javax.persistence.Table;
  *
  * @author Penguin
  */
-@Entity
-@Table
+
 public class MaterialDoacao {
-    @Column(length = 5)
-    @Id
     private int codigo;
-    @Enumerated(EnumType.STRING)
     private PrioridadeEnum prioridade;
-    @OneToOne
     private Insumo insumo;
     
     public MaterialDoacao(int codigo, PrioridadeEnum prioridade, Insumo insumo){

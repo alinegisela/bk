@@ -14,10 +14,10 @@ and open the template in the editor.
     <h:body>
         <ui:include src="menu.xhtml"/>
 
-        <h:form id="form">
+        <h:form id="form" >
             <p:wizard>
-                <p:tab id="dadosDoador" title="Dados do Doador"> 
-                    <p:panel header="Insira os dados do doador">
+                <p:tab id="dadosDoador" title="Insira os seus dados"> 
+                    <p:panel >
                         <p:messages/>
                         <h:panelGrid columns="3">
                             
@@ -45,6 +45,10 @@ and open the template in the editor.
 
                             <h:outputText value="E-mail: "/>
                             <p:inputText id="inputEmail" value="#{bDoador.email}"/>
+                            <h:outputText/>
+                            
+                             <h:outputText value="Senha: "/>
+                             <p:password id="inputSenha" value="#{bDoador.senha}"/>
                             <h:outputText/>
                             
                         </h:panelGrid>  
