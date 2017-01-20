@@ -27,13 +27,13 @@ import negocio.StatusEnum;
 @ManagedBean(name = "bDoacao")
 @RequestScoped
     public class DoacaoBuilder {
-    private int codigo;
+    private int codigo = gerarNum();
      private Doador doador;
      private String cpf;
     private Instituicao instituicao;
     private String cnpj;
     //private MaterialDoacao materialDoacao;
-    private StatusEnum status;
+    private String status = "Em andamento";
     private Date dataDoacao;
     private String dDoacao;
     private Date dataVisita;
@@ -44,7 +44,9 @@ import negocio.StatusEnum;
         return dDoacao;
     }
     
-    
+     public int gerarNum(){
+        return (int)(Math.random()*100);
+    }
 
     public void setdDoacao(String dDoacao) {
         this.dDoacao = dDoacao;
@@ -110,11 +112,11 @@ import negocio.StatusEnum;
         this.instituicao = instituicao;
     }
 
-    public StatusEnum getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(StatusEnum status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -142,7 +144,7 @@ import negocio.StatusEnum;
         this.doacao = doacao;
     }
 
-    public Doacao build() throws ClassNotFoundException{
+    public Doacao build(Doador d, Instituicao i) throws ClassNotFoundException{
         int year1, month1, day1, year, month, day;
         year = Integer.parseInt(dDoacao.substring(4, 8)) - 1900;
         month = Integer.parseInt(dDoacao.substring(2,4)) - 1;
@@ -152,6 +154,6 @@ import negocio.StatusEnum;
         month1 = Integer.parseInt(dVisita.substring(2,4)) - 1;
         day1 = Integer.parseInt(dVisita.substring(0,2));
         
-        return new Doacao(codigo,DoadorDAO.getInstance().recuperar(cpf), InstituicaoDAO.getInstance().recuperar(cnpj), status, new Date(year, month, day), new Date(year1, month1, day1));
+        return new Doacao(codigo,DoadorDAO.getInstance().recuperar(d.getCpf()), InstituicaoDAO.getInstance().recuperar(i.getCnpj()), status, new Date(year, month, day), new Date(year1, month1, day1));
     }
 }

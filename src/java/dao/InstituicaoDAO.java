@@ -15,6 +15,7 @@ import java.util.List;
 import negocio.Doacao;
 import negocio.Doador;
 import negocio.Instituicao;
+import negocio.MaterialDoacao;
 import negocio.StatusEnum;
 
 /**
@@ -36,6 +37,30 @@ public class InstituicaoDAO {
         }
         
         return myself;
+    }
+    
+    public List<MaterialDoacao> recuperarMateriais(String cnpj) throws ClassNotFoundException{
+        try {
+            List<MaterialDoacao> materialList = new ArrayList<>();
+            PreparedStatement stmt = this.con.
+                    prepareStatement("select * from instituicao_material where id_instituicao=?");
+            stmt.setString(1, cnpj);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                // criando o objeto Contato
+               MaterialDoacao material = new MaterialDoacao();
+                material.setCodigo(rs.getInt("codigo"));
+                material.setPrioridadeString(rs.getString("prioridade"));
+                material.setInsumo(InsumoDAO.getInstance().recuperar(rs.getInt("id_insumo")));
+            }
+            
+            rs.close();
+            stmt.close();
+            return materialList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     
     

@@ -21,15 +21,31 @@ import javax.persistence.Table;
 
 public class MaterialDoacao {
     private int codigo;
-    private PrioridadeEnum prioridade;
+    private boolean prioridade = false;
+    private String prioridadeString;
     private Insumo insumo;
     
-    public MaterialDoacao(int codigo, PrioridadeEnum prioridade, Insumo insumo){
+    public MaterialDoacao(int codigo, String prioridade, Insumo insumo){
         this.codigo = codigo;
-        this.prioridade = prioridade;
+        this.prioridadeString = prioridade;
         this.insumo = insumo;
     }
 
+    public String getPrioridadeString() {
+        if(prioridade){
+            setPrioridadeString("não");
+        }else{
+            setPrioridadeString("sim");
+        }
+        return prioridadeString;
+    }
+
+    public void setPrioridadeString(String prioridadeString) {
+        this.prioridadeString = prioridadeString;
+    }
+
+    
+    
     @Deprecated
     public MaterialDoacao(){
         
@@ -52,11 +68,11 @@ public class MaterialDoacao {
     }
 
     
-    public PrioridadeEnum getPrioridade() {
+    public boolean getPrioridade() {
         return prioridade;
     }
 
-    public void setPrioridade(PrioridadeEnum prioridade) {
+    public void setPrioridade(boolean prioridade) {
         this.prioridade = prioridade;
     }
 

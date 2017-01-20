@@ -19,9 +19,9 @@ import negocio.PrioridadeEnum;
 public class MaterialRepositorio implements RepositorioGenerico<MaterialDoacao> {
 
     @Override
-    public void inserir(MaterialDoacao t) {
+    public void inserir(MaterialDoacao t, String cnpj) {
         try {
-            MaterialDAO.getInstance().inserir(t.getCodigo(), t.getPrioridade(), t.getInsumo());
+            MaterialDAO.getInstance().inserir(t.getCodigo(), t.getPrioridadeString(), t.getInsumo(), cnpj);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MaterialRepositorio.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,6 +73,16 @@ public class MaterialRepositorio implements RepositorioGenerico<MaterialDoacao> 
             Logger.getLogger(MaterialRepositorio.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    @Override
+    public void inserir(MaterialDoacao t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<MaterialDoacao> recuperarMateriais(String cnpj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

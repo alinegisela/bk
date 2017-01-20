@@ -35,9 +35,30 @@ and open the template in the editor.
                             <h:outputText value="Email: "/>
                             <h:outputText value="#{cInstituicao.getinstituicaoSelecionada().email}" />
                             
-                            
-                            
+                    
                         </h:panelGrid>  
+                        <h:panelGrid>
+                            <p:dataTable var="material" value="#{cMaterial.recuperarTodos()}" paginator="true" rows="5">
+                                <p:column headerText="Nome" sortBy="#{material.prioridade}">
+                                    <h:outputText value="#{material.getInsumo().nome}"/>
+                                </p:column>
+
+                                <p:column headerText="Tipo">
+                                    <h:outputText value="#{material.getInsumo().tipo}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Descrição">
+                                    <h:outputText value="#{material.getInsumo().descricao}"/>
+                                </p:column>
+
+                                <p:column headerText="Prioridade">
+                                    <h:outputText value="#{material.prioridadeString}"/>
+                                    <!-- -->
+                                </p:column>
+                                
+                                
+                            </p:dataTable>
+                        </h:panelGrid>
                         
                         <p:button value="Voltar" outcome="ApresentarInstituicao" style="left:490px"/>
                         <p:button value="Fazer doação" outcome="CadastroDoacao" style="left:500px"/>

@@ -22,7 +22,7 @@ public class Instituicao {
     private String tel;
     private String email;
     private String senha;
-    private List<MaterialDoacao> prioridades;
+    private ArrayList<MaterialDoacao> prioridades = new ArrayList<>();
 
     public Instituicao(String nome, String endereco, String descricao, String cnpj, String tel,
             String email, String senha/*, List prioridades, List historicoDoacoes*/) {
@@ -104,11 +104,11 @@ public class Instituicao {
         this.email = email;
     }
 
-    public List<MaterialDoacao> getPrioridades() {
+    public ArrayList<MaterialDoacao> getPrioridades() {
         return prioridades;
     }
 
-    public void setPrioridades(List<MaterialDoacao> prioridades) {
+    public void setPrioridades(ArrayList<MaterialDoacao> prioridades) {
         this.prioridades = prioridades;
     }
 

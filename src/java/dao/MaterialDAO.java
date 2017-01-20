@@ -38,19 +38,29 @@ public class MaterialDAO {
         return myself;
     }
 
-    public boolean inserir(int codigo, PrioridadeEnum prioridade, Insumo insumo) {
+    
+    
+    public boolean inserir(int codigo, String prioridade, Insumo insumo, String cnpj) {
         try {
             PreparedStatement insereMaterialSTM = null;
+            PreparedStatement insereMaterialDoacaoSTM = null;
             String insereMaterialSQL = "insert into material(codigo, prioridade, id_insumo)"
                     + "values (?,?,?)";
 
             insereMaterialSTM = con.prepareStatement(insereMaterialSQL);
 
             insereMaterialSTM.setInt(1, codigo);
-            insereMaterialSTM.setString(2, prioridade.toString(prioridade.getValor()));
+            insereMaterialSTM.setString(2, prioridade);
             insereMaterialSTM.setInt(3, insumo.getCodigo());
 
-            if (insereMaterialSTM.executeUpdate() == 1) {
+            String insereMaterialDoacaoSQL = "insert into instituicao_material(id_instituicao, id_material)"
+                    + "values (?,?)";
+            
+            insereMaterialDoacaoSTM = con.prepareStatement(insereMaterialDoacaoSQL);
+            insereMaterialSTM.setString(1, cnpj);
+            insereMaterialSTM.setInt(2, codigo);
+            
+            if (insereMaterialSTM.executeUpdate() == 1 && insereMaterialDoacaoSTM.executeUpdate() == 1) {
                 return true;
             }
 
@@ -60,13 +70,13 @@ public class MaterialDAO {
         return false;
     }
 
-    public boolean alterar(int codigo, PrioridadeEnum prioridade, Insumo insumo) {
+    public boolean alterar(int codigo, boolean prioridade, Insumo insumo) {
 
         String sql = "update material set codigo=?, prioridade=?, id_insumo=?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, codigo);
-            stmt.setString(2, prioridade.toString(prioridade.getValor()));
+            stmt.setBoolean(2, prioridade);
             stmt.setInt(3, insumo.getCodigo());
             
 
@@ -105,7 +115,7 @@ public class MaterialDAO {
                 // criando o objeto Contato
                 MaterialDoacao material = new MaterialDoacao();
                 material.setCodigo(rs.getInt("codigo"));
-                material.setPrioridade(PrioridadeEnum.ALTA.toEnum(rs.getString("prioridade")));
+                material.setPrioridade(rs.getBoolean("prioridade"));
                 material.setInsumo(InsumoDAO.getInstance().recuperar(rs.getInt("id_insumo")));
               
 
@@ -131,7 +141,7 @@ public class MaterialDAO {
                 // criando o objeto Contato
                 MaterialDoacao material = new MaterialDoacao();
                 material.setCodigo(rs.getInt("codigo"));
-                material.setPrioridade(PrioridadeEnum.ALTA.toEnum(rs.getString("prioridade")));
+                material.setPrioridade(rs.getBoolean("prioridade"));
                 material.setInsumo(InsumoDAO.getInstance().recuperar(rs.getInt("id_insumo")));
                 materialList.add(material);
             }

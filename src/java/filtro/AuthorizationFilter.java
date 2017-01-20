@@ -38,6 +38,7 @@ public class AuthorizationFilter implements Filter {
 			if (reqURI.indexOf("/home.xhtml") >= 0
                                         || reqURI.indexOf("/CadastroDoador.xhtml") >= 0
                                         || reqURI.indexOf("/CadastroInstituicao.xhtml") >= 0
+                                || reqURI.indexOf("/CadastroMaterial.xhtml") >= 0
 					|| (ses != null && ses.getAttribute("username") != null)
 					|| reqURI.indexOf("/public/") >= 0
 					|| reqURI.contains("javax.faces.resource"))

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.Instituicao;
+import negocio.MaterialDoacao;
 import negocio.StatusEnum;
 import negocio.Visita;
 
@@ -79,6 +80,18 @@ public class VisitaRepositorio implements RepositorioGenerico<Visita>{
 
     @Override
     public Visita recuperar(String cpf) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+
+    @Override
+    public List<MaterialDoacao> recuperarMateriais(String cnpj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void inserir(Visita t, String cnpj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -19,7 +19,7 @@ import negocio.TipoEnum;
 public class InsumoBuilder {
      private int codigo;
      private String nome;
-     private TipoEnum tipo;
+     private String tipo;
      private String descricao;
      
 
@@ -39,11 +39,11 @@ public class InsumoBuilder {
         this.nome = nome;
     }
 
-    public TipoEnum getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoEnum tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 

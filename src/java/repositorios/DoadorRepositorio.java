@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.Doador;
+import negocio.MaterialDoacao;
 
 /**
  *
@@ -77,6 +78,17 @@ public class DoadorRepositorio implements RepositorioGenerico<Doador>{
 
     @Override
     public Doador recuperar(int codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+    @Override
+    public List<MaterialDoacao> recuperarMateriais(String cnpj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void inserir(Doador t, String cnpj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

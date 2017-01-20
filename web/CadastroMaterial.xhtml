@@ -16,30 +16,40 @@ and open the template in the editor.
 
         <h:form id="form">
             <p:wizard>
-                <p:tab id="dadosMaterial" title="Dados dos materiais"> 
-                    <p:panel header="Insira os dados do material">
+                <p:tab id="dadosMaterial" title="Materiais que minha instituição precisa"> 
+                    <p:panel header="Escolha os materiais para doação e marque os de prioridade" >
                         <p:messages/>
                         <h:panelGrid columns="3">
 
-                            <h:outputText value="Código: "/>
-                            <p:inputText id="inputCodigo" value="#{bMaterial.codigo}" required="true"
-                                         requiredMessage="Digite o código"/>
-                            <p:message id="messageCodigo" for="inputCodigo" />
-                            
-                            <h:outputText value="Prioridade: "/>
-                            <p:inputText id="inputPrioridade" value="#{bMaterial.prioridade}" required="true"
-                                         requiredMessage="Digite a prioridade"/>
-                            <p:message id="messagePrioridade" for="inputPrioridade"/>
-                            
-                            <h:outputText value="Código do insumo: "/>
-                            <p:inputText id="inputInsumo" value="#{bMaterial.insumocodigo}" required="true"
-                                         requiredMessage="Digite o código do insumo"/>
-                            <p:message id="messageInsumo" for="inputInsumo" />
+                            <p:dataTable var="insumo" value="#{cInsumo.recuperarTodos()}" paginator="true" rows="5">
+                                <p:column headerText="Nome" sortBy="#{insumo.tipo}">
+                                    <h:outputText value="#{insumo.nome}"/>
+                                </p:column>
 
-                            
+                                <p:column headerText="Tipo">
+                                    <h:outputText value="#{insumo.tipo}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Descrição">
+                                    <h:outputText value="#{insumo.descricao}"/>
+                                </p:column>
+
+                                <p:column headerText="Prioridade">
+                                    <p:selectBooleanCheckbox value="#{bMaterial.prioridade}"/>
+                                    <!-- -->
+                                </p:column>
+                                
+                                <p:column headerText="Add">
+                                    <p:commandButton action="#{cMaterial.inserir(bMaterial.build(insumo.getCodigo()), cInstituicao.getinstituicaoSelecionada().cnpj)}"
+                                                 ajax="false" title="Add"/>
+                                </p:column>
+                            </p:dataTable>
+
+       
+
+
                         </h:panelGrid>  
-                        <p:commandButton value="Cadastrar"  action="#{cMaterial.inserir(bMaterial.build())}"
-                                     update="form" style="left:600px" ajax="false"/>
+                      
                     </p:panel>
                 </p:tab>
 
@@ -68,32 +78,32 @@ and open the template in the editor.
                    
                 </p:tab>
                 -->
-                
-               
-              <!--   NAO SEI FAZER ESTA SHIT OBG DE NADA
-              <p:tab id="historicoDeDoacoes" title="Histórico de Doações">
-                    <p:panel header="Seu histórico de recebidos: ">
-                        <p:messages/>
-                        <h:panelGrid>
-                            <p:dataTable id="tabelaMaterialDoacao" value="#{controleMaterialDoacao.material}" var="item"
-                                         rowKey="#{item.id}" paginator="true" rows="10" selectionMode="single"
-                                         selection="#{cMaterial.insumo}">
 
-                                <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="Identificador" footerText="Identificador">
-                                    <h:outputText value="#{item.id}"/>
-                                </p:column>
 
-                                <p:column sortBy="#{item.insumo}" filterBy="#{item.insumo}" headerText="Insumo" footerText="Insumo">
-                                    <h:outputText value="#{item.insumo}"/>
-                                </p:column>
-
-                            </p:dataTable>  
-                        </h:panelGrid>
-                         <p:commandButton value="Cadastrar"  action="#{controleInstituicao.inserirInstituicao(cInstituicao.construirInstituicao())}"
-                                     update="form" style="left:600px"/>
-                    </p:panel>
-                   
-                </p:tab> -->
+                <!--   NAO SEI FAZER ESTA SHIT OBG DE NADA
+                <p:tab id="historicoDeDoacoes" title="Histórico de Doações">
+                      <p:panel header="Seu histórico de recebidos: ">
+                          <p:messages/>
+                          <h:panelGrid>
+                              <p:dataTable id="tabelaMaterialDoacao" value="#{controleMaterialDoacao.material}" var="item"
+                                           rowKey="#{item.id}" paginator="true" rows="10" selectionMode="single"
+                                           selection="#{cMaterial.insumo}">
+  
+                                  <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="Identificador" footerText="Identificador">
+                                      <h:outputText value="#{item.id}"/>
+                                  </p:column>
+  
+                                  <p:column sortBy="#{item.insumo}" filterBy="#{item.insumo}" headerText="Insumo" footerText="Insumo">
+                                      <h:outputText value="#{item.insumo}"/>
+                                  </p:column>
+  
+                              </p:dataTable>  
+                          </h:panelGrid>
+                           <p:commandButton value="Cadastrar"  action="#{controleInstituicao.inserirInstituicao(cInstituicao.construirInstituicao())}"
+                                       update="form" style="left:600px"/>
+                      </p:panel>
+                     
+                  </p:tab> -->
             </p:wizard>
         </h:form>
     </h:body>

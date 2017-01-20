@@ -12,6 +12,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import negocio.Doador;
 import negocio.Instituicao;
+import negocio.MaterialDoacao;
 import repositorios.DoadorRepositorio;
 import repositorios.InstituicaoRepositorio;
 import repositorios.RepositorioGenerico;
@@ -47,13 +48,18 @@ public class InstituicaoControlador {
         return "visualizarInstituicao.xhtml";
     }
     
+    public List<MaterialDoacao> recuperarMateriais(String cnpj){
+        return this.instituicaoRepositorio.recuperarMateriais(cnpj);
+    }
+    
     public String inserir(Instituicao d){
         this.instituicaoRepositorio.inserir(d);
         
         FacesContext.getCurrentInstance().
                 addMessage(null, new FacesMessage("Cadastro concluído com sucesso!"));
         
-       return "cadastroConcluido.xhtml";
+        this.setInstituicaoSelecionada(d);
+       return "CadastroMaterial.xhtml";
     }
     
     public void alterar(Instituicao d){

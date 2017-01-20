@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.Doador;
 import negocio.Instituicao;
+import negocio.MaterialDoacao;
 
 /**
  *
@@ -27,6 +28,15 @@ public class InstituicaoRepositorio implements RepositorioGenerico<Instituicao> 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(InstituicaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public List<MaterialDoacao> recuperarMateriais(String cnpj){
+        try{
+            return InstituicaoDAO.getInstance().recuperarMateriais(cnpj);
+        }catch(ClassNotFoundException ex) {
+            Logger.getLogger(InstituicaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
@@ -77,6 +87,13 @@ public class InstituicaoRepositorio implements RepositorioGenerico<Instituicao> 
 
     @Override
     public Instituicao recuperar(int codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+  
+
+    @Override
+    public void inserir(Instituicao t, String cnpj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

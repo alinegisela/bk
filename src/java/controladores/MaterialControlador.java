@@ -46,13 +46,15 @@ public class MaterialControlador {
         this.materialSelecionado = materialSelecionado;
     }
     
-    public void inserir(MaterialDoacao d){
-        this.materialRepositorio.inserir(d);
+    public String inserir(MaterialDoacao d, String cnpj){
+        this.materialRepositorio.inserir(d, cnpj);
+        
         
          FacesContext.getCurrentInstance().
-                addMessage(null, new FacesMessage("Cadastro concluído com sucesso!"));
+                addMessage(null, new FacesMessage("Material add com sucesso!"));
         
-        //return "ApresentaAnimal.xhtml";
+       return "cadastroConcluido.xhtml";
+        
     }
     
     public void alterar(MaterialDoacao d){

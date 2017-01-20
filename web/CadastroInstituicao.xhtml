@@ -7,7 +7,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Cadastro de Instituicao</title>
     </h:head>
@@ -25,12 +26,12 @@ and open the template in the editor.
                             <p:inputText id="inputNome" value="#{bInstituicao.nome}" required="true"
                                          requiredMessage="Digite o Nome"/>
                             <p:message id="messageNome" for="inputNome" />
-                            
+
                             <h:outputText value="Endereço: "/>
                             <p:inputText id="inputEndereco" value="#{bInstituicao.endereco}" required="true"
                                          requiredMessage="Digite o Endereço"/>
                             <p:message id="messageEndereco" for="inputEndereco"/>
-                            
+
                             <h:outputText value="Descrição: "/>
                             <p:inputText id="inputDescricao" value="#{bInstituicao.descricao}" required="true"
                                          requiredMessage="Digite uma descrição"/>
@@ -40,7 +41,7 @@ and open the template in the editor.
                             <p:inputText id="inputCNPJ" value="#{bInstituicao.cnpj}" required="true" 
                                          requiredMessage="Digite o CNPJ" />
                             <p:message id="messageCNPJ" for="inputCNPJ"/>
-                            
+
                             <h:outputText value="Telefone: "/>
                             <p:inputText value="#{bInstituicao.tel}"/>
                             <h:outputText/>
@@ -48,20 +49,24 @@ and open the template in the editor.
                             <h:outputText value="E-mail: "/>
                             <p:inputText value="#{bInstituicao.email}"/>
                             <h:outputText/>
-                            
+
                             <h:outputText value="Senha: "/>
-                             <p:password id="inputSenha" value="#{bInstituicao.senha}"/>
+                            <p:password id="inputSenha" value="#{bInstituicao.senha}"/>
                             <h:outputText/>
+
+                            <p:commandButton value="Cadastrar"  action="#{cInstituicao.inserir(bInstituicao.build())}"
+                                         style="left:600px" ajax="false"/>
                             
                         </h:panelGrid>  
-                        <p:commandButton value="Cadastrar"  action="#{cInstituicao.inserir(bInstituicao.build())}"
-                                     update="form" style="left:600px" ajax="false"/>
+                        
                     </p:panel>
                 </p:tab>
-
-              
             </p:wizard>
+
+
         </h:form>
+
+
     </h:body>
 </html>
 

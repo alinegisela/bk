@@ -10,20 +10,7 @@ import dao.InstituicaoDAO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 /**
  *
@@ -37,17 +24,17 @@ public class Doacao {
     private String cpf;
     private String cnpj;
     private Instituicao instituicao;
-    private StatusEnum statusenum;//do sistema
+    private String status;//do sistema
     private Date dataDoacao;//do sistema 
     private Date dataVisita;
     private List<MaterialDoacao> doacao;
 
-    public Doacao(int codigo, Doador doador, Instituicao instituicao, StatusEnum statusenum, Date dataDoacao, Date dataVisita) {
+    public Doacao(int codigo, Doador doador, Instituicao instituicao, String status, Date dataDoacao, Date dataVisita) {
         this.codigo = codigo;
         this.doador = doador;
         this.instituicao = instituicao;
         //this.materialDoacao = materialDoacao;
-        this.statusenum = statusenum;
+        this.status = status;
         this.dataDoacao = dataDoacao;
         this.dataVisita = dataVisita;
         this.doacao = new ArrayList<>();
@@ -66,12 +53,12 @@ public class Doacao {
         this.cnpj = cnpj;
     }
 
-    public StatusEnum getStatusenum() {
-        return statusenum;
+    public String getStatusenum() {
+        return status;
     }
 
-    public void setStatusenum(StatusEnum statusenum) {
-        this.statusenum = statusenum;
+    public void setStatusenum(String status) {
+        this.status = status;
     }
     
     public int getCodigo() {
@@ -99,12 +86,12 @@ public class Doacao {
         this.instituicao = i;
     }
 
-    public StatusEnum getStatus() {
-        return statusenum;
+    public String getStatus() {
+        return status;
     }
 
-    public void setStatus(StatusEnum status) {
-        this.statusenum = status;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Date getDataDoacao() {
@@ -146,7 +133,7 @@ public class Doacao {
 
     @Override
     public String toString() {
-        return "Doacao{" + "código=" + codigo + "doador=" + doador + ", instituicao=" + instituicao + ", status=" + statusenum + ", dataDoacao=" + dataDoacao + ", dataVisita=" + dataVisita + ", doacao=" + doacao + '}';
+        return "Doacao{" + "código=" + codigo + "doador=" + doador + ", instituicao=" + instituicao + ", status=" + status + ", dataDoacao=" + dataDoacao + ", dataVisita=" + dataVisita + ", doacao=" + doacao + '}';
     }
 
 }

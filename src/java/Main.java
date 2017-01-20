@@ -30,6 +30,12 @@ import negocio.TipoEnum;
 public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException {
+        
+        System.out.println((int)(Math.random()*100));
+        
+        
+        
+        /*
         List<MaterialDoacao> materiais = new ArrayList<MaterialDoacao>();
          materiais.add(new MaterialDoacao(1, PrioridadeEnum.ALTA, new Insumo(1, "insumo", TipoEnum.ALIMENTO, "descrição")));
 
@@ -77,7 +83,7 @@ public class Main {
         vc.inserir(v.build());
         
         System.out.println("terminou");
-         
+         */
         
 
         /*List<Doador> t = c.recuperarTodos();

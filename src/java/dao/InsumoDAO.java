@@ -40,7 +40,7 @@ public class InsumoDAO {
         return myself;
     }
 
-    public boolean inserir(int codigo, String nome, TipoEnum tipo, String descricao) {
+    public boolean inserir(int codigo, String nome, String tipo, String descricao) {
         try {
             PreparedStatement insereInsumoSTM = null;
             String insereInsumoSQL = "insert into insumo (codigo, nome, tipo, descricao)"
@@ -50,7 +50,7 @@ public class InsumoDAO {
 
             insereInsumoSTM.setInt(1, codigo);
             insereInsumoSTM.setString(2, nome);
-            insereInsumoSTM.setString(3, tipo.toString(tipo.getValor()));
+            insereInsumoSTM.setString(3, tipo);
             insereInsumoSTM.setString(4, descricao);
 
             if (insereInsumoSTM.executeUpdate() == 1) {
@@ -63,14 +63,14 @@ public class InsumoDAO {
         return false;
     }
 
-    public boolean alterar(int codigo, String nome, TipoEnum tipo, String descricao) {
+    public boolean alterar(int codigo, String nome, String tipo, String descricao) {
 
         String sql = "update insumo set codigo=?, nome=?, tipo=?, descricao=?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, codigo);
             stmt.setString(2, nome);
-            stmt.setString(3, tipo.toString(tipo.getValor()));
+            stmt.setString(3, tipo);
             stmt.setString(4, descricao);
 
             stmt.execute();
@@ -109,7 +109,7 @@ public class InsumoDAO {
                 Insumo insumo = new Insumo();
                 insumo.setCodigo(rs.getInt("codigo"));
                 insumo.setNome(rs.getString("nome"));
-                insumo.setTipo(TipoEnum.ALIMENTO.toEnum(rs.getString("tipo")));
+                insumo.setTipo(rs.getString("tipo"));
                 insumo.setDescricao(rs.getString("descricao"));
 
 
@@ -143,7 +143,7 @@ public class InsumoDAO {
                 Insumo insumo = new Insumo();
                 insumo.setCodigo(rs.getInt("codigo"));
                 insumo.setNome(rs.getString("nome"));
-                insumo.setTipo(TipoEnum.ALIMENTO.toEnum(rs.getString("tipo")));
+                insumo.setTipo(rs.getString("tipo"));
                 insumo.setDescricao(rs.getString("descricao"));
                 insumoList.add(insumo);
             }

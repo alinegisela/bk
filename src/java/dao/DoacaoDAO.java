@@ -40,10 +40,10 @@ public class DoacaoDAO  {
 
     //Funcionannndooooooooooo
     
-    public boolean inserir(int codigo, Doador doador, Instituicao instituicao, StatusEnum status, Date dataDoacao, Date dataVisita) {
+    public boolean inserir(int codigo, Doador doador, Instituicao instituicao, String status, Date dataDoacao, Date dataVisita) {
         try {
             PreparedStatement insereDoadorSTM = null;
-            String insereDoadorSQL = "insert into doacao (codigo, id_doador, id_instituicao, statusenum, datadoacao, datavisita)"
+            String insereDoadorSQL = "insert into doacao (codigo, id_doador, id_instituicao, status, datadoacao, datavisita)"
                     + "values (?,?,?,?,?,?)";
             
             insereDoadorSTM = con.prepareStatement(insereDoadorSQL);
@@ -51,7 +51,7 @@ public class DoacaoDAO  {
             insereDoadorSTM.setInt(1, codigo);
             insereDoadorSTM.setString(2, doador.getCpf());
             insereDoadorSTM.setString(3, instituicao.getCnpj());
-            insereDoadorSTM.setString(4, status.toString(status.getValor()));
+            insereDoadorSTM.setString(4, status);
             insereDoadorSTM.setDate(5,  new java.sql.Date(dataDoacao.getTime()));
             insereDoadorSTM.setDate(6,  new java.sql.Date(dataVisita.getTime()));
             
@@ -67,15 +67,15 @@ public class DoacaoDAO  {
     }
     
     
-    public boolean alterar(int codigo, Doador doador, Instituicao instituicao, StatusEnum status, Date dataDoacao, Date dataVisita) {
+    public boolean alterar(int codigo, Doador doador, Instituicao instituicao, String status, Date dataDoacao, Date dataVisita) {
         
-        String sql = "update doacao set codigo=?, id_doador=?, id_instituicao=?, statusenum=?,datadoacao=?, datavisita=? where codigo=codigo";
+        String sql = "update doacao set codigo=?, id_doador=?, id_instituicao=?, status=?,datadoacao=?, datavisita=? where codigo=codigo";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, codigo);
             stmt.setString(2, doador.getCpf());
             stmt.setString(3, instituicao.getCnpj());
-            stmt.setString(4, status.toString(status.getValor()));
+            stmt.setString(4, status);
             stmt.setDate(5,  new java.sql.Date(dataDoacao.getTime()));
             stmt.setDate(6,  new java.sql.Date(dataVisita.getTime()));
             stmt.execute();
@@ -117,7 +117,7 @@ public class DoacaoDAO  {
                 doacao.setCodigo(rs.getInt("codigo"));
                 doacao.setDoador(DoadorDAO.getInstance().recuperar(rs.getString("id_doador")));
                 doacao.setInstituicao(InstituicaoDAO.getInstance().recuperar(rs.getString("id_instituicao")));            
-                doacao.setStatus(StatusEnum.EM_ANDAMENTO.toEnum(rs.getString("statusenum")));
+                doacao.setStatus(rs.getString("statusenum"));
                 doacao.setDataDoacao(rs.getDate("dataDoacao"));
                 doacao.setDataVisita(rs.getDate("dataVisita"));
                
@@ -145,7 +145,7 @@ public class DoacaoDAO  {
                 doacao.setCodigo(rs.getInt("codigo"));
                 doacao.setDoador(DoadorDAO.getInstance().recuperar(rs.getString("id_doador")));
                 doacao.setInstituicao(InstituicaoDAO.getInstance().recuperar(rs.getString("id_instituicao")));            
-                doacao.setStatus(StatusEnum.EM_ANDAMENTO.toEnum(rs.getString("statusenum")));
+                doacao.setStatus(rs.getString("statusenum"));
                 doacao.setDataDoacao(rs.getDate("dataDoacao"));
                 doacao.setDataVisita(rs.getDate("dataVisita"));
                 doacaoList.add(doacao);

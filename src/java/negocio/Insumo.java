@@ -11,15 +11,15 @@ public class Insumo {
 
     private int codigo;
     private String nome;
-    private TipoEnum tipo;
+    private String tipo;
     private String descricao;
 
     @Override
     public String toString() {
         return "Insumo - \nCódigo: " + codigo + "\nNome: " + nome + "\nTipo: " + tipo + "\nDescrição: " + descricao + "\n";
-    }
+    } 
 
-    public Insumo(int codigo, String nome, TipoEnum tipo, String descricao) {
+    public Insumo(int codigo, String nome, String tipo, String descricao) {
         this.codigo = codigo;
         this.nome = nome;
         this.tipo = tipo;
@@ -32,6 +32,7 @@ public class Insumo {
     }
 
     public int getCodigo() {
+        System.out.println("www");
         return codigo;
     }
 
@@ -47,11 +48,11 @@ public class Insumo {
         this.nome = nome;
     }
 
-    public TipoEnum getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoEnum tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
