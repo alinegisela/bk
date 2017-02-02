@@ -46,14 +46,14 @@ public class MaterialControlador {
         this.materialSelecionado = materialSelecionado;
     }
     
-    public String inserir(MaterialDoacao d, String cnpj){
+    public void inserir(MaterialDoacao d, String cnpj){
         this.materialRepositorio.inserir(d, cnpj);
         
         
          FacesContext.getCurrentInstance().
                 addMessage(null, new FacesMessage("Material add com sucesso!"));
         
-       return "cadastroConcluido.xhtml";
+       //return "cadastroConcluido.xhtml";
         
     }
     
@@ -78,5 +78,13 @@ public class MaterialControlador {
     
     public List<MaterialDoacao> recuperarTodos(){
         return this.materialRepositorio.recuperarTodos();
+    }
+    
+    public List<MaterialDoacao> recuperarTodosDoacao(int codigo){
+        return this.materialRepositorio.recuperarTodosDoacao(codigo);
+    }
+    
+    public List<MaterialDoacao> recuperarTodosInstituicao(int cnpj){
+        return this.materialRepositorio.recuperarTodosDoacao(cnpj);
     }
 }

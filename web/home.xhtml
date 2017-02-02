@@ -20,7 +20,7 @@
                             <p:outputLabel for="senha" value="Senha:" />
                             <p:password id="senha" value="#{login.usuario.senha}" />
 
-                            <p:commandButton value="Doador" icon="ui-icon-star" action="#{login.enviaDoador}" ajax="false">
+                            <p:commandButton value="Doador" icon="ui-icon-star" action="#{login.enviaDoador}" ajax="false" onclick="PF('fpLayoutWidget').toggle('south')">
                             </p:commandButton>
 
                             <p:commandButton value="Instituição" icon="ui-icon-home" action="#{login.enviaInstituicao}" ajax="false">
@@ -37,7 +37,7 @@
                         <p:panelGrid columns="2">
                             <p:button value="Doador" icon="ui-icon-star" outcome="CadastroDoador"  >
                             </p:button>
-                            
+
                             <p:button value="Instituição" icon="ui-icon-home"  outcome="CadastroInstituicao" >
                             </p:button>
                         </p:panelGrid>

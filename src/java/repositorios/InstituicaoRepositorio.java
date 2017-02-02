@@ -30,6 +30,7 @@ public class InstituicaoRepositorio implements RepositorioGenerico<Instituicao> 
         }
     }
     
+    @Override
     public List<MaterialDoacao> recuperarMateriais(String cnpj){
         try{
             return InstituicaoDAO.getInstance().recuperarMateriais(cnpj);
@@ -94,6 +95,26 @@ public class InstituicaoRepositorio implements RepositorioGenerico<Instituicao> 
 
     @Override
     public void inserir(Instituicao t, String cnpj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void inserir(Instituicao t, List<MaterialDoacao> m) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Instituicao> recuperarTodosDoador(String cpf) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Instituicao> recuperarTodosDoacao(int codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Instituicao> recuperarPorStatus(String status) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

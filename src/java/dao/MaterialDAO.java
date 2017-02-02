@@ -57,8 +57,8 @@ public class MaterialDAO {
                     + "values (?,?)";
             
             insereMaterialDoacaoSTM = con.prepareStatement(insereMaterialDoacaoSQL);
-            insereMaterialSTM.setString(1, cnpj);
-            insereMaterialSTM.setInt(2, codigo);
+            insereMaterialDoacaoSTM.setString(1, cnpj);
+            insereMaterialDoacaoSTM.setInt(2, codigo);
             
             if (insereMaterialSTM.executeUpdate() == 1 && insereMaterialDoacaoSTM.executeUpdate() == 1) {
                 return true;
@@ -69,7 +69,6 @@ public class MaterialDAO {
         }
         return false;
     }
-
     public boolean alterar(int codigo, boolean prioridade, Insumo insumo) {
 
         String sql = "update material set codigo=?, prioridade=?, id_insumo=?";
@@ -129,6 +128,34 @@ public class MaterialDAO {
         }
     }
 
+     public List recuperarTodosDoacao(int codigo) throws ClassNotFoundException, SQLException {
+        try {
+            List<MaterialDoacao> materialList = new ArrayList<MaterialDoacao>();
+            List<Integer> id_materialList = new ArrayList<>();
+            
+            PreparedStatement stmt = this.con.
+                    prepareStatement("select id_material from doacao_material where id_doacao=?");
+            stmt.setInt(1, codigo);
+            ResultSet rs = stmt.executeQuery();
+
+            
+           while(rs.next()){
+               id_materialList.add(rs.getInt("id_material"));
+           }
+                // criando o objeto Contato
+                MaterialDoacao material;
+            for(int i=0;i<id_materialList.size();i++){
+                 material = recuperar(id_materialList.get(i));
+                 materialList.add(material);
+            }
+            rs.close();
+            stmt.close();
+            return materialList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
     public MaterialDoacao recuperar(int codigo) throws ClassNotFoundException {
         try {
             List<MaterialDoacao> materialList = new ArrayList<MaterialDoacao>();

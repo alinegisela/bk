@@ -13,49 +13,48 @@ and open the template in the editor.
         <title>Doações</title>
     </h:head>
     <h:body>
-        <p:growl id="gro" showDetail="true" sticky="false" life="3000"
-                 autoUpdate="true"/>
-        <ui:include src="menu.xhtml" />
-        <h:form id="formulario"> 
-            <p:dataTable id="tabelaDoacao" value="#{cDoacao.recuperarTodos()}" var="item"
-                         rowKey="#{item.codigo}" paginator="true" rows="10" selectionMode="single"
-                         selection="#{cDoacao.doacaoSelecionada}">
+        <ui:include src="menu-doador.xhtml" />
+        <h:form>
+            <p:wizard>
+                <p:tab id="dadosDoador" title="Minhas doações"> 
+                    <p:panel >
+                        <p:messages/>
+                        <h:panelGrid columns="2">
 
-                <p:column sortBy="#{item.codigo}" filterBy="#{item.codigo}" headerText="Nome" footerText="Nome">
-                    <h:outputText value="#{item.codigo}"/>
-                </p:column>
-                
-            </p:dataTable>
-            <p:commandButton value="Visualizar Doações" 
-                             update="dial1" oncomplete="PF('painel1').show()"/>
-            <p:commandButton value="Alterar" 
-                             oncomplete="location.href='AlteraDoacao.xhtml'"/>
-             <p:commandButton value="Excluir" actionListener="#{cDoacao.deletar(cDoacao.doacaoSelecionada)}" 
-                             update=":formulario:tabelaDoacao">
-                <p:confirm header="ATENÇÃO" message="Realmente deseja excluir esta doação?" icon="ui-icon-alert" />
-            </p:commandButton>
-            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-            </p:confirmDialog>
+                            <p:dataTable id="tableDoacao" var="doacao" value="#{cDoacao.recuperarTodosDoador(login.doador.cpf)}" paginator="true" 
+                                         rows="5" rowIndexVar="rowIndex">
 
-            <p:dialog id="dial1" closable="false" resizable="false" modal="true"
-                      visible="false" widgetVar="painel1" header="Dados da Doação">
+                                <p:column headerText="#" style="width:16px;text-align:center">
+                                    #{rowIndex+1}
+                                </p:column>
 
-                <p:panelGrid columns="2">
-                    
-                    <h:outputText value="Identificador"/>
-                    <h:outputText value="#{cDoacao.doacaoSelecionada.codigo}"/>
+                                <p:column headerText="Data da doação" sortBy="#{doacao.dataDoacao()}">
+                                    <h:outputText value="#{doacao.getDataDoacaoString()}"/>
+                                </p:column>
 
-                    <h:outputText value="Nome"/>
-                    <h:outputText value="#{cDoacao.doacaoSelecionada.status}"/>
+                                <p:column headerText="Data para recolhimento">
+                                    <h:outputText value="#{doacao.getDataVisitaString()}"/>
+                                </p:column>
 
-                     </p:panelGrid>
+                                <p:column headerText="Instituição">
+                                    <h:outputText value="#{doacao.instituicao.nome}"/>
+                                </p:column>
 
-                <p:commandLink value="fechar" 
-                               oncomplete="PF('painel1').hide()"/>
+                                <p:column headerText="status" >
+                                    <h:outputText value="#{doacao.status}"/>
+                                </p:column>
+                                
+                                <p:column headerText="" >
+                                    <p:commandButton value="Visualizar" action="#{cDoacao.setDoacaoSelecionada(doacao)}" ajax="false"/>
+                                </p:column>
 
-            </p:dialog>
+                            </p:dataTable>
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+            </p:wizard>
         </h:form>
+
+
     </h:body>
 </html>

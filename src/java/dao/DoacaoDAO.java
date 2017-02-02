@@ -22,64 +22,83 @@ import negocio.StatusEnum;
  *
  * @author Penguin
  */
-public class DoacaoDAO  {
-     private static DoacaoDAO myself = null;
+public class DoacaoDAO {
+
+    private static DoacaoDAO myself = null;
     private Connection con;
-    
+
     public DoacaoDAO() throws ClassNotFoundException {
         this.con = new ConnectionFactory().getConnection();
     }
-    
+
     public static DoacaoDAO getInstance() throws ClassNotFoundException {
         if (myself == null) {
             myself = new DoacaoDAO();
         }
-        
+
         return myself;
     }
 
     //Funcionannndooooooooooo
-    
     public boolean inserir(int codigo, Doador doador, Instituicao instituicao, String status, Date dataDoacao, Date dataVisita) {
         try {
             PreparedStatement insereDoadorSTM = null;
             String insereDoadorSQL = "insert into doacao (codigo, id_doador, id_instituicao, status, datadoacao, datavisita)"
                     + "values (?,?,?,?,?,?)";
-            
+
             insereDoadorSTM = con.prepareStatement(insereDoadorSQL);
-            
+
             insereDoadorSTM.setInt(1, codigo);
             insereDoadorSTM.setString(2, doador.getCpf());
             insereDoadorSTM.setString(3, instituicao.getCnpj());
             insereDoadorSTM.setString(4, status);
-            insereDoadorSTM.setDate(5,  new java.sql.Date(dataDoacao.getTime()));
-            insereDoadorSTM.setDate(6,  new java.sql.Date(dataVisita.getTime()));
-            
-            
+            insereDoadorSTM.setDate(5, new java.sql.Date(dataDoacao.getTime()));
+            insereDoadorSTM.setDate(6, new java.sql.Date(dataVisita.getTime()));
+
             if (insereDoadorSTM.executeUpdate() == 1) {
                 return true;
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
     }
-    
-    
+
+    public boolean inserirMateriais(int id_doacao, int id_material) throws SQLException {
+        try {
+            PreparedStatement insereMateriaisSTM = null;
+            String insereMateriaisSQL = "insert into doacao_material (id_doacao, id_material)"
+                    + "values (?,?)";
+
+            insereMateriaisSTM = con.prepareStatement(insereMateriaisSQL);
+
+            insereMateriaisSTM.setInt(1, id_doacao);
+            insereMateriaisSTM.setInt(2, id_material);
+
+            if (insereMateriaisSTM.executeUpdate() == 1) {
+                return true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public boolean alterar(int codigo, Doador doador, Instituicao instituicao, String status, Date dataDoacao, Date dataVisita) {
-        
-        String sql = "update doacao set codigo=?, id_doador=?, id_instituicao=?, status=?,datadoacao=?, datavisita=? where codigo=codigo";
+
+        String sql = "update doacao set codigo=?, id_doador=?, id_instituicao=?, status=?,dataDoacao=?, dataVisita=? where codigo=codigo";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, codigo);
             stmt.setString(2, doador.getCpf());
             stmt.setString(3, instituicao.getCnpj());
             stmt.setString(4, status);
-            stmt.setDate(5,  new java.sql.Date(dataDoacao.getTime()));
-            stmt.setDate(6,  new java.sql.Date(dataVisita.getTime()));
+            stmt.setDate(5, new java.sql.Date(dataDoacao.getTime()));
+            stmt.setDate(6, new java.sql.Date(dataVisita.getTime()));
             stmt.execute();
-            
+
             if (stmt.executeUpdate() == 1) {
                 return true;
             }
@@ -89,12 +108,10 @@ public class DoacaoDAO  {
         }
         return false;
     }
-    
-    
+
     public void excluir(Doacao doacao) {
         try {
-            PreparedStatement stmt = con.prepareStatement("delete "
-                    + "from doacao where codigo=?");
+            PreparedStatement stmt = con.prepareStatement("delete from doacao where codigo=?");
             stmt.setInt(1, doacao.getCodigo());
             stmt.execute();
             stmt.close();
@@ -102,25 +119,24 @@ public class DoacaoDAO  {
             throw new RuntimeException(e);
         }
     }
-    
-    
+
     public List recuperarTodos() throws ClassNotFoundException {
         try {
             List<Doacao> doacaoList = new ArrayList<Doacao>();
             PreparedStatement stmt = this.con.
                     prepareStatement("select * from doacao");
             ResultSet rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
                 // criando o objeto Contato
                 Doacao doacao = new Doacao();
                 doacao.setCodigo(rs.getInt("codigo"));
                 doacao.setDoador(DoadorDAO.getInstance().recuperar(rs.getString("id_doador")));
-                doacao.setInstituicao(InstituicaoDAO.getInstance().recuperar(rs.getString("id_instituicao")));            
-                doacao.setStatus(rs.getString("statusenum"));
+                doacao.setInstituicao(InstituicaoDAO.getInstance().recuperar(rs.getString("id_instituicao")));
+                doacao.setStatus(rs.getString("status"));
                 doacao.setDataDoacao(rs.getDate("dataDoacao"));
                 doacao.setDataVisita(rs.getDate("dataVisita"));
-               
+
                 doacaoList.add(doacao);
             }
             rs.close();
@@ -131,6 +147,34 @@ public class DoacaoDAO  {
         }
     }
     
+    public List recuperarTodosDoador(String cpf) throws ClassNotFoundException {
+        try {
+            List<Doacao> doacaoList = new ArrayList<Doacao>();
+            PreparedStatement stmt = this.con.
+                    prepareStatement("select * from doacao where id_doador=?");
+            stmt.setString(1, cpf);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                // criando o objeto Contato
+                Doacao doacao = new Doacao();
+                doacao.setCodigo(rs.getInt("codigo"));
+                doacao.setDoador(DoadorDAO.getInstance().recuperar(rs.getString("id_doador")));
+                doacao.setInstituicao(InstituicaoDAO.getInstance().recuperar(rs.getString("id_instituicao")));
+                doacao.setStatus(rs.getString("status"));
+                doacao.setDataDoacao(rs.getDate("dataDoacao"));
+                doacao.setDataVisita(rs.getDate("dataVisita"));
+
+                doacaoList.add(doacao);
+            }
+            rs.close();
+            stmt.close();
+            return doacaoList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Doacao recuperar(int codigo) throws ClassNotFoundException {
         try {
             List<Doacao> doacaoList = new ArrayList<Doacao>();
@@ -138,14 +182,14 @@ public class DoacaoDAO  {
                     prepareStatement("select * from doacao where codigo=?");
             stmt.setInt(1, codigo);
             ResultSet rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
                 // criando o objeto Contato
-                 Doacao doacao = new Doacao();
+                Doacao doacao = new Doacao();
                 doacao.setCodigo(rs.getInt("codigo"));
                 doacao.setDoador(DoadorDAO.getInstance().recuperar(rs.getString("id_doador")));
-                doacao.setInstituicao(InstituicaoDAO.getInstance().recuperar(rs.getString("id_instituicao")));            
-                doacao.setStatus(rs.getString("statusenum"));
+                doacao.setInstituicao(InstituicaoDAO.getInstance().recuperar(rs.getString("id_instituicao")));
+                doacao.setStatus(rs.getString("status"));
                 doacao.setDataDoacao(rs.getDate("dataDoacao"));
                 doacao.setDataVisita(rs.getDate("dataVisita"));
                 doacaoList.add(doacao);
@@ -164,6 +208,33 @@ public class DoacaoDAO  {
             throw new RuntimeException(e);
         }
     }
+    
+    public List<Doacao> recuperarPorStatus(String status) throws ClassNotFoundException{
+         try {
+            List<Doacao> doacaoList = new ArrayList<Doacao>();
+            PreparedStatement stmt = this.con.
+                    prepareStatement("select * from doacao where status=?");
+            stmt.setString(1, status);
+            ResultSet rs = stmt.executeQuery();
 
-   
+            while (rs.next()) {
+                // criando o objeto Contato
+                Doacao doacao = new Doacao();
+                doacao.setCodigo(rs.getInt("codigo"));
+                doacao.setDoador(DoadorDAO.getInstance().recuperar(rs.getString("id_doador")));
+                doacao.setInstituicao(InstituicaoDAO.getInstance().recuperar(rs.getString("id_instituicao")));
+                doacao.setStatus(rs.getString("status"));
+                doacao.setDataDoacao(rs.getDate("dataDoacao"));
+                doacao.setDataVisita(rs.getDate("dataVisita"));
+
+                doacaoList.add(doacao);
+            }
+            rs.close();
+            stmt.close();
+            return doacaoList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

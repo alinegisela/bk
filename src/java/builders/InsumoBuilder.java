@@ -21,8 +21,19 @@ public class InsumoBuilder {
      private String nome;
      private String tipo;
      private String descricao;
+     private boolean prioridade;
+
+    public boolean isPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(boolean prioridade) {
+        this.prioridade = prioridade;
+    }
      
 
+     
+     
     public int getCodigo() {
         return codigo;
     }
@@ -56,6 +67,6 @@ public class InsumoBuilder {
     }
 
     public Insumo build(){
-        return new Insumo(codigo, nome, tipo, descricao );
+        return new Insumo(codigo, nome, tipo, descricao);
     }
 }

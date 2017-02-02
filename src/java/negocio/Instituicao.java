@@ -23,6 +23,7 @@ public class Instituicao {
     private String email;
     private String senha;
     private ArrayList<MaterialDoacao> prioridades = new ArrayList<>();
+    private ArrayList<Insumo> prioridadesInsumo = new ArrayList<>();
 
     public Instituicao(String nome, String endereco, String descricao, String cnpj, String tel,
             String email, String senha/*, List prioridades, List historicoDoacoes*/) {
@@ -45,6 +46,16 @@ public class Instituicao {
         return "Instituicao " + nome + "\nEndere�o: " + endereco + "\nDescricao: " + descricao + "\nCnpj: " + cnpj
                 + "\nTelefone: " + tel + "\nEmail: " + email + "\n";
     }
+
+    public List<Insumo> getPrioridadesInsumo() {
+        return prioridadesInsumo;
+    }
+
+    public void setPrioridadesInsumo(ArrayList<Insumo> prioridadesInsumo) {
+        this.prioridadesInsumo = prioridadesInsumo;
+    }
+    
+    
 
     public String getNome() {
         return nome;

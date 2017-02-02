@@ -13,7 +13,19 @@ public class Insumo {
     private String nome;
     private String tipo;
     private String descricao;
+    private boolean prioridade;
+    private String prioridadeString;
 
+    public String getPrioridadeString() {
+        return prioridadeString;
+    }
+
+    public void setPrioridadeString(String prioridadeString) {
+        this.prioridadeString = prioridadeString;
+    }
+    
+    
+    
     @Override
     public String toString() {
         return "Insumo - \nCódigo: " + codigo + "\nNome: " + nome + "\nTipo: " + tipo + "\nDescrição: " + descricao + "\n";
@@ -26,10 +38,27 @@ public class Insumo {
         this.descricao = descricao;
     }
 
-    @Deprecated
     public Insumo() {
 
     }
+    
+    public String getPrioridadeString(boolean prioridade){
+        if(prioridade){
+            return "Sim";
+        }else{
+            return "não";
+        }
+    }
+
+    public boolean isPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(boolean prioridade) {
+        this.prioridade = prioridade;
+    }
+    
+    
 
     public int getCodigo() {
         System.out.println("www");

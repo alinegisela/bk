@@ -7,6 +7,7 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Cadastro de Material</title>
@@ -17,11 +18,14 @@ and open the template in the editor.
         <h:form id="form">
             <p:wizard>
                 <p:tab id="dadosMaterial" title="Materiais que minha instituição precisa"> 
-                    <p:panel header="Escolha os materiais para doação e marque os de prioridade" >
+                    <p:panel header="Escolha os materiais de prioridade" >
                         <p:messages/>
                         <h:panelGrid columns="3">
 
-                            <p:dataTable var="insumo" value="#{cInsumo.recuperarTodos()}" paginator="true" rows="5">
+                            <p:dataTable id="tableMaterial" var="insumo" value="#{cInsumo.recuperarTodos()}" paginator="true" 
+                                         selection="#{cInstituicao.instituicaoSelecionada.prioridadesInsumo}" rowKey="#{insumo.codigo}"  rows="5">
+                                <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+                               
                                 <p:column headerText="Nome" sortBy="#{insumo.tipo}">
                                     <h:outputText value="#{insumo.nome}"/>
                                 </p:column>
@@ -29,27 +33,40 @@ and open the template in the editor.
                                 <p:column headerText="Tipo">
                                     <h:outputText value="#{insumo.tipo}"/>
                                 </p:column>
-                                
+
                                 <p:column headerText="Descrição">
                                     <h:outputText value="#{insumo.descricao}"/>
                                 </p:column>
 
-                                <p:column headerText="Prioridade">
-                                    <p:selectBooleanCheckbox value="#{bMaterial.prioridade}"/>
-                                    <!-- -->
-                                </p:column>
                                 
+
+                                <!--
+                                <p:column headerText="Adicionar material">
+                                    <p:commandButton value="" action="#{cInstituicao.inserirMaterial(bMaterial.build(insumo.codigo))}"
+                                                     ajax="false" process="tableMaterial" update=":form" oncomplete="PF('multiCarDialog').show()"/>
+
+                                </p:column>1
+                                -->
+                                 
+
+                                <f:facet name="footer">
+                                    <p:commandButton action="#{cInstituicao.addLista()}" process="tableMaterial" icon="ui-icon-search" 
+                                                     value="Add"  ajax="false" update="form"/>
+                                </f:facet>
+                                <!--
                                 <p:column headerText="Add">
-                                    <p:commandButton action="#{cMaterial.inserir(bMaterial.build(insumo.getCodigo()), cInstituicao.getinstituicaoSelecionada().cnpj)}"
-                                                 ajax="false" title="Add"/>
+                                    <p:commandButton action="#{cMaterial.inserir(bMaterial.build(insumo.getCodigo()), cInstituicao.getInstituicaoSelecionada().getCnpj())}"
+                                                 ajax="false" title="Add" icon="ui-icon-check" update="display" oncomplete="PF('dlg').show()"/>
                                 </p:column>
+                                -->
                             </p:dataTable>
 
-       
+
+
 
 
                         </h:panelGrid>  
-                      
+
                     </p:panel>
                 </p:tab>
 

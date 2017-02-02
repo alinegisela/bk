@@ -44,7 +44,7 @@ public class InsumoDAO {
         try {
             PreparedStatement insereInsumoSTM = null;
             String insereInsumoSQL = "insert into insumo (codigo, nome, tipo, descricao)"
-                    + "values (?,?,?,?)";
+                    + "values (?,?,?,?, ?)";
 
             insereInsumoSTM = con.prepareStatement(insereInsumoSQL);
 
@@ -132,7 +132,7 @@ public class InsumoDAO {
 
     public Insumo recuperar(int codigo) {
         try {
-            List<Insumo> insumoList = new ArrayList<Insumo>();
+            List<Insumo> insumoList = new ArrayList<>();
             PreparedStatement stmt = this.con.
                     prepareStatement("select * from insumo where codigo=?");
             stmt.setInt(1, codigo);

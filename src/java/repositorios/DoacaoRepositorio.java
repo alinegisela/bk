@@ -7,6 +7,7 @@ package repositorios;
 
 import dao.DaoManagerHiber;
 import dao.DoacaoDAO;
+import java.sql.SQLException;
 import java.util.Date;
 //import dao.GenericDao;
 import java.util.List;
@@ -25,12 +26,17 @@ import negocio.StatusEnum;
 public class DoacaoRepositorio implements RepositorioGenerico<Doacao>{
 
     @Override
-    public void inserir(Doacao t) {
+    public void inserir(Doacao t, List<MaterialDoacao> m) {
         try {
             //DaoManagerHiber.getInstance().persist(t);
             //  int codigo, Doador doador, Instituicao instituicao, StatusEnum status, Date dataDoacao, Date dataVisita
             DoacaoDAO.getInstance().inserir(t.getCodigo(), t.getDoador(),t.getInstituicao(),t.getStatus(),t.getDataDoacao(),t.getDataVisita());
+            for(MaterialDoacao mat : m){
+                DoacaoDAO.getInstance().inserirMateriais(t.getCodigo(), mat.getCodigo());
+            }
         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DoacaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(DoacaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -81,6 +87,27 @@ public class DoacaoRepositorio implements RepositorioGenerico<Doacao>{
     }
 
     @Override
+    public List recuperarTodosDoador(String cpf) {
+        try {
+            //return DaoManagerHiber.getInstance().recover("from Doacao");
+            return DoacaoDAO.getInstance().recuperarTodosDoador(cpf);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DoacaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+     public List<Doacao> recuperarPorStatus(String status){
+          try {
+            //return DaoManagerHiber.getInstance().recover("from Doacao");
+            return DoacaoDAO.getInstance().recuperarPorStatus(status);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DoacaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+     }
+    
+    @Override
     public Doacao recuperar(String cpf) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -99,6 +126,16 @@ public class DoacaoRepositorio implements RepositorioGenerico<Doacao>{
 
     @Override
     public void inserir(Doacao t, String cnpj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void inserir(Doacao t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Doacao> recuperarTodosDoacao(int codigo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -7,6 +7,7 @@ import controladores.DoacaoControlador;
 import controladores.DoadorControlador;
 import controladores.InstituicaoControlador;
 import controladores.VisitaControlador;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +32,9 @@ public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException {
         
-        System.out.println((int)(Math.random()*100));
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        
+        System.out.println(formato.format(new Date()));
         
         
         

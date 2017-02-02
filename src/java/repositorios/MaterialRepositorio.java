@@ -6,6 +6,7 @@
 package repositorios;
 
 import dao.MaterialDAO;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,6 +75,16 @@ public class MaterialRepositorio implements RepositorioGenerico<MaterialDoacao> 
         }
         return null;
     }
+    
+    @Override
+    public List recuperarTodosDoacao(int codigo){
+        try{
+            return MaterialDAO.getInstance().recuperarTodosDoacao(codigo);
+        }catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(MaterialRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
     @Override
     public void inserir(MaterialDoacao t) {
@@ -82,6 +93,21 @@ public class MaterialRepositorio implements RepositorioGenerico<MaterialDoacao> 
 
     @Override
     public List<MaterialDoacao> recuperarMateriais(String cnpj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void inserir(MaterialDoacao t, List<MaterialDoacao> m) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<MaterialDoacao> recuperarTodosDoador(String cpf) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<MaterialDoacao> recuperarPorStatus(String status) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

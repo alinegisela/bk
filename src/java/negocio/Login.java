@@ -2,8 +2,10 @@ package negocio;
 
 
 import controladores.DoadorControlador;
+import controladores.InstituicaoControlador;
 import dao.UsuarioDAO;
 import filtro.SessionUtils;
+import java.io.Serializable;
 import java.sql.SQLException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -23,13 +25,14 @@ import javax.servlet.http.HttpSession;
  */
 @ManagedBean
 @SessionScoped
-public class Login {
+public class Login implements Serializable{
 
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
     private Usuario usuario = new Usuario();
     private Doador doador = new Doador();
     private Instituicao instituicao = new Instituicao();
     private DoadorControlador doadorControlador = new DoadorControlador();
+    private InstituicaoControlador instituicaoControlador = new InstituicaoControlador();
 
     public String enviaDoador() throws ClassNotFoundException, SQLException {
 
@@ -65,7 +68,8 @@ public class Login {
         } else {
             HttpSession session = SessionUtils.getSession();
 	session.setAttribute("username", this.instituicao.getEmail());
-            return "/menu-logado.xhtml";
+        instituicaoControlador.setInstituicaoSelecionada(instituicao);
+            return "/perfilInstituicao.xhtml";
         }
     }
     

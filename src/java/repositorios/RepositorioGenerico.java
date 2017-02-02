@@ -15,11 +15,22 @@ import negocio.MaterialDoacao;
 public interface RepositorioGenerico <T>{
      public void inserir(T t);
      public void inserir(T t, String cnpj);
+
+    /**
+     *
+     * @param i
+     * @param m
+     * @return
+     */
+    public void inserir(T t, List<MaterialDoacao> m);
     public void alterar(T t);
     public T recuperar(int codigo);
      public T recuperar(String cpf);
      public List<MaterialDoacao> recuperarMateriais(String cnpj);
+     public List<T> recuperarTodosDoador(String cpf);
     public void excluir(int codigo);
     public void excluir(T t);
     public List<T> recuperarTodos();
+    public List<T> recuperarTodosDoacao(int codigo);
+    public List<T> recuperarPorStatus(String status);
 }

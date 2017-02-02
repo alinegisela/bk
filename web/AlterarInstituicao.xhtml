@@ -8,89 +8,83 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Alterar Instituição</title>
     </h:head>
     <h:body>
-        <ui:include src="menu.xhtml"/>
+        <ui:include src="menu-instituicao.xhtml"/>
         <h:form id="form">
             <p:messages/>
             <p:fieldset legend="Alterar Instituição">
+
                 <p:panelGrid columns="3">
-                    <h:outputText value="Nome"/>
-                    <p:inputText id="inputNome" value="#{controleInstituicao.selectedIns.nome}" required="true"
+
+                    <h:outputText value="Nome: "/>
+                    <p:inputText id="inputNome" value="#{login.instituicao.nome}" required="true"
                                  requiredMessage="Digite o Nome"/>
                     <p:message id="messageNome" for="inputNome" />
 
-                    <h:outputText value="Endereço"/>
-                    <p:inputText id="inputEndereco" value="#{controleInstituicao.selectedIns.endereco}" required="true"
-                                 requiredMessage="Digite o Endereço"/>
-                    <p:message id="messageEndereco" for="inputEndereco"/>
-                    
-                     <h:outputText value="Descrição"/>
-                    <p:inputText id="inputDescricao" value="#{controleInstituicao.selectedIns.descricao}" required="true"
+                    <h:outputText value="Sobre nós: "/>
+                    <p:inputText id="inputDescricao" value="#{login.instituicao.descricao}" required="true"
                                  requiredMessage="Digite a Descrição"/>
                     <p:message id="messageDescricao" for="inputDescricao"/>
-                    
-                    <h:outputText value="CNPJ"/>
-                    <p:inputText id="inputCNPJ" value="#{controleInstituicao.selectedIns.cnpj}" required="true" 
-                                 requiredMessage="Digite o CNPJ" maxlength="11"/>
-                    <p:message id="messageCPF" for="inputCNPJ"/>
 
-                    <h:outputText value="Telefone"/>
-                    <p:inputText value="#{controleInstituicao.selectedIns.telefone}"/>
+                    <h:outputText value="Endereço: "/>
+                    <p:inputText id="inputEndereco" value="#{login.instituicao.endereco}" required="true"
+                                 requiredMessage="Digite o Endereço"/>
+                    <p:message id="messageEndereco" for="inputEndereco"/>
+
+
+                    <h:outputText value="Telefone: "/>
+                    <p:inputText value="#{login.instituicao.tel}"/>
                     <h:outputText/>
-                    
-                     <h:outputText value="Email"/>
-                    <p:inputText id="inputEmail" value="#{controleDoador.selectedDoad.email}" required="true"
+
+                    <h:outputText value="Email: "/>
+                    <p:inputText id="inputEmail" value="#{login.instituicao.email}" required="true"
                                  requiredMessage="Digite o Email"/>
                     <p:message id="messageEmail" for="inputEmail"/>
-                    
-                      <p:tab id="materialDoacao" title="Lista de Materiais de Doação">
-                            <p:panel header="Selecione o Material para a Doação">
-                                <p:messages/>
-                              
-                                <h:panelGrid>
-
-                                    <p:dataTable id="tabelaMaterialDoacao" value="#{controleMaterialDoacao.materialdoacoes}" var="item"
-                                                 rowKey="#{item.id}" paginator="true" rows="6" selectionMode="single" 
-                                                 selection="#{controleInstituicao.selectedIns.materialdoacao}">
-
-
-                                        <p:column sortBy="#{item.prioridade}" filterBy="#{item.prioridade}" headerText="Prioridade" footerText="Prioridade">
-                                            <h:outputText value="#{item.prioridade}"/>
-                                        </p:column>
-
-                                    </p:dataTable>  
-                                </h:panelGrid>
-                            </p:panel>
-                        </p:tab>
-
-                    
-                      <p:tab id="historicoDoacao" title="Histórico de Doações">
-                            <p:panel header="Veja o Histórico">
-                                <p:messages/>
-                              
-                                <h:panelGrid>
-
-                                    <p:dataTable id="tabelahistoricoDoacoes" value="#{controleDoacao.doacoes}" var="item"
-                                                 rowKey="#{item.id}" paginator="true" rows="6" selectionMode="single" 
-                                                 selection="#{controleInstituicao.selectedIns.historicodoacoes}">
-
-
-                                        <p:column sortBy="#{item.codigo}" filterBy="#{item.codigo}" headerText="Código" footerText="Código">
-                                            <h:outputText value="#{item.codigo}"/>
-                                        </p:column>
-
-                                    </p:dataTable>  
-                                </h:panelGrid>
-                            </p:panel>
-                        </p:tab>
 
                 </p:panelGrid>
-                <p:commandButton value="Alterar" action="#{controleCliente.alterarCliente(controleCliente.selectedCli)}" 
-                                 update="form"/>
+
+
+                <p:fieldset legend="Selecione o Material para a Doação">
+          
+
+                    <p:dataTable var="insumo" value="#{cInstituicao.materiaisRec}" paginator="true" rows="5"
+                                 selection="#{login.instituicao.prioridades}" rowKey="#{insumo.codigo}">
+                        <p:column selectionMode="multiple"  style="width:16px;text-align:center"/>
+
+                        <p:column headerText="Nome" sortBy="#{insumo.tipo}">
+                            <h:outputText value="#{insumo.nome}"/>
+                        </p:column>
+
+                        <p:column headerText="Tipo">
+                            <h:outputText value="#{insumo.tipo}"/>
+                        </p:column>
+
+                        <p:column headerText="Descrição">
+                            <h:outputText value="#{insumo.descricao}"/>
+                        </p:column>
+
+                        <p:column headerText="Prioridade">
+                            <h:outputText  value="#{insumo.prioridadeString}"/>
+                        </p:column>
+
+                        <f:facet name="footer">
+                            <p:commandButton action="#{cDoacao.inserir(bDoacao.build(login.doador,
+                                                       cInstituicao.getInstituicaoSelecionada()), cDoacao.materiais)}" process="tableMaterial" icon="ui-icon-search" 
+                                             value="Concluir"  ajax="false" update="form"/>
+                        </f:facet>
+
+                    </p:dataTable>
+
+
+                    <p:commandButton value="Alterar" action="#{controleCliente.alterarCliente(controleCliente.selectedCli)}" 
+                                     update="form"/>
+                </p:fieldset>
+
             </p:fieldset>
 
         </h:form>

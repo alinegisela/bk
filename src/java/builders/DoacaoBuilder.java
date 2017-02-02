@@ -28,57 +28,20 @@ import negocio.StatusEnum;
 @RequestScoped
     public class DoacaoBuilder {
     private int codigo = gerarNum();
-     private Doador doador;
-     private String cpf;
+    private Doador doador;
     private Instituicao instituicao;
-    private String cnpj;
-    //private MaterialDoacao materialDoacao;
-    private String status = "Em andamento";
+    private String status = "Aguardando confirmação";
     private Date dataDoacao;
-    private String dDoacao;
     private Date dataVisita;
-    private String dVisita;
+ 
     private List<MaterialDoacao> doacao;
 
-    public String getdDoacao() {
-        return dDoacao;
-    }
+   
     
      public int gerarNum(){
         return (int)(Math.random()*100);
     }
 
-    public void setdDoacao(String dDoacao) {
-        this.dDoacao = dDoacao;
-    }
-
-    public String getdVisita() {
-        return dVisita;
-    }
-
-    public void setdVisita(String dVisita) {
-        this.dVisita = dVisita;
-    }
-
-    
-    
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-    
-   
     /*
     public MaterialDoacao getMaterialDoacao() {
         return materialDoacao;
@@ -146,6 +109,7 @@ import negocio.StatusEnum;
 
     public Doacao build(Doador d, Instituicao i) throws ClassNotFoundException{
         int year1, month1, day1, year, month, day;
+        /*
         year = Integer.parseInt(dDoacao.substring(4, 8)) - 1900;
         month = Integer.parseInt(dDoacao.substring(2,4)) - 1;
         day = Integer.parseInt(dDoacao.substring(0,2));
@@ -153,7 +117,7 @@ import negocio.StatusEnum;
         year1 = Integer.parseInt(dVisita.substring(4, 8)) - 1900;
         month1 = Integer.parseInt(dVisita.substring(2,4)) - 1;
         day1 = Integer.parseInt(dVisita.substring(0,2));
-        
-        return new Doacao(codigo,DoadorDAO.getInstance().recuperar(d.getCpf()), InstituicaoDAO.getInstance().recuperar(i.getCnpj()), status, new Date(year, month, day), new Date(year1, month1, day1));
+        */
+        return new Doacao(codigo,DoadorDAO.getInstance().recuperar(d.getCpf()), InstituicaoDAO.getInstance().recuperar(i.getCnpj()), status, new Date(), dataVisita);
     }
 }

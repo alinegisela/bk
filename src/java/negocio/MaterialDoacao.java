@@ -21,7 +21,7 @@ import javax.persistence.Table;
 
 public class MaterialDoacao {
     private int codigo;
-    private boolean prioridade = false;
+    private boolean prioridade;
     private String prioridadeString;
     private Insumo insumo;
     
@@ -32,11 +32,7 @@ public class MaterialDoacao {
     }
 
     public String getPrioridadeString() {
-        if(prioridade){
-            setPrioridadeString("não");
-        }else{
-            setPrioridadeString("sim");
-        }
+       
         return prioridadeString;
     }
 

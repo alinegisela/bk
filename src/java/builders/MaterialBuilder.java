@@ -23,13 +23,13 @@ import negocio.PrioridadeEnum;
 @RequestScoped
 public class MaterialBuilder {
     private int codigo = gerarNum();
-    private boolean prioridade;
+    private boolean prioridade = false;
     private Insumo insumo;
     private int insumocodigo;
     private String prioridadeString;
     
     public int gerarNum(){
-        return (int)(Math.random()*100);
+        return (int)(Math.random()*1000);
     }
 
     public int getInsumocodigo() {
@@ -43,7 +43,7 @@ public class MaterialBuilder {
     
     
     public int getCodigo() {
-        return codigo;
+        return gerarNum();
     }
 
     public void setCodigo(int codigo) {
@@ -68,11 +68,11 @@ public class MaterialBuilder {
         this.insumo = insumo;
     }
     
-    public String getPrioridadeString() {
-        if(prioridade){
-            setPrioridadeString("não");
-        }else{
+    public String getPrioridadeString(boolean prioridade) {
+        if(prioridade == true){
             setPrioridadeString("sim");
+        }else{
+            setPrioridadeString("não");
         }
         return prioridadeString;
     }
@@ -81,8 +81,9 @@ public class MaterialBuilder {
         this.prioridadeString = prioridadeString;
     }
     
-    public MaterialDoacao build(int insumocodigo) throws ClassNotFoundException{
-        System.out.println("Builder");
-        return new MaterialDoacao(this.getCodigo(), this.getPrioridadeString(), InsumoDAO.getInstance().recuperar(insumocodigo));
+    public MaterialDoacao build(int insumocodigo, boolean prioridade) throws ClassNotFoundException{
+        System.out.println("Builder - prioridade ");
+        System.out.println(prioridade?"SSSIMM":"NÃOOO");
+        return new MaterialDoacao(this.getCodigo(), this.getPrioridadeString(prioridade), InsumoDAO.getInstance().recuperar(insumocodigo));
     }
 }
