@@ -37,6 +37,10 @@ public class DoacaoControlador implements Serializable {
     private RepositorioGenerico<Doacao> doacaoRepositorio = null;
     private Doacao doacaoSelecionada;
     private List<MaterialDoacao> materiais = new ArrayList<>();
+    
+    String aguardando_confirmacao = "Aguardando confirmação";
+    String em_andamento = "Em andamento";
+    String concluida = "Concluída";
 
     private Date dataAtual;
     SimpleDateFormat formato = new SimpleDateFormat("MM/dd/yyyy");
@@ -48,6 +52,32 @@ public class DoacaoControlador implements Serializable {
     public void setDataAtual(Date dataAtual) {
         this.dataAtual = dataAtual;
     }
+
+    public String getAguardando_confirmacao() {
+        return aguardando_confirmacao;
+    }
+
+    public void setAguardando_confirmacao(String aguardando_confirmacao) {
+        this.aguardando_confirmacao = aguardando_confirmacao;
+    }
+
+    public String getEm_andamento() {
+        return em_andamento;
+    }
+
+    public void setEm_andamento(String em_andamento) {
+        this.em_andamento = em_andamento;
+    }
+
+    public String getConcluida() {
+        return concluida;
+    }
+
+    public void setConcluida(String concluida) {
+        this.concluida = concluida;
+    }
+    
+    
 
     public List<MaterialDoacao> getMateriais() {
         return materiais;
@@ -87,6 +117,16 @@ public class DoacaoControlador implements Serializable {
         this.setDoacaoSelecionada(doacao);
         return "visualizarDoacoesEmAberto";
     }
+    
+    public String setDoacaoEmAberto2(Doacao doacao){
+        this.setDoacaoSelecionada(doacao);
+        return "visualizarDoacoesEmAndamento";
+    }
+    
+    public String setDoacaoEmAberto3(Doacao doacao){
+        this.setDoacaoSelecionada(doacao);
+        return "visualizarDoacoesConcluidas";
+    }
 
     public String inserir(Doacao d, List materiais) {
         this.doacaoRepositorio.inserir(d, materiais);
@@ -105,7 +145,23 @@ public class DoacaoControlador implements Serializable {
 
         // return "ApresentaAnimal.xhtml";
     }
+    
+    public String alterarStatus(String status, int codigo){
+        this.doacaoRepositorio.alterarStatus(status, codigo);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(""));
+        
+        return "doacoesInstituicao";
+    }
 
+    public void alterarStatus2(String status, int codigo){
+        this.doacaoRepositorio.alterarStatus(status, codigo);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(""));
+        
+       
+    }
+    
     public Doacao recuperar(int codigo) {
         return this.doacaoRepositorio.recuperar(codigo);
     }
@@ -128,8 +184,8 @@ public class DoacaoControlador implements Serializable {
 
     }
 
-    public List<Doacao> recuperarPorStatus(){
-        String status = "Aguardando confirmação";
+    public List<Doacao> recuperarPorStatus(String status){
+//        String status = "Aguardando confirmação";
          return this.doacaoRepositorio.recuperarPorStatus(status);
     }
 }

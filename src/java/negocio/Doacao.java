@@ -19,7 +19,7 @@ import java.util.List;
 public class Doacao {
 
     private int codigo;//automatico
-
+    
     private Doador doador;//do sistema
     private Instituicao instituicao;
 
@@ -28,12 +28,14 @@ public class Doacao {
     private Date dataDoacao;//do sistema 
     private Date dataVisita;
 
+    private int day ;
+    
     private List<MaterialDoacao> doacao;
 
     private String cpf;
     private String cnpj;
 
-    public Doacao(int codigo, Doador doador, Instituicao instituicao, String status, Date dataDoacao, Date dataVisita) {
+    public Doacao(int codigo, Doador doador, Instituicao instituicao, String status, Date dataDoacao, Date dataVisita, int day) {
         this.codigo = codigo;
         this.doador = doador;
         this.instituicao = instituicao;
@@ -41,6 +43,7 @@ public class Doacao {
         this.status = status;
         this.dataDoacao = dataDoacao;
         this.dataVisita = dataVisita;
+        this.day = day;
         this.doacao = new ArrayList<>();
     }
 
@@ -48,6 +51,16 @@ public class Doacao {
     public Doacao() {
     }
 
+    public int getDay() {
+        return this.dataVisita.getDate();
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    
+    
     public String getCnpj() {
         return cnpj;
     }
@@ -104,6 +117,11 @@ public class Doacao {
 
     public void setDataDoacao(Date dataDoacao) {
         this.dataDoacao = dataDoacao;
+     
+    }
+    
+    public int getDay(Date date){
+        return date.getDay();
     }
 
     public Date getDataDoacao(){

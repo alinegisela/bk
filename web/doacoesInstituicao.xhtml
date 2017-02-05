@@ -10,15 +10,19 @@
     </h:head>
     <h:body>
         <ui:include src="menu-instituicao.xhtml" />
-        <h:form>
+        <h:form id="form">
             <p:wizard>
                 <p:tab id="dadosDoador" title="Doações em aberto"> 
-                    <p:panel >
+                    <p:panel header="Novas doações">
                         <p:messages/>
-                        <p:dataTable id="tableDoacao" var="doacao" value="#{cDoacao.recuperarPorStatus()}" paginator="true" rows="5">
+                        <p:dataTable id="tableDoacao" var="doacao" value="#{cDoacao.recuperarPorStatus(cDoacao.aguardando_confirmacao)}" paginator="true" rows="5">
 
                             <p:column headerText="Doador" sortBy="#{doacao.dataVisita}">
                                 <h:outputText value="#{doacao.doador.nome}"/>
+                            </p:column>
+                            
+                             <p:column headerText="Data da doação" sortBy="#{doacao.dataDoacao}">
+                                <h:outputText value="#{doacao.getDataDoacaoString()}"/>
                             </p:column>
 
                             <p:column headerText="Data de recolhimento">
@@ -31,12 +35,42 @@
                             </p:column>
 
                             <p:column width="120">
-                                <p:commandButton value="Aceitar" action="#{cInstituicao.setInstituicaoSelecionada(instituicao)}" 
-                                                 ajax="false"/>
+                                <p:commandButton value="Aceitar" action="#{cDoacao.alterarStatus2(cDoacao.em_andamento, doacao.codigo)}" 
+                                                 ajax="false" />
                             </p:column>
                         </p:dataTable>
-                         <p:commandButton value="Alterar" action="#{cInstituicao.alterarMateriais()}" style="left:600px" ajax="false"/>
-                    </p:panel>               
+                        
+                    </p:panel>     
+                    
+                    <p:panel header="Doações em andamento">
+                        <p:messages/>
+                        <p:dataTable id="tableDoacao2" var="doacao" value="#{cDoacao.recuperarPorStatus(cDoacao.em_andamento)}" paginator="true" rows="5">
+
+                            <p:column headerText="Doador" sortBy="#{doacao.dataVisita}">
+                                <h:outputText value="#{doacao.doador.nome}"/>
+                            </p:column>
+                            
+                             <p:column headerText="Data da doação" sortBy="#{doacao.dataDoacao}">
+                                <h:outputText value="#{doacao.getDataDoacaoString()}"/>
+                            </p:column>
+
+                            <p:column headerText="Data de recolhimento">
+                                <h:outputText value="#{doacao.getDataVisitaString()}"/>
+                            </p:column>
+
+                            <p:column width="120">
+                                <p:commandButton value="Visualizar" action="#{cDoacao.setDoacaoEmAberto2(doacao)}" 
+                                                 ajax="false"/>
+                            </p:column>
+
+                            <p:column width="220">
+                                <p:commandButton value="Marcar como concluída" action="#{cDoacao.alterarStatus2(cDoacao.concluida, doacao.codigo)}" 
+                                                 ajax="false" />
+                            </p:column>
+                        </p:dataTable>
+                        
+                    </p:panel>   
+                    
                 </p:tab>
             </p:wizard>
         </h:form>

@@ -47,6 +47,8 @@ and open the template in the editor.
                     <p:message id="messageEmail" for="inputEmail"/>
 
                 </p:panelGrid>
+                
+                <p:commandButton value="Alterar inst" action="#{cInstituicao.alterar(login.instituicao)}" ajax="false"/>
 
 
                 <p:fieldset legend="Selecione o Material para a Doação">
@@ -73,9 +75,8 @@ and open the template in the editor.
                         </p:column>
 
                         <f:facet name="footer">
-                            <p:commandButton action="#{cDoacao.inserir(bDoacao.build(login.doador,
-                                                       cInstituicao.getInstituicaoSelecionada()), cDoacao.materiais)}" process="tableMaterial" icon="ui-icon-search" 
-                                             value="Concluir"  ajax="false" update="form"/>
+                            <p:commandButton action="#{cInstituicao.alterar(d)}" process="tableMaterial" icon="ui-icon-search" 
+                                             value="Älterar"  ajax="false"/>
                         </f:facet>
 
                     </p:dataTable>

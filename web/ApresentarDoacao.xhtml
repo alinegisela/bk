@@ -21,14 +21,14 @@ and open the template in the editor.
                         <p:messages/>
                         <h:panelGrid columns="2">
 
-                            <p:dataTable id="tableDoacao" var="doacao" value="#{cDoacao.recuperarTodosDoador(login.doador.cpf)}" paginator="true" 
-                                         rows="5" rowIndexVar="rowIndex">
+                            <p:dataTable id="tableDoacao" var="doacao" value="#{cDoacao.recuperarTodosDoador(login.doador.cpf)}"  rowIndexVar="rowIndex"
+                                         paginator="true" rows="5">
 
                                 <p:column headerText="#" style="width:16px;text-align:center">
                                     #{rowIndex+1}
                                 </p:column>
 
-                                <p:column headerText="Data da doação" sortBy="#{doacao.dataDoacao()}">
+                                <p:column headerText="Data da doação" sortBy="#{doacao.status}">
                                     <h:outputText value="#{doacao.getDataDoacaoString()}"/>
                                 </p:column>
 

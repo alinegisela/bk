@@ -111,5 +111,10 @@ public class DoadorRepositorio implements RepositorioGenerico<Doador>{
     public List<Doador> recuperarPorStatus(String status) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void alterarStatus(String status, int codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

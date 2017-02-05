@@ -46,7 +46,7 @@ public class Insumo {
         if(prioridade){
             return "Sim";
         }else{
-            return "não";
+            return "Não";
         }
     }
 

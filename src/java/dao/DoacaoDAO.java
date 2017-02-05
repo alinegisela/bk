@@ -108,6 +108,26 @@ public class DoacaoDAO {
         }
         return false;
     }
+    
+    public boolean alterarStatus(String status, int codigo) {
+
+        String sql = "update doacao set status=? where codigo=?";
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, status);
+            stmt.setInt(2, codigo);
+            
+            stmt.execute();
+
+            if (stmt.executeUpdate() == 1) {
+                return true;
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
 
     public void excluir(Doacao doacao) {
         try {

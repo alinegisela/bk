@@ -24,6 +24,7 @@ public interface RepositorioGenerico <T>{
      */
     public void inserir(T t, List<MaterialDoacao> m);
     public void alterar(T t);
+    public void alterarStatus(String status, int codigo) ;
     public T recuperar(int codigo);
      public T recuperar(String cpf);
      public List<MaterialDoacao> recuperarMateriais(String cnpj);

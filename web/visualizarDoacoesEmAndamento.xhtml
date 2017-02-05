@@ -12,7 +12,7 @@
         <ui:include src="menu-instituicao.xhtml" />
        <h:form id="form">
              <p:wizard>
-                <p:tab id="dadosDoador" title="Doações em Aberto"> 
+                <p:tab id="dadosDoador" title="Doações em andamento"> 
                     <p:panel >
                         <p:messages/>
                         <h:panelGrid columns="2">
@@ -75,7 +75,7 @@
                         </p:panelGrid>
                         
                         <p:button value="Voltar" outcome="doacoesInstituicao" style="left:550px"/>
-                        <p:commandButton value="Aceitar" action="#{cDoacao.alterarStatus(cDoacao.em_andamento, cDoacao.doacaoSelecionada.codigo)}" 
+                        <p:commandButton value="Marcar como concluída" action="#{cDoacao.alterarStatus(cDoacao.concluida, cDoacao.doacaoSelecionada.codigo)}" 
                                          ajax="false" style="left:600px" />
                     </p:panel>
                     

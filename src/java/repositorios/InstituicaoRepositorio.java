@@ -43,7 +43,7 @@ public class InstituicaoRepositorio implements RepositorioGenerico<Instituicao> 
     @Override
     public void alterar(Instituicao t) {
         try {
-            InstituicaoDAO.getInstance().alterar(t.getNome(), t.getEndereco(), t.getDescricao(), t.getCnpj(), t.getTel(), t.getEmail());
+            InstituicaoDAO.getInstance().alterar(t.getNome(), t.getEndereco(), t.getDescricao(), t.getTel(), t.getEmail(), t.getCnpj());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(InstituicaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -115,6 +115,11 @@ public class InstituicaoRepositorio implements RepositorioGenerico<Instituicao> 
 
     @Override
     public List<Instituicao> recuperarPorStatus(String status) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void alterarStatus(String status, int codigo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

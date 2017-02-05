@@ -33,6 +33,7 @@ import negocio.StatusEnum;
     private String status = "Aguardando confirmação";
     private Date dataDoacao;
     private Date dataVisita;
+    private int day;
  
     private List<MaterialDoacao> doacao;
 
@@ -59,6 +60,17 @@ import negocio.StatusEnum;
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+    
+    
+    
     public Doador getDoador() {
         return doador;
     }
@@ -108,7 +120,7 @@ import negocio.StatusEnum;
     }
 
     public Doacao build(Doador d, Instituicao i) throws ClassNotFoundException{
-        int year1, month1, day1, year, month, day;
+      int day = dataVisita.getDate();
         /*
         year = Integer.parseInt(dDoacao.substring(4, 8)) - 1900;
         month = Integer.parseInt(dDoacao.substring(2,4)) - 1;
@@ -118,6 +130,6 @@ import negocio.StatusEnum;
         month1 = Integer.parseInt(dVisita.substring(2,4)) - 1;
         day1 = Integer.parseInt(dVisita.substring(0,2));
         */
-        return new Doacao(codigo,DoadorDAO.getInstance().recuperar(d.getCpf()), InstituicaoDAO.getInstance().recuperar(i.getCnpj()), status, new Date(), dataVisita);
+        return new Doacao(codigo,DoadorDAO.getInstance().recuperar(d.getCpf()), InstituicaoDAO.getInstance().recuperar(i.getCnpj()), status, new Date(), dataVisita, day);
     }
 }

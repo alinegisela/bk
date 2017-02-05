@@ -1,12 +1,44 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <ui:include src="menu-instituicao.xhtml" />
+        <h:form id="form">
+            <p:wizard>
+                <p:tab id="dadosDoador" title="Doações concluídas"> 
+                    <p:panel header="Doações concluídas">
+                        <p:messages/>
+                        <p:dataTable id="tableDoacao" var="doacao" value="#{cDoacao.recuperarPorStatus(cDoacao.concluida)}" paginator="true" rows="5">
+
+                            <p:column headerText="Doador" sortBy="#{doacao.dataVisita}">
+                                <h:outputText value="#{doacao.doador.nome}"/>
+                            </p:column>
+                            
+                             <p:column headerText="Data da doação" sortBy="#{doacao.dataDoacao}">
+                                <h:outputText value="#{doacao.getDataDoacaoString()}"/>
+                            </p:column>
+
+                            <p:column headerText="Data de recolhimento">
+                                <h:outputText value="#{doacao.getDataVisitaString()}"/>
+                            </p:column>
+
+                            <p:column width="120">
+                                <p:commandButton value="Visualizar" action="#{cDoacao.setDoacaoEmAberto3(doacao)}" 
+                                                 ajax="false"/>
+                            </p:column>
+
+                            
+                        </p:dataTable>
+                    </p:panel>
+                </p:tab>
+            </p:wizard>
+        </h:form>
     </h:body>
 </html>
 

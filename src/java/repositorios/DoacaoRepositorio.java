@@ -51,6 +51,15 @@ public class DoacaoRepositorio implements RepositorioGenerico<Doacao>{
             Logger.getLogger(DoacaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    @Override
+    public void alterarStatus(String status, int codigo) {
+         try {
+            DoacaoDAO.getInstance().alterarStatus(status, codigo);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DoacaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @Override
     public Doacao recuperar(int codigo) {
