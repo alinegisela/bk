@@ -12,10 +12,8 @@
         <ui:include src="menu-instituicao.xhtml" />
 
         <h:form>
-            <p:wizard>
-                <p:tab id="dadosDoador" title="Dados da Instituição"> 
-                    
-                    <p:panel >
+            <p:fieldset legend="Perfil">
+                <p:panel header="Dados da instituição">
                         <p:messages/>
                         <h:panelGrid columns="2">
                             
@@ -36,11 +34,14 @@
                             
                     
                         </h:panelGrid>  
+                         </p:panel> 
+                        <br/>
+                        
                         
                         <p:panel header="Materiais de prioridade">
-                        <h:panelGrid >
+                        <h:panelGrid style="text-align: center" >
                             
-                            <p:dataTable  var="material" value="#{cInstituicao.recuperarMateriais(login.instituicao.getCnpj())}" paginator="true" rows="5">
+                            <p:dataTable  var="material" value="#{cInstituicao.recuperarMateriais(login.instituicao.getCnpj())}" >
                                 <p:column headerText="Nome" sortBy="#{material.prioridade}">
                                     <h:outputText value="#{material.getInsumo().nome}"/>
                                 </p:column>
@@ -57,15 +58,12 @@
                             </p:dataTable>
                         </h:panelGrid>
                         </p:panel>
+                        <br/>
                         
-                        <p:commandButton value="Alterar" action="#{cInstituicao.alterarMateriais()}" style="left:600px" ajax="false"/>
-                       
-                    </p:panel>
-                </p:tab>
-
-
-
-            </p:wizard>
+                        <p:commandButton value="Alterar" action="#{cInstituicao.alterarMateriais(login.instituicao)}" style="left:600px" ajax="false"/>
+                 
+                   
+            </p:fieldset>
         </h:form>
     </h:body>
 </html>

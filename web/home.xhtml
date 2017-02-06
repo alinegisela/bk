@@ -9,40 +9,34 @@
     </h:head>
     <h:body>
         <ui:include src="menu.xhtml"/>
+
         <h:form >
-            <p:panel>
-                <p:wizard>
-                    <p:tab title="Login" >
-                        <p:panelGrid columns="2">
-                            <p:outputLabel for="emailUsuario" value="Email:" />
-                            <p:inputText id="emailUsuario" value="#{login.usuario.email}" />
+            <p:panel header="Login">
+                <p:panelGrid columns="2">
+                    <p:outputLabel for="emailUsuario" value="Email:" />
+                    <p:inputText id="emailUsuario" value="#{login.usuario.email}" />
 
-                            <p:outputLabel for="senha" value="Senha:" />
-                            <p:password id="senha" value="#{login.usuario.senha}" />
+                    <p:outputLabel for="senha" value="Senha:" />
+                    <p:password id="senha" value="#{login.usuario.senha}" />
 
-                            <p:commandButton value="Doador" icon="ui-icon-star" action="#{login.enviaDoador}" ajax="false" onclick="PF('fpLayoutWidget').toggle('south')">
-                            </p:commandButton>
+                    <p:commandButton value="Doador" icon="ui-icon-person" action="#{login.enviaDoador}" ajax="false" onclick="PF('fpLayoutWidget').toggle('south')">
+                    </p:commandButton>
 
-                            <p:commandButton value="Instituição" icon="ui-icon-home" action="#{login.enviaInstituicao}" ajax="false">
-                            </p:commandButton>
+                    <p:commandButton value="Instituição" icon="ui-icon-home" action="#{login.enviaInstituicao}" ajax="false">
+                    </p:commandButton>
 
-                        </p:panelGrid>
-                    </p:tab>
-                </p:wizard>
-
+                </p:panelGrid>
             </p:panel>
-            <p:panel>
-                <p:wizard>
-                    <p:tab title="Se cadastre" >
-                        <p:panelGrid columns="2">
-                            <p:button value="Doador" icon="ui-icon-star" outcome="CadastroDoador"  >
-                            </p:button>
+            <br/>
 
-                            <p:button value="Instituição" icon="ui-icon-home"  outcome="CadastroInstituicao" >
-                            </p:button>
-                        </p:panelGrid>
-                    </p:tab>
-                </p:wizard>
+            <p:panel header="Se cadastre">
+                <p:panelGrid columns="2">
+                    <p:button value="Doador" icon="ui-icon-person" outcome="CadastroDoador"  >
+                    </p:button>
+
+                    <p:button value="Instituição" icon="ui-icon-home"  outcome="CadastroInstituicao" >
+                    </p:button>
+                </p:panelGrid>
             </p:panel>
         </h:form>
     </h:body>

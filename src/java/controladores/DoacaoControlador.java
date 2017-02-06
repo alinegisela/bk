@@ -154,12 +154,12 @@ public class DoacaoControlador implements Serializable {
         return "doacoesInstituicao";
     }
 
-    public void alterarStatus2(String status, int codigo){
+    public String alterarStatus2(String status, int codigo){
         this.doacaoRepositorio.alterarStatus(status, codigo);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(""));
         
-       
+       return "historicoInstituicao";
     }
     
     public Doacao recuperar(int codigo) {

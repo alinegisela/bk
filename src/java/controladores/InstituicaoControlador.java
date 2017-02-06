@@ -68,10 +68,32 @@ public class InstituicaoControlador implements Serializable{
         return "cadastroConcluido.xhtml";
     }
 
-    public String alterarMateriais() {
+    public String addLista2() throws ClassNotFoundException {
+        /* for(MaterialDoacao m : getInstituicaoSelecionada().getPrioridades()){
+            inserirMaterial(m);
+        }*/
+        
+        MaterialControlador mc = new MaterialControlador();
+        MaterialBuilder mb = new MaterialBuilder();
+        
+        //deletar materiais existentes em table 'material' e 'instituicao_material'
+        mc.deletarTodos(getInstituicaoSelecionada().getCnpj());
+        
+        System.out.println("antes do for");
+        for (Insumo i : this.getInstituicaoSelecionada().getPrioridadesInsumo()) {
+            mb.setPrioridade(true);
+            mc.inserir(mb.build(i.getCodigo(), true), getInstituicaoSelecionada().getCnpj());
+            System.out.println("inserido");
+        }
+        return "perfilInstituicao.xhtml";
+    }
+    
+    public String alterarMateriais(Instituicao insLogada) throws ClassNotFoundException {
+        this.setInstituicaoSelecionada(insLogada);
        insumoTodos = new InsumoControlador().recuperarTodos();
+       
+       
        // List<MaterialDoacao> materiaisInst = new Login().getInstituicao().getPrioridades();
-
         List<MaterialDoacao> materiaisInst = recuperarMateriais(new Login().getInstituicao().getCnpj());
        
         for (int i = 0; i < materiaisInst.size(); i++) {
@@ -95,6 +117,7 @@ public class InstituicaoControlador implements Serializable{
         setMateriaisRec(insumoTodos);
 
         return "AlterarInstituicao";
+
     }
 
     public RepositorioGenerico<Instituicao> getInstituicaoRepositorio() {
@@ -129,9 +152,10 @@ public class InstituicaoControlador implements Serializable{
         return "CadastroMaterial.xhtml";
     }
 
-    public void alterar(Instituicao d) {
+    public void alterar(Instituicao d) throws ClassNotFoundException {
         this.instituicaoRepositorio.alterar(d);
-
+        addLista2();
+        
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Sucesso o animal " + d.getNome() + " foi alterado com sucesso!!"));
 

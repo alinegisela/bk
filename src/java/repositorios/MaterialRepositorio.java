@@ -56,6 +56,15 @@ public class MaterialRepositorio implements RepositorioGenerico<MaterialDoacao> 
     public void excluir(int codigo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    @Override
+    public void deletarTodos(String cnpj) {
+        try {
+            MaterialDAO.getInstance().deletarTodos(cnpj);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MaterialRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @Override
     public void excluir(MaterialDoacao t) {

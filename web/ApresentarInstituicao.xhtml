@@ -14,10 +14,11 @@ and open the template in the editor.
     <h:body>
         <ui:include src="menu-doador.xhtml" />
         <h:form>
-            <p:wizard>
-                <p:tab id="dadosDoador" title="Instituições cadastradas"> 
-                    <p:panel >
-                        <p:dataTable var="instituicao" value="#{cInstituicao.recuperarTodos()}" paginator="true" rows="5">
+            
+            <p:fieldset legend="Instituições cadastradas">
+                <h:panelGrid style="text-align: center" columns="1">
+                    
+                        <p:dataTable var="instituicao" value="#{cInstituicao.recuperarTodos()}">
                             <p:column headerText="Nome" sortBy="#{instituicao.nome}">
                                 <h:outputText value="#{instituicao.nome}"/>
                             </p:column>
@@ -33,9 +34,9 @@ and open the template in the editor.
                             </p:column>
                         </p:dataTable>
 
-                    </p:panel>
-                </p:tab>
-            </p:wizard>
+                </h:panelGrid>
+                
+            </p:fieldset>
         </h:form>
     </h:body>
 </html>

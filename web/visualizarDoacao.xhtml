@@ -10,14 +10,14 @@
     <h:body>
         <ui:include src="menu-doador.xhtml" />
         <h:form>
-            <p:wizard>
-                <p:tab id="dadosDoador" title="Minhas doações"> 
-                    <p:panel >
+            <p:fieldset legend="Minhas doações">
+          
+                    <p:panel header="Informações" >
                         <p:messages/>
-                        <h:panelGrid >
+                        <h:panelGrid style="text-align:center">
 
-
-                            <p:dataTable id="tableDoacao" var="doacao" value="#{cDoacao.doacaoSelecionada}" >
+                            
+                            <p:dataTable id="tableDoacao"  var="doacao" value="#{cDoacao.doacaoSelecionada}" >
 
                                 <p:column headerText="Data da doação" sortBy="#{doacao.dataDoacao()}">
                                     <h:outputText value="#{doacao.getDataDoacaoString()}"/>
@@ -31,7 +31,7 @@
                                     <h:outputText value="#{doacao.instituicao.nome}"/>
                                 </p:column>
 
-                                <p:column headerText="status" >
+                                <p:column headerText="Status" >
                                     <h:outputText value="#{doacao.status}"/>
                                 </p:column>
 
@@ -43,10 +43,9 @@
                     </p:panel>
 
                         <p:panel header="Material doado" >
-                            <h:panelGrid>
+                            <h:panelGrid style="text-align:center">
 
-                                <p:dataTable id="tableMaterial" var="material" value="#{cMaterial.recuperarTodosDoacao(cDoacao.doacaoSelecionada.codigo)}" paginator="true" 
-                                             rows="5">
+                                <p:dataTable id="tableMaterial" var="material" value="#{cMaterial.recuperarTodosDoacao(cDoacao.doacaoSelecionada.codigo)}" >
 
                                     <p:column headerText="Nome" sortBy="#{material.insumo.tipo}">
                                         <h:outputText value="#{material.insumo.nome}"/>
@@ -56,8 +55,8 @@
                                         <h:outputText value="#{material.insumo.tipo}"/>
                                     </p:column>
 
-                                    <p:column headerText="Descrição">
-                                        <h:outputText value="#{material.insumo.descricao}"/>
+                                    <p:column headerText="Descrição" style="horizontal-align:center" >
+                                        <h:outputText value="#{material.insumo.descricao}" style="horizontal-align:center" />
                                     </p:column>
 
                                     <p:column headerText="Prioridade">
@@ -67,11 +66,11 @@
                                 </p:dataTable>
                             </h:panelGrid>
 
-                            <p:button value="Voltar" outcome="ApresentarDoacao" style="left:600px"/>
+                            
                         </p:panel>
-                   
-                </p:tab>
-            </p:wizard>
+                <br/>
+                   <p:button value="Voltar" outcome="ApresentarDoacao" style="left:600px"/>
+            </p:fieldset>
         </h:form>
     </h:body>
 </html>

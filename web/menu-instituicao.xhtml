@@ -10,12 +10,12 @@
         <h:form id="formMenu" >
              <p:growl id="gro" showDetail="true" life="4000" sticky="false"/>
             <p:menubar>
-                <p:menuitem value="Perfil" url="perfilInstituicao.xhtml"></p:menuitem>
-                <p:submenu label="Doações">
-                    <p:menuitem value="Em aberto" url="doacoesInstituicao.xhtml"></p:menuitem>
-                    <p:menuitem value="Histórico" url="historicoInstituicao.xhtml"></p:menuitem>
+                <p:menuitem value="Perfil" url="perfilInstituicao.xhtml" icon="ui-icon-contact"></p:menuitem>
+                <p:submenu label="Doações" icon="ui-icon-circle-plus">
+                    <p:menuitem value="Em aberto" url="doacoesInstituicao.xhtml" icon="ui-icon-play"></p:menuitem>
+                    <p:menuitem value="Histórico" url="historicoInstituicao.xhtml" icon="ui-icon-script"></p:menuitem>
                 </p:submenu>
-                <p:menuitem value="Sair" action="#{login.logout}"></p:menuitem>
+                <p:menuitem value="Sair" action="#{login.logout}" icon="ui-icon-close"></p:menuitem>
             </p:menubar>
             <p:separator/>
         </h:form>

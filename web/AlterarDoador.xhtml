@@ -16,9 +16,9 @@ and open the template in the editor.
     <h:body>
         <ui:include src="menu-doador.xhtml"/>
         <h:form id="form">
-            <p:wizard>
-                <p:tab id="dadosDoador" title="Insira os novos dados: "> 
-                    <p:panel >
+            <p:fieldset legend="Alterar dados">
+                <p:panel header="Insira os novos dados">
+                    
                         <p:messages/>
                         <p:panelGrid columns="2">
 
@@ -40,13 +40,13 @@ and open the template in the editor.
                          
                            
                         </p:panelGrid>
-                         <p:commandButton value="Alterar" action="#{cDoador.alterar(login.doador)}" 
-                                             update="form" ajax="false">
+                        
+                </p:panel>
+                <br/>
+                 <p:commandButton value="Alterar" action="#{cDoador.alterar(login.doador)}" 
+                                             update="form" ajax="false" style="left: 580px">
                             </p:commandButton>
-                    </p:panel>
-                </p:tab>
-            </p:wizard>
-
+            </p:fieldset>
         </h:form>
     </h:body>
 </html>

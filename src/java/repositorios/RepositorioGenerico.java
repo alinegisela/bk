@@ -31,6 +31,7 @@ public interface RepositorioGenerico <T>{
      public List<T> recuperarTodosDoador(String cpf);
     public void excluir(int codigo);
     public void excluir(T t);
+    public void deletarTodos(String cnpj);
     public List<T> recuperarTodos();
     public List<T> recuperarTodosDoacao(int codigo);
     public List<T> recuperarPorStatus(String status);

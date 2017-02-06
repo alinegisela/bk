@@ -17,8 +17,8 @@ and open the template in the editor.
         <ui:include src="menu-instituicao.xhtml"/>
         <h:form id="form">
             <p:messages/>
-            <p:fieldset legend="Alterar Instituição">
-
+            <p:fieldset legend="Alterar dados da instituição">
+                <p:panel header="Insira os novos dados">
                 <p:panelGrid columns="3">
 
                     <h:outputText value="Nome: "/>
@@ -47,15 +47,14 @@ and open the template in the editor.
                     <p:message id="messageEmail" for="inputEmail"/>
 
                 </p:panelGrid>
-                
-                <p:commandButton value="Alterar inst" action="#{cInstituicao.alterar(login.instituicao)}" ajax="false"/>
+                </p:panel>
 
-
-                <p:fieldset legend="Selecione o Material para a Doação">
+<br/>
+                <p:panel header="Selecione os materiais de prioridade">
           
 
-                    <p:dataTable var="insumo" value="#{cInstituicao.materiaisRec}" paginator="true" rows="5"
-                                 selection="#{login.instituicao.prioridades}" rowKey="#{insumo.codigo}">
+                    <p:dataTable id="tableMaterial" var="insumo" value="#{cInstituicao.materiaisRec}" 
+                                 selection="#{login.instituicao.prioridadesInsumo}" rowKey="#{insumo.codigo}">
                         <p:column selectionMode="multiple"  style="width:16px;text-align:center"/>
 
                         <p:column headerText="Nome" sortBy="#{insumo.tipo}">
@@ -70,22 +69,15 @@ and open the template in the editor.
                             <h:outputText value="#{insumo.descricao}"/>
                         </p:column>
 
-                        <p:column headerText="Prioridade">
-                            <h:outputText  value="#{insumo.prioridadeString}"/>
-                        </p:column>
 
-                        <f:facet name="footer">
-                            <p:commandButton action="#{cInstituicao.alterar(d)}" process="tableMaterial" icon="ui-icon-search" 
-                                             value="Älterar"  ajax="false"/>
-                        </f:facet>
 
                     </p:dataTable>
 
 
-                    <p:commandButton value="Alterar" action="#{controleCliente.alterarCliente(controleCliente.selectedCli)}" 
-                                     update="form"/>
-                </p:fieldset>
-
+                </p:panel>
+<br/>
+<p:commandButton action="#{cInstituicao.alterar(login.instituicao)}" process="tableMaterial" icon="ui-icon-search" 
+                 value="Alterar"  ajax="false" update="form" style="left: 580px"/>
             </p:fieldset>
 
         </h:form>

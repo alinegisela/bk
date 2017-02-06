@@ -9,12 +9,11 @@
         <title>Perfil</title>
     </h:head>
     <h:body>
-        <ui:include src="menu-doador.xhtml" />
-        
-        <h:form>
-             <p:wizard>
-                <p:tab id="dadosDoador" title="Meus Dados"> 
-                    <p:panel >
+         <ui:include src="menu-doador.xhtml" />
+      
+        <h:form >
+            <p:fieldset legend="Perfil">
+                <p:panel header="Meus dados">
                         <p:messages/>
                         <h:panelGrid columns="2">
                             
@@ -36,13 +35,13 @@
                             
                         </h:panelGrid>  
                         
-                        <p:button value="Alterar" outcome="AlterarDoador" style="left:600px"/>
-                    </p:panel>
-                </p:tab>
-
-
+                       
+                    
+                </p:panel>
+                <br/>
+                 <p:button value="Alterar" outcome="AlterarDoador" style="left:600px"/>
+            </p:fieldset>
             
-            </p:wizard>
         </h:form>
     </h:body>
 </html>

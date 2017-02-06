@@ -10,11 +10,11 @@
     <h:body>
         <ui:include src="menu-instituicao.xhtml" />
         <h:form id="form">
-            <p:wizard>
-                <p:tab id="dadosDoador" title="Doações concluídas"> 
-                    <p:panel header="Doações concluídas">
+            <p:fieldset legend="Histórico">
+                <p:panel header="Doações concluídas">
+                        <h:panelGrid style="text-align: center">
                         <p:messages/>
-                        <p:dataTable id="tableDoacao" var="doacao" value="#{cDoacao.recuperarPorStatus(cDoacao.concluida)}" paginator="true" rows="5">
+                        <p:dataTable id="tableDoacao" var="doacao" value="#{cDoacao.recuperarPorStatus(cDoacao.concluida)}">
 
                             <p:column headerText="Doador" sortBy="#{doacao.dataVisita}">
                                 <h:outputText value="#{doacao.doador.nome}"/>
@@ -28,16 +28,16 @@
                                 <h:outputText value="#{doacao.getDataVisitaString()}"/>
                             </p:column>
 
-                            <p:column width="120">
+                            <p:column width="130">
                                 <p:commandButton value="Visualizar" action="#{cDoacao.setDoacaoEmAberto3(doacao)}" 
                                                  ajax="false"/>
                             </p:column>
 
                             
                         </p:dataTable>
-                    </p:panel>
-                </p:tab>
-            </p:wizard>
+                </h:panelGrid>
+                </p:panel>
+        </p:fieldset>
         </h:form>
     </h:body>
 </html>

@@ -11,9 +11,9 @@
     <h:body>
         <ui:include src="menu-instituicao.xhtml" />
        <h:form id="form">
-             <p:wizard>
-                <p:tab id="dadosDoador" title="Doações Concluídas"> 
-                    <p:panel >
+           <p:fieldset legend="Histórico">
+             
+                    <p:panel header="Dados do doador">
                         <p:messages/>
                         <h:panelGrid columns="2">
                             
@@ -36,12 +36,11 @@
                         </h:panelGrid>  
                       
                     </p:panel>
-                    
+                    <br/>
                      <p:panel header="Material doado" >
-                            <h:panelGrid>
+                         <h:panelGrid style="text-align: center">
 
-                                <p:dataTable id="tableMaterial" var="material" value="#{cMaterial.recuperarTodosDoacao(cDoacao.doacaoSelecionada.codigo)}" paginator="true" 
-                                             rows="5">
+                                <p:dataTable id="tableMaterial" var="material" value="#{cMaterial.recuperarTodosDoacao(cDoacao.doacaoSelecionada.codigo)}">
 
                                     <p:column headerText="Nome" sortBy="#{material.insumo.tipo}">
                                         <h:outputText value="#{material.insumo.nome}"/>
@@ -59,8 +58,9 @@
                             </h:panelGrid>
 
                         </p:panel>
+                    <br/>
                     
-                    <p:panel>
+                    <p:panel header="Dados da doação">
                         <p:panelGrid columns="2">
                             <h:outputText value="Status da doação: "/>
                             <h:outputText value="#{cDoacao.doacaoSelecionada.status}" />
@@ -74,16 +74,13 @@
                             
                         </p:panelGrid>
                         
-                        <p:button value="Voltar" outcome="doacoesInstituicao" style="left:550px"/>
+                      
                         
                     </p:panel>
                     
-                    
-                </p:tab>
-
-
-            
-            </p:wizard>
+                <br/>
+                  <p:button value="Voltar" outcome="doacoesInstituicao" style="left:580px"/>
+           </p:fieldset>
         </h:form>
     </h:body>
 </html>

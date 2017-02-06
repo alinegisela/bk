@@ -15,14 +15,13 @@ and open the template in the editor.
     <h:body>
         <ui:include src="menu-doador.xhtml" />
         <h:form>
-            <p:wizard>
-                <p:tab id="dadosDoador" title="Minhas doações"> 
-                    <p:panel >
+            <p:fieldset legend="Minhas doações">
+            
                         <p:messages/>
                         <h:panelGrid columns="2">
 
                             <p:dataTable id="tableDoacao" var="doacao" value="#{cDoacao.recuperarTodosDoador(login.doador.cpf)}"  rowIndexVar="rowIndex"
-                                         paginator="true" rows="5">
+                                        >
 
                                 <p:column headerText="#" style="width:16px;text-align:center">
                                     #{rowIndex+1}
@@ -40,7 +39,7 @@ and open the template in the editor.
                                     <h:outputText value="#{doacao.instituicao.nome}"/>
                                 </p:column>
 
-                                <p:column headerText="status" >
+                                <p:column headerText="Status" >
                                     <h:outputText value="#{doacao.status}"/>
                                 </p:column>
                                 
@@ -50,9 +49,8 @@ and open the template in the editor.
 
                             </p:dataTable>
                         </h:panelGrid>
-                    </p:panel>
-                </p:tab>
-            </p:wizard>
+                    
+            </p:fieldset>
         </h:form>
 
 

@@ -23,6 +23,7 @@ import negocio.TipoEnum;
  * @author Penguin
  */
 public class MaterialDAO {
+
     private static MaterialDAO myself = null;
     private Connection con;
 
@@ -38,8 +39,6 @@ public class MaterialDAO {
         return myself;
     }
 
-    
-    
     public boolean inserir(int codigo, String prioridade, Insumo insumo, String cnpj) {
         try {
             PreparedStatement insereMaterialSTM = null;
@@ -55,11 +54,11 @@ public class MaterialDAO {
 
             String insereMaterialDoacaoSQL = "insert into instituicao_material(id_instituicao, id_material)"
                     + "values (?,?)";
-            
+
             insereMaterialDoacaoSTM = con.prepareStatement(insereMaterialDoacaoSQL);
             insereMaterialDoacaoSTM.setString(1, cnpj);
             insereMaterialDoacaoSTM.setInt(2, codigo);
-            
+
             if (insereMaterialSTM.executeUpdate() == 1 && insereMaterialDoacaoSTM.executeUpdate() == 1) {
                 return true;
             }
@@ -69,6 +68,7 @@ public class MaterialDAO {
         }
         return false;
     }
+
     public boolean alterar(int codigo, boolean prioridade, Insumo insumo) {
 
         String sql = "update material set codigo=?, prioridade=?, id_insumo=?";
@@ -77,7 +77,6 @@ public class MaterialDAO {
             stmt.setInt(1, codigo);
             stmt.setBoolean(2, prioridade);
             stmt.setInt(3, insumo.getCodigo());
-            
 
             stmt.execute();
 
@@ -103,6 +102,44 @@ public class MaterialDAO {
         }
     }
 
+    public void deletarTodos(String cnpj) throws ClassNotFoundException {
+        try {
+            List<Integer> id_materialList = new ArrayList<>();
+            List<MaterialDoacao> materialList = new ArrayList<>();
+
+            //recuperar tudo da table 'inst_mat' com o cnpj da 
+            PreparedStatement stmt = this.con.
+                    prepareStatement("select * from instituicao_material where id_instituicao=?");
+            stmt.setString(1, cnpj);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                id_materialList.add(rs.getInt("id_material"));
+                String id_inst = rs.getString("id_instituicao");
+            }
+
+            //deletar da table instituicao_material
+             PreparedStatement stmt2 = this.con.
+                    prepareStatement("delete from instituicao_material where id_instituicao=?");
+            stmt2.setString(1, cnpj);
+            stmt2.execute();
+            
+            //deletando os materiais da table 'materiais' 
+            for (int i = 0; i < id_materialList.size(); i++) {
+                PreparedStatement stmt3 = this.con.
+                        prepareStatement("delete from material where codigo=?");
+                stmt3.setInt(1, id_materialList.get(i));
+                stmt3.execute();
+                
+            }
+
+          
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public List recuperarTodos() throws ClassNotFoundException {
         try {
             List<MaterialDoacao> materialList = new ArrayList<MaterialDoacao>();
@@ -116,7 +153,6 @@ public class MaterialDAO {
                 material.setCodigo(rs.getInt("codigo"));
                 material.setPrioridade(rs.getBoolean("prioridade"));
                 material.setInsumo(InsumoDAO.getInstance().recuperar(rs.getInt("id_insumo")));
-              
 
                 materialList.add(material);
             }
@@ -128,25 +164,24 @@ public class MaterialDAO {
         }
     }
 
-     public List recuperarTodosDoacao(int codigo) throws ClassNotFoundException, SQLException {
+    public List recuperarTodosDoacao(int codigo) throws ClassNotFoundException, SQLException {
         try {
             List<MaterialDoacao> materialList = new ArrayList<MaterialDoacao>();
             List<Integer> id_materialList = new ArrayList<>();
-            
+
             PreparedStatement stmt = this.con.
                     prepareStatement("select id_material from doacao_material where id_doacao=?");
             stmt.setInt(1, codigo);
             ResultSet rs = stmt.executeQuery();
 
-            
-           while(rs.next()){
-               id_materialList.add(rs.getInt("id_material"));
-           }
-                // criando o objeto Contato
-                MaterialDoacao material;
-            for(int i=0;i<id_materialList.size();i++){
-                 material = recuperar(id_materialList.get(i));
-                 materialList.add(material);
+            while (rs.next()) {
+                id_materialList.add(rs.getInt("id_material"));
+            }
+            // criando o objeto Contato
+            MaterialDoacao material;
+            for (int i = 0; i < id_materialList.size(); i++) {
+                material = recuperar(id_materialList.get(i));
+                materialList.add(material);
             }
             rs.close();
             stmt.close();
@@ -155,7 +190,7 @@ public class MaterialDAO {
             throw new RuntimeException(e);
         }
     }
-    
+
     public MaterialDoacao recuperar(int codigo) throws ClassNotFoundException {
         try {
             List<MaterialDoacao> materialList = new ArrayList<MaterialDoacao>();

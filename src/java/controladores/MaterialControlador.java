@@ -76,6 +76,10 @@ public class MaterialControlador {
         this.materialRepositorio.excluir(d);
     }
     
+     public void deletarTodos(String d){
+        this.materialRepositorio.deletarTodos(d);
+    }
+    
     public List<MaterialDoacao> recuperarTodos(){
         return this.materialRepositorio.recuperarTodos();
     }
