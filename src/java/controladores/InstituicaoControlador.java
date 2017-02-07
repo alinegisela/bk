@@ -183,6 +183,11 @@ public class InstituicaoControlador implements Serializable{
     }
 
     public String alterar(Instituicao d) throws ClassNotFoundException {
+        if(this.getInstituicaoSelecionada().getPrioridadesInsumo().isEmpty()){
+            FacesContext.getCurrentInstance().
+                addMessage(null, new FacesMessage("Escolha pelo menos um material de prioridade"));
+            return "AlterarInstituicao";
+        }
         this.instituicaoRepositorio.alterar(d);
         addLista2();
         /*

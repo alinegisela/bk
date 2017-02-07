@@ -23,26 +23,26 @@ and open the template in the editor.
 
                         <h:outputText value="Nome: "/>
                         <p:inputText id="inputNome" value="#{login.instituicao.nome}" required="true"
-                                     requiredMessage="Digite o nome"/>
+                                     requiredMessage="Digite o nome" size="40"/>
                         <p:message id="messageNome" for="inputNome" />
 
                         <h:outputText value="Sobre nós: "/>
-                        <p:inputText id="inputDescricao" value="#{login.instituicao.descricao}" />
+                       <p:inputTextarea  maxlength="300" rows="4" cols="100" id="inputDescricao" value="#{login.instituicao.descricao}" />
                         <h:outputText/>
 
-                        <h:outputText value="Endereço: "/>
-                        <p:inputText id="inputEndereco" value="#{login.instituicao.endereco}" required="true"
+                        <h:outputText value="Endereço: " />
+                        <p:inputText size="40" id="inputEndereco" value="#{login.instituicao.endereco}" required="true"
                                      requiredMessage="Digite o Endereço"/>
                         <p:message id="messageEndereco" for="inputEndereco"/>
 
 
                         <h:outputText value="Telefone: "/>
-                        <p:inputText value="#{login.instituicao.tel}"/>
+                        <p:inputText value="#{login.instituicao.tel}" size="40"/>
                         <h:outputText/>
 
                         <h:outputText value="Email: "/>
                         <p:inputText id="inputEmail" value="#{login.instituicao.email}" required="true"
-                                     requiredMessage="Digite o email"/>
+                                     requiredMessage="Digite o email" size="40"/>
                         <p:message id="messageEmail" for="inputEmail"/>
 
                     </h:panelGrid>
@@ -52,7 +52,7 @@ and open the template in the editor.
                 <p:panel header="Selecione os materiais de prioridade">
                     <h:panelGrid style="text-align: center">
 
-                    <p:dataTable id="tableMaterial" var="insumo" value="#{cInstituicao.materiaisRec}" 
+                    <p:dataTable id="tableMaterial"  var="insumo" value="#{cInstituicao.materiaisRec}" 
                                  selection="#{login.instituicao.prioridadesInsumo}" rowKey="#{insumo.codigo}">
                         <p:column selectionMode="multiple"  style="width:16px;text-align:center"/>
 

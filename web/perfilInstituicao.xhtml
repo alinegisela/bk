@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-       xmlns:p="http://primefaces.org/ui"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
@@ -14,56 +14,56 @@
         <h:form>
             <p:fieldset legend="Perfil">
                 <p:panel header="Dados da instituição">
-                        <p:messages/>
-                        <h:panelGrid columns="2" width="1000px" style="text-align: center">
-                            
-                            <h:outputText value="Nome: " style=""/>
-                            <h:outputText value="#{login.instituicao.nome}"/>
-                            
-                            
-                            <h:outputText value="Sobre nós: "/>
-                            <h:outputText value="#{login.instituicao.descricao}" />
-                            
-                            <h:outputText value="Endereço: "/>
-                            <h:outputText value="#{login.instituicao.endereco}" />
-                            
-                            <h:outputText value="Telefone: "/>
-                            <h:outputText value="#{login.instituicao.tel}" />
-                            
-                            <h:outputText value="Email: "/>
-                            <h:outputText value="#{login.instituicao.email}" />
-                            
-                    
-                        </h:panelGrid>  
-                         </p:panel> 
-                        <br/>
-                        
-                        
-                        <p:panel header="Materiais de prioridade">
-                        <h:panelGrid style="text-align: center" >
-                            
-                            <p:dataTable  var="material" emptyMessage="Nenhum material adicionado" value="#{cInstituicao.recuperarMateriais(login.instituicao.getCnpj())}" >
-                                <p:column headerText="Nome" sortBy="#{material.prioridade}">
-                                    <h:outputText value="#{material.getInsumo().nome}"/>
-                                </p:column>
+                    <p:messages/>
+                    <h:panelGrid columns="2" width="1050px" >
 
-                                <p:column headerText="Tipo">
-                                    <h:outputText value="#{material.getInsumo().tipo}"/>
-                                </p:column>
-                                
-                                <p:column headerText="Descrição">
-                                    <h:outputText value="#{material.getInsumo().descricao}"/>
-                                </p:column>
+                        <h:outputText value="Nome: " style=""/>
+                        <h:outputText value="#{login.instituicao.nome}"/>
 
-                               
-                            </p:dataTable>
-                        </h:panelGrid>
-                        </p:panel>
-                        <br/>
-                        
-                        <p:commandButton value="Alterar dados" action="#{cInstituicao.alterarMateriais(login.instituicao)}" style="left:480px" ajax="false"/>
-                         <p:button value="Alterar senha" outcome="alterarSenhaInstituicao" style="left:500px"/>
-                   
+
+                        <h:outputText value="Sobre nós: "/>
+                        <h:outputText value="#{login.instituicao.descricao}" />
+
+                        <h:outputText value="Endereço: "/>
+                        <h:outputText value="#{login.instituicao.endereco}" />
+
+                        <h:outputText value="Telefone: "/>
+                        <h:outputText value="#{login.instituicao.tel}" />
+
+                        <h:outputText value="Email: "/>
+                        <h:outputText value="#{login.instituicao.email}" />
+
+
+                    </h:panelGrid>  
+                </p:panel> 
+                <br/>
+
+
+                <p:panel header="Materiais de prioridade">
+                    <h:panelGrid style="text-align: center" >
+
+                        <p:dataTable  var="material" emptyMessage="Nenhum material adicionado" value="#{cInstituicao.recuperarMateriais(login.instituicao.getCnpj())}" >
+                            <p:column headerText="Nome" sortBy="#{material.prioridade}">
+                                <h:outputText value="#{material.getInsumo().nome}"/>
+                            </p:column>
+
+                            <p:column headerText="Tipo">
+                                <h:outputText value="#{material.getInsumo().tipo}"/>
+                            </p:column>
+
+                            <p:column headerText="Descrição">
+                                <h:outputText value="#{material.getInsumo().descricao}"/>
+                            </p:column>
+
+
+                        </p:dataTable>
+                    </h:panelGrid>
+                </p:panel>
+                <br/>
+
+                <p:commandButton value="Alterar dados" action="#{cInstituicao.alterarMateriais(login.instituicao)}" style="left:480px" ajax="false"/>
+                <p:button value="Alterar senha" outcome="alterarSenhaInstituicao" style="left:500px"/>
+
             </p:fieldset>
         </h:form>
     </h:body>

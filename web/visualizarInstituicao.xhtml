@@ -17,13 +17,14 @@ and open the template in the editor.
         <ui:include src="menu-doador.xhtml" />
 
         <h:form>
-            <p:fieldset legend="Nome da instituição: #{cInstituicao.getInstituicaoSelecionada().nome}">
+            <p:fieldset legend="Nome: #{cInstituicao.getInstituicaoSelecionada().nome}">
                
                     <p:messages/>
-                    <h:panelGrid columns="2"  width="1000px">
+                    <p:panel header="Dados da instituição">
+                        <h:panelGrid  columns="2"  width="1050px" style="text-justify: auto">
 
-                        <h:outputText value="Sobre nós: " style="text-align: center" />
-                        <h:outputText value="#{cInstituicao.getInstituicaoSelecionada().descricao}" />
+                        <h:outputText value="Sobre nós: " style="text-align: justify" />
+                        <h:outputText  value="#{cInstituicao.getInstituicaoSelecionada().descricao}" />
 
                         <h:outputText value="Endereço: "/>
                         <h:outputText value="#{cInstituicao.getInstituicaoSelecionada().endereco}" />
@@ -36,6 +37,7 @@ and open the template in the editor.
 
 
                     </h:panelGrid>  
+                    </p:panel>
                     <br/>
                     <p:panel header="Materiais de prioridade">
                         <h:panelGrid style="text-align: center" >
