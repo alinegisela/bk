@@ -14,8 +14,9 @@
             <p:fieldset legend="Doações em aberto">
            
                     <p:panel header="Novas doações">
+                        <h:panelGrid style="text-align: center">
                         <p:messages/>
-                        <p:dataTable id="tableDoacao" var="doacao" value="#{cDoacao.recuperarPorStatus(cDoacao.aguardando_confirmacao)}" >
+                        <p:dataTable id="tableDoacao" emptyMessage="Você não tem novas doações" var="doacao" value="#{cDoacao.recuperarPorStatus(cDoacao.aguardando_confirmacao, login.instituicao.cnpj)}" >
 
                             <p:column headerText="Doador" sortBy="#{doacao.dataVisita}">
                                 <h:outputText value="#{doacao.doador.nome}"/>
@@ -35,17 +36,18 @@
                             </p:column>
 
                             <p:column width="120">
-                                <p:commandButton value="Aceitar" action="#{cDoacao.alterarStatus2(cDoacao.em_andamento, doacao.codigo)}" 
+                                <p:commandButton value="Aceitar" action="#{cDoacao.alterarStatus(cDoacao.em_andamento, doacao.codigo)}" 
                                                  ajax="false" />
                             </p:column>
                         </p:dataTable>
-                        
+                        </h:panelGrid>
                     </p:panel>     
                 <br/>
                     
                     <p:panel header="Doações em andamento">
+                        <h:panelGrid style="text-align: center">
                         <p:messages/>
-                        <p:dataTable id="tableDoacao2" var="doacao" value="#{cDoacao.recuperarPorStatus(cDoacao.em_andamento)}" >
+                        <p:dataTable id="tableDoacao2" var="doacao" emptyMessage="Nenhuma doação em andamento" value="#{cDoacao.recuperarPorStatus(cDoacao.em_andamento, login.instituicao.cnpj)}" >
 
                             <p:column headerText="Doador" sortBy="#{doacao.dataVisita}">
                                 <h:outputText value="#{doacao.doador.nome}"/>
@@ -69,7 +71,7 @@
                                                  ajax="false" />
                             </p:column>
                         </p:dataTable>
-                        
+                        </h:panelGrid>
                     </p:panel>   
                     
             </p:fieldset>

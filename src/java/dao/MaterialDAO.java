@@ -125,6 +125,7 @@ public class MaterialDAO {
             stmt2.execute();
             
             //deletando os materiais da table 'materiais' 
+            /*
             for (int i = 0; i < id_materialList.size(); i++) {
                 PreparedStatement stmt3 = this.con.
                         prepareStatement("delete from material where codigo=?");
@@ -132,6 +133,7 @@ public class MaterialDAO {
                 stmt3.execute();
                 
             }
+            */
 
           
             stmt.close();

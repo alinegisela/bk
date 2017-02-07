@@ -16,9 +16,10 @@ and open the template in the editor.
         <h:form>
             
             <p:fieldset legend="Instituições cadastradas">
+                <p:panel header="Todas as instituições">
                 <h:panelGrid style="text-align: center" columns="1">
                     
-                        <p:dataTable var="instituicao" value="#{cInstituicao.recuperarTodos()}">
+                    <p:dataTable var="instituicao" emptyMessage="Nenhuma instituição cadastrada" value="#{cInstituicao.recuperarTodos()}">
                             <p:column headerText="Nome" sortBy="#{instituicao.nome}">
                                 <h:outputText value="#{instituicao.nome}"/>
                             </p:column>
@@ -27,7 +28,7 @@ and open the template in the editor.
                                 <h:outputText value="#{instituicao.endereco}"/>
                             </p:column>
 
-                            <p:column width="120">
+                            <p:column width="220">
                                 <p:commandButton value="Visualizar" action="#{cInstituicao.setInstituicaoSelecionada(instituicao)}" 
                                                  ajax="false"/>
                               
@@ -35,7 +36,7 @@ and open the template in the editor.
                         </p:dataTable>
 
                 </h:panelGrid>
-                
+                </p:panel>
             </p:fieldset>
         </h:form>
     </h:body>

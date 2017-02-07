@@ -20,31 +20,32 @@ and open the template in the editor.
                 <p:panel header="Insira os novos dados">
                     
                         <p:messages/>
-                        <p:panelGrid columns="2">
+                        <h:panelGrid columns="3">
 
                             <h:outputText value="Nome"/>
-                            <p:inputText id="inputNome" value="#{login.doador.nome}"/>
+                            <p:inputText id="inputNome" value="#{login.doador.nome}" required="true" requiredMessage="Digite o seu nome"/>
+                            <p:message for="inputNome"/>
 
                             <h:outputText value="Endereço"/>
-                            <p:inputText id="inputEndereco" value="#{login.doador.endereco}" required="true"/>
+                            <p:inputText id="inputEndereco" value="#{login.doador.endereco}" required="true" requiredMessage="Digite o seu endereço"/>
+                            <p:message for="inputEndereco"/>
                             
                             <h:outputText value="Telefone"/>
                             <p:inputText id="inputTelefone" value="#{login.doador.telefone}"/>
+                            <h:outputText/>
                             
 
                             <h:outputText value="Email"/>
-                            <p:inputText id="inputEmail" value="#{login.doador.email}" required="true"/>
-                                       
-
-
-                         
-                           
-                        </p:panelGrid>
+                            <p:inputText id="inputEmail" value="#{login.doador.email}" required="true" requiredMessage="Digite seu email"/>
+                            <p:message for="inputEmail"/> 
+                            
+                        </h:panelGrid>
                         
                 </p:panel>
                 <br/>
+                 <p:button value="Voltar" outcome="perfilDoador" style="left:530px"/>
                  <p:commandButton value="Alterar" action="#{cDoador.alterar(login.doador)}" 
-                                             update="form" ajax="false" style="left: 580px">
+                                             update="form" ajax="false" style="left: 550px">
                             </p:commandButton>
             </p:fieldset>
         </h:form>

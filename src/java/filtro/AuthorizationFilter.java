@@ -1,7 +1,5 @@
 package filtro;
 
-
-
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -14,44 +12,47 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(filterName = "AuthFilter", urlPatterns = { "*.xhtml" })
+@WebFilter(filterName = "AuthFilter", urlPatterns = {"*.xhtml"})
 public class AuthorizationFilter implements Filter {
 
-	public AuthorizationFilter() {
-	}
+    public AuthorizationFilter() {
+    }
 
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
 
-	}
+    }
 
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
-		try {
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response,
+            FilterChain chain) throws IOException, ServletException {
+        try {
 
-			HttpServletRequest reqt = (HttpServletRequest) request;
-			HttpServletResponse resp = (HttpServletResponse) response;
-			HttpSession ses = reqt.getSession(false);
+            HttpServletRequest reqt = (HttpServletRequest) request;
+            HttpServletResponse resp = (HttpServletResponse) response;
+            HttpSession ses = reqt.getSession(false);
 
-			String reqURI = reqt.getRequestURI();
-			if (reqURI.indexOf("/home.xhtml") >= 0
-                                        || reqURI.indexOf("/CadastroDoador.xhtml") >= 0
-                                        || reqURI.indexOf("/CadastroInstituicao.xhtml") >= 0
-                                || reqURI.indexOf("/CadastroMaterial.xhtml") >= 0
-					|| (ses != null && ses.getAttribute("username") != null)
-					|| reqURI.indexOf("/public/") >= 0
-					|| reqURI.contains("javax.faces.resource"))
-				chain.doFilter(request, response);
-			else
-				resp.sendRedirect(reqt.getContextPath() + "/faces/home.xhtml");
-		} catch (Exception e) {
-			System.out.println("shit");
-		}
-	}
+            String reqURI = reqt.getRequestURI();
+            if (reqURI.indexOf("/home.xhtml") >= 0
+                    || reqURI.indexOf("/CadastroDoador.xhtml") >= 0
+                    || reqURI.indexOf("/CadastroInstituicao.xhtml") >= 0
+                    || reqURI.indexOf("/CadastroMaterial.xhtml") >= 0
+                    || reqURI.indexOf("/tutorial.xhtml") >= 0
+                    || reqURI.indexOf("/CadastroInsumo.xhtml") >= 0
+                    || (ses != null && ses.getAttribute("username") != null)
+                    || reqURI.indexOf("/public/") >= 0
+                    || reqURI.contains("javax.faces.resource")) {
+                chain.doFilter(request, response);
+            } else {
+                resp.sendRedirect(reqt.getContextPath() + "/faces/home.xhtml");
+            }
+        } catch (Exception e) {
+            System.out.println("shit");
+        }
+    }
 
-	@Override
-	public void destroy() {
+    @Override
+    public void destroy() {
 
-	}
+    }
 }

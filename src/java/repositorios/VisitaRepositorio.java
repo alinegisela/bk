@@ -111,7 +111,7 @@ public class VisitaRepositorio implements RepositorioGenerico<Visita>{
     }
 
     @Override
-    public List<Visita> recuperarPorStatus(String status) {
+    public List<Visita> recuperarPorStatus(String status, String cnpj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -122,6 +122,16 @@ public class VisitaRepositorio implements RepositorioGenerico<Visita>{
 
     @Override
     public void deletarTodos(String cnpj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean alterarSenha(Visita t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean checar(Visita t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

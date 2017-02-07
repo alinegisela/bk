@@ -106,10 +106,10 @@ public class DoacaoRepositorio implements RepositorioGenerico<Doacao>{
         return null;
     }
     
-     public List<Doacao> recuperarPorStatus(String status){
+     public List<Doacao> recuperarPorStatus(String status, String cnpj){
           try {
             //return DaoManagerHiber.getInstance().recover("from Doacao");
-            return DoacaoDAO.getInstance().recuperarPorStatus(status);
+            return DoacaoDAO.getInstance().recuperarPorStatus(status, cnpj);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DoacaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -150,6 +150,16 @@ public class DoacaoRepositorio implements RepositorioGenerico<Doacao>{
 
     @Override
     public void deletarTodos(String cnpj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean alterarSenha(Doacao t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean checar(Doacao t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

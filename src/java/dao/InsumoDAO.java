@@ -44,7 +44,7 @@ public class InsumoDAO {
         try {
             PreparedStatement insereInsumoSTM = null;
             String insereInsumoSQL = "insert into insumo (codigo, nome, tipo, descricao)"
-                    + "values (?,?,?,?, ?)";
+                    + "values (?,?,?,?)";
 
             insereInsumoSTM = con.prepareStatement(insereInsumoSQL);
 

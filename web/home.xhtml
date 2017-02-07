@@ -10,33 +10,34 @@
     <h:body>
         <ui:include src="menu.xhtml"/>
 
-        <h:form >
-            <p:panel header="Login">
-                <p:panelGrid columns="2">
+        <h:form  >
+            <p:panel header="Login" >
+                <h:panelGrid columns="2" style="text-align: center" >
                     <p:outputLabel for="emailUsuario" value="Email:" />
                     <p:inputText id="emailUsuario" value="#{login.usuario.email}" />
 
                     <p:outputLabel for="senha" value="Senha:" />
                     <p:password id="senha" value="#{login.usuario.senha}" />
 
-                    <p:commandButton value="Doador" icon="ui-icon-person" action="#{login.enviaDoador}" ajax="false" onclick="PF('fpLayoutWidget').toggle('south')">
+
+                </h:panelGrid>
+                <br/>
+                    <p:commandButton value="Doador" style="left:20px" icon="ui-icon-person" action="#{login.enviaDoador}" ajax="false" onclick="PF('fpLayoutWidget').toggle('south')">
                     </p:commandButton>
 
-                    <p:commandButton value="Instituição" icon="ui-icon-home" action="#{login.enviaInstituicao}" ajax="false">
+                    <p:commandButton value="Instituição" style="left:50px" icon="ui-icon-home" action="#{login.enviaInstituicao}" ajax="false">
                     </p:commandButton>
-
-                </p:panelGrid>
             </p:panel>
             <br/>
 
             <p:panel header="Se cadastre">
-                <p:panelGrid columns="2">
-                    <p:button value="Doador" icon="ui-icon-person" outcome="CadastroDoador"  >
+               
+                    <p:button value="Doador" style="left:20px" icon="ui-icon-person" outcome="CadastroDoador"  >
                     </p:button>
 
-                    <p:button value="Instituição" icon="ui-icon-home"  outcome="CadastroInstituicao" >
+                    <p:button style="left:50px" value="Instituição" icon="ui-icon-home"  outcome="CadastroInstituicao" >
                     </p:button>
-                </p:panelGrid>
+                
             </p:panel>
         </h:form>
     </h:body>

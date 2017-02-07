@@ -108,7 +108,7 @@ public class DoacaoDAO {
         }
         return false;
     }
-    
+
     public boolean alterarStatus(String status, int codigo) {
 
         String sql = "update doacao set status=? where codigo=?";
@@ -116,7 +116,7 @@ public class DoacaoDAO {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, status);
             stmt.setInt(2, codigo);
-            
+
             stmt.execute();
 
             if (stmt.executeUpdate() == 1) {
@@ -166,7 +166,7 @@ public class DoacaoDAO {
             throw new RuntimeException(e);
         }
     }
-    
+
     public List recuperarTodosDoador(String cpf) throws ClassNotFoundException {
         try {
             List<Doacao> doacaoList = new ArrayList<Doacao>();
@@ -228,13 +228,14 @@ public class DoacaoDAO {
             throw new RuntimeException(e);
         }
     }
-    
-    public List<Doacao> recuperarPorStatus(String status) throws ClassNotFoundException{
-         try {
+
+    public List<Doacao> recuperarPorStatus(String status, String cnpj) throws ClassNotFoundException {
+        try {
             List<Doacao> doacaoList = new ArrayList<Doacao>();
             PreparedStatement stmt = this.con.
-                    prepareStatement("select * from doacao where status=?");
+                    prepareStatement("select * from doacao where status=? and id_instituicao=?");
             stmt.setString(1, status);
+            stmt.setString(2, cnpj);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {

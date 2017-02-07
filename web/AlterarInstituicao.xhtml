@@ -19,39 +19,38 @@ and open the template in the editor.
             <p:messages/>
             <p:fieldset legend="Alterar dados da instituição">
                 <p:panel header="Insira os novos dados">
-                <p:panelGrid columns="3">
+                    <h:panelGrid columns="3">
 
-                    <h:outputText value="Nome: "/>
-                    <p:inputText id="inputNome" value="#{login.instituicao.nome}" required="true"
-                                 requiredMessage="Digite o Nome"/>
-                    <p:message id="messageNome" for="inputNome" />
+                        <h:outputText value="Nome: "/>
+                        <p:inputText id="inputNome" value="#{login.instituicao.nome}" required="true"
+                                     requiredMessage="Digite o nome"/>
+                        <p:message id="messageNome" for="inputNome" />
 
-                    <h:outputText value="Sobre nós: "/>
-                    <p:inputText id="inputDescricao" value="#{login.instituicao.descricao}" required="true"
-                                 requiredMessage="Digite a Descrição"/>
-                    <p:message id="messageDescricao" for="inputDescricao"/>
+                        <h:outputText value="Sobre nós: "/>
+                        <p:inputText id="inputDescricao" value="#{login.instituicao.descricao}" />
+                        <h:outputText/>
 
-                    <h:outputText value="Endereço: "/>
-                    <p:inputText id="inputEndereco" value="#{login.instituicao.endereco}" required="true"
-                                 requiredMessage="Digite o Endereço"/>
-                    <p:message id="messageEndereco" for="inputEndereco"/>
+                        <h:outputText value="Endereço: "/>
+                        <p:inputText id="inputEndereco" value="#{login.instituicao.endereco}" required="true"
+                                     requiredMessage="Digite o Endereço"/>
+                        <p:message id="messageEndereco" for="inputEndereco"/>
 
 
-                    <h:outputText value="Telefone: "/>
-                    <p:inputText value="#{login.instituicao.tel}"/>
-                    <h:outputText/>
+                        <h:outputText value="Telefone: "/>
+                        <p:inputText value="#{login.instituicao.tel}"/>
+                        <h:outputText/>
 
-                    <h:outputText value="Email: "/>
-                    <p:inputText id="inputEmail" value="#{login.instituicao.email}" required="true"
-                                 requiredMessage="Digite o Email"/>
-                    <p:message id="messageEmail" for="inputEmail"/>
+                        <h:outputText value="Email: "/>
+                        <p:inputText id="inputEmail" value="#{login.instituicao.email}" required="true"
+                                     requiredMessage="Digite o email"/>
+                        <p:message id="messageEmail" for="inputEmail"/>
 
-                </p:panelGrid>
+                    </h:panelGrid>
                 </p:panel>
 
-<br/>
+                <br/>
                 <p:panel header="Selecione os materiais de prioridade">
-          
+                    <h:panelGrid style="text-align: center">
 
                     <p:dataTable id="tableMaterial" var="insumo" value="#{cInstituicao.materiaisRec}" 
                                  selection="#{login.instituicao.prioridadesInsumo}" rowKey="#{insumo.codigo}">
@@ -73,11 +72,12 @@ and open the template in the editor.
 
                     </p:dataTable>
 
-
+                    </h:panelGrid>
                 </p:panel>
-<br/>
-<p:commandButton action="#{cInstituicao.alterar(login.instituicao)}" process="tableMaterial" icon="ui-icon-search" 
-                 value="Alterar"  ajax="false" update="form" style="left: 580px"/>
+                <br/>
+                <p:button value="Voltar" outcome="perfilInstituicao" style="left:530px"/>
+                <p:commandButton action="#{cInstituicao.alterar(login.instituicao)}" process="tableMaterial" icon="ui-icon-search" 
+                                 value="Alterar"  ajax="false" update="form" style="left: 550px"/>
             </p:fieldset>
 
         </h:form>

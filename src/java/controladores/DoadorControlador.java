@@ -54,11 +54,23 @@ public class DoadorControlador {
     public String inserir(Doador d){
         this.doadorRepositorio.inserir(d);
         
+        
         FacesContext.getCurrentInstance().
                 
                 addMessage(null, new FacesMessage("Cadastro concluído com sucesso!"));
         
         return "cadastroConcluido.xhtml";
+    }
+    
+    public String checar(Doador d){
+        boolean checar = this.doadorRepositorio.checar(d);
+        
+        if(checar){
+           return inserir(d);
+        }else{
+             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cpf ou email inseridos já estão cadastrados"));
+        }
+        return "CadastroDoador";
     }
     
     public String redirecionar(){
@@ -67,14 +79,27 @@ public class DoadorControlador {
     
     public String alterar(Doador d){
         this.doadorRepositorio.alterar(d);
-        
-       
+      /*
         FacesContext.getCurrentInstance().addMessage(null, 
                  new FacesMessage("Alteração concluída com sucesso"));
-         
-       
-        
+       */
        return "perfilDoador.xhtml";
+    }
+    
+    public String alterarSenha(Doador d){
+       boolean confirmacao =  this.doadorRepositorio.alterarSenha(d);
+       
+       if(confirmacao){
+           
+        FacesContext.getCurrentInstance().addMessage(null, 
+                 new FacesMessage("Sua senha foi alterada"));
+       
+       return "perfilDoador.xhtml";
+       }else{
+           FacesContext.getCurrentInstance().addMessage(null, 
+                 new FacesMessage("Senha incorreta!"));
+           return "alterarSenhaDoador.xhtml";
+       }
     }
     
     public Doador recuperar(String codigo){

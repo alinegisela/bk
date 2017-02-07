@@ -107,7 +107,7 @@ public class InsumoRepositorio implements RepositorioGenerico<Insumo> {
     }
 
     @Override
-    public List<Insumo> recuperarPorStatus(String status) {
+    public List<Insumo> recuperarPorStatus(String status, String cnpj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -118,6 +118,16 @@ public class InsumoRepositorio implements RepositorioGenerico<Insumo> {
 
     @Override
     public void deletarTodos(String cnpj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean alterarSenha(Insumo t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean checar(Insumo t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

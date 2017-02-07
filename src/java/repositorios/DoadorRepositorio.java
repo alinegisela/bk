@@ -7,6 +7,7 @@ package repositorios;
 
 import dao.DaoManagerHiber;
 import dao.DoadorDAO;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +20,17 @@ import negocio.MaterialDoacao;
  */
 public class DoadorRepositorio implements RepositorioGenerico<Doador>{
 
+    @Override
+    public boolean checar(Doador t){
+         try {
+            //  DaoManagerHiber.getInstance().persist(t);
+           return DoadorDAO.getInstance().checar(t.getCpf(), t.getEmail());
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DoadorRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return false;
+    }
+    
     @Override
     public void inserir(Doador t) {
         try {
@@ -37,6 +49,17 @@ public class DoadorRepositorio implements RepositorioGenerico<Doador>{
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DoadorRepositorio.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+     @Override
+    public boolean alterarSenha(Doador t) {
+        try {
+            //DaoManagerHiber.getInstance().update(t);
+            return DoadorDAO.getInstance().alterarSenha(t.getSenhaConfirmacao(),t.getNovaSenha(), t.getCpf());
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DoadorRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override
@@ -108,7 +131,7 @@ public class DoadorRepositorio implements RepositorioGenerico<Doador>{
     }
 
     @Override
-    public List<Doador> recuperarPorStatus(String status) {
+    public List<Doador> recuperarPorStatus(String status, String cnpj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

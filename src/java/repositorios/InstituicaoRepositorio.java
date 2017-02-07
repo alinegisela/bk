@@ -6,7 +6,9 @@
 package repositorios;
 
 import dao.DaoManagerHiber;
+import dao.DoadorDAO;
 import dao.InstituicaoDAO;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +22,17 @@ import negocio.MaterialDoacao;
  */
 public class InstituicaoRepositorio implements RepositorioGenerico<Instituicao> {
 
+     @Override
+    public boolean checar(Instituicao t){
+         try {
+            //  DaoManagerHiber.getInstance().persist(t);
+           return InstituicaoDAO.getInstance().checar(t.getCnpj(), t.getEmail());
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DoadorRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return false;
+    }
+    
     @Override
     public void inserir(Instituicao t) {
         try {
@@ -47,6 +60,17 @@ public class InstituicaoRepositorio implements RepositorioGenerico<Instituicao> 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(InstituicaoRepositorio.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+     @Override
+    public boolean alterarSenha(Instituicao t) {
+        try {
+            //DaoManagerHiber.getInstance().update(t);
+            return InstituicaoDAO.getInstance().alterarSenha(t.getSenhaConfirmacao(),t.getNovaSenha(), t.getCnpj());
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DoadorRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override
@@ -114,7 +138,7 @@ public class InstituicaoRepositorio implements RepositorioGenerico<Instituicao> 
     }
 
     @Override
-    public List<Instituicao> recuperarPorStatus(String status) {
+    public List<Instituicao> recuperarPorStatus(String status, String cnpj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -127,6 +151,9 @@ public class InstituicaoRepositorio implements RepositorioGenerico<Instituicao> 
     public void deletarTodos(String cnpj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
+   
 
     
 }

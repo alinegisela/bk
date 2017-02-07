@@ -22,6 +22,8 @@ public class Instituicao {
     private String tel;
     private String email;
     private String senha;
+    private String senhaConfirmacao;
+     private String novaSenha;
     private ArrayList<MaterialDoacao> prioridades = new ArrayList<>();
     private ArrayList<Insumo> prioridadesInsumo = new ArrayList<>();
 
@@ -71,6 +73,22 @@ public class Instituicao {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getSenhaConfirmacao() {
+        return senhaConfirmacao;
+    }
+
+    public void setSenhaConfirmacao(String senhaConfirmacao) {
+        this.senhaConfirmacao = senhaConfirmacao;
+    }
+
+    public String getNovaSenha() {
+        return novaSenha;
+    }
+
+    public void setNovaSenha(String novaSenha) {
+        this.novaSenha = novaSenha;
     }
 
     

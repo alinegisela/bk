@@ -53,6 +53,17 @@ public class InstituicaoControlador implements Serializable{
         new MaterialControlador().inserir(m, this.instituicaoSelecionada.getCnpj());
 
     }
+    
+     public String checar(Instituicao d){
+        boolean checar = this.instituicaoRepositorio.checar(d);
+        
+        if(checar){
+           return inserir(d);
+        }else{
+             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cnpj ou email inseridos já estão cadastrados"));
+        }
+        return "CadastroInstituicao";
+    }
 
     public String addLista() throws ClassNotFoundException {
         /* for(MaterialDoacao m : getInstituicaoSelecionada().getPrioridades()){
@@ -65,6 +76,9 @@ public class InstituicaoControlador implements Serializable{
             mc.inserir(mb.build(i.getCodigo(), true), getInstituicaoSelecionada().getCnpj());
             System.out.println("inserido");
         }
+         FacesContext.getCurrentInstance().
+                
+                addMessage(null, new FacesMessage("Cadastro concluído com sucesso!"));
         return "cadastroConcluido.xhtml";
     }
 
@@ -119,6 +133,22 @@ public class InstituicaoControlador implements Serializable{
         return "AlterarInstituicao";
 
     }
+    
+    public String alterarSenha(Instituicao d){
+       boolean confirmacao =  this.instituicaoRepositorio.alterarSenha(d);
+       
+       if(confirmacao){
+           
+        FacesContext.getCurrentInstance().addMessage(null, 
+                 new FacesMessage("Sua senha foi alterada"));
+       
+       return "perfilInstituicao.xhtml";
+       }else{
+           FacesContext.getCurrentInstance().addMessage(null, 
+                 new FacesMessage("Senha incorreta!"));
+           return "alterarSenhaInstituicao.xhtml";
+       }
+    }
 
     public RepositorioGenerico<Instituicao> getInstituicaoRepositorio() {
         return instituicaoRepositorio;
@@ -152,14 +182,14 @@ public class InstituicaoControlador implements Serializable{
         return "CadastroMaterial.xhtml";
     }
 
-    public void alterar(Instituicao d) throws ClassNotFoundException {
+    public String alterar(Instituicao d) throws ClassNotFoundException {
         this.instituicaoRepositorio.alterar(d);
         addLista2();
-        
+        /*
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Sucesso o animal " + d.getNome() + " foi alterado com sucesso!!"));
-
-        // return "ApresentaAnimal.xhtml";
+*/
+        return "perfilInstituicao.xhtml";
     }
 
     public Instituicao recuperar(String codigo) {

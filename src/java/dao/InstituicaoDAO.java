@@ -39,6 +39,38 @@ public class InstituicaoDAO {
         return myself;
     }
 
+    public boolean checar(String cnpj, String email) throws SQLException{
+        
+        try {
+            PreparedStatement stmt = this.con.
+                    prepareStatement("select * from instituicao where cnpj=?");
+            stmt.setString(1, cnpj);
+            ResultSet rs = stmt.executeQuery();
+            
+            /*
+            while(rs.next()){
+                System.out.println("sdfas " + rs.getString("nome"));
+            }
+            */
+
+            PreparedStatement stmt2 = this.con.
+                    prepareStatement("select * from instituicao where email=?");
+            stmt2.setString(1, email);
+            ResultSet rs2 = stmt2.executeQuery();
+            
+            if(rs.next() || rs2.next()){
+                return false;
+            }else{
+                return true;
+            }
+            
+            
+         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
     public List<MaterialDoacao> recuperarMateriais(String cnpj) throws ClassNotFoundException {
         try {
             List<Integer> id_materialList = new ArrayList<>();
@@ -75,7 +107,7 @@ public class InstituicaoDAO {
                 }
             }
 
-            rs.close();
+           rs.close();
             stmt.close();
             //stmt2.close();
             return materialList;
@@ -127,6 +159,45 @@ public class InstituicaoDAO {
                 return true;
             }
             stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+    
+    public boolean alterarSenha(String senhaConfirmacao, String novaSenha, String cnpj) throws SQLException {
+
+        try {
+            PreparedStatement stmt = this.con.
+                    prepareStatement("select senha from instituicao where cnpj=?");
+      
+            stmt.setString(1, cnpj);
+            System.out.println("setString");
+            
+            
+            ResultSet rs = stmt.executeQuery();
+            System.out.println("executou rs");
+
+            String senha="";
+            while(rs.next()){
+                senha = rs.getString("senha");
+            }
+
+            if (senha.equals(senhaConfirmacao)) {
+                String sql = "update instituicao set senha=? where cnpj=?";
+                PreparedStatement stmt2 = con.prepareStatement(sql);
+                stmt2.setString(1, novaSenha);
+                stmt2.setString(2, cnpj);
+                stmt2.execute();
+
+                if (stmt2.executeUpdate() == 1) {
+                    return true;
+                }
+                stmt2.close();
+            }else{
+                return false;
+            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

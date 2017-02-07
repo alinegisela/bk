@@ -12,9 +12,9 @@
         <h:form>
             <p:fieldset legend="Minhas doações">
           
-                    <p:panel header="Informações" >
+                    <p:panel header="Informações da doação" >
                         <p:messages/>
-                        <h:panelGrid style="text-align:center">
+                        <h:panelGrid style="text-align:center"  width="1000px">
 
                             
                             <p:dataTable id="tableDoacao"  var="doacao" value="#{cDoacao.doacaoSelecionada}" >
@@ -55,14 +55,11 @@
                                         <h:outputText value="#{material.insumo.tipo}"/>
                                     </p:column>
 
-                                    <p:column headerText="Descrição" style="horizontal-align:center" >
-                                        <h:outputText value="#{material.insumo.descricao}" style="horizontal-align:center" />
+                                    <p:column headerText="Descrição" style="center" >
+                                        <h:outputText value="#{material.insumo.descricao}" style="center" />
                                     </p:column>
 
-                                    <p:column headerText="Prioridade">
-                                        <h:outputText value="#{material.insumo.getPrioridadeString(material.insumo.prioridade)}"/>
-                                    </p:column>
-
+                                   
                                 </p:dataTable>
                             </h:panelGrid>
 

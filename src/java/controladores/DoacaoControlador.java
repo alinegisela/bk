@@ -132,33 +132,37 @@ public class DoacaoControlador implements Serializable {
         this.doacaoRepositorio.inserir(d, materiais);
 
         //(ControladorLogin)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("controladorLogin");
-        FacesContext.getCurrentInstance().
+      /*  FacesContext.getCurrentInstance().
                 addMessage(null, new FacesMessage("Cadastro concluído com sucesso!"));
-
+*/
         return "ApresentarDoacao.xhtml";
     }
 
     public void alterar(Doacao d) {
         this.doacaoRepositorio.alterar(d);
+        /*
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Sucessoo animal " + d.getCodigo() + " foi alterado com sucesso!!"));
-
+*/
         // return "ApresentaAnimal.xhtml";
     }
     
     public String alterarStatus(String status, int codigo){
         this.doacaoRepositorio.alterarStatus(status, codigo);
+        /*
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(""));
-        
+        */
         return "doacoesInstituicao";
     }
 
     public String alterarStatus2(String status, int codigo){
         this.doacaoRepositorio.alterarStatus(status, codigo);
+        
+        /*
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(""));
-        
+        */
        return "historicoInstituicao";
     }
     
@@ -184,8 +188,8 @@ public class DoacaoControlador implements Serializable {
 
     }
 
-    public List<Doacao> recuperarPorStatus(String status){
+    public List<Doacao> recuperarPorStatus(String status, String cnpj){
 //        String status = "Aguardando confirmação";
-         return this.doacaoRepositorio.recuperarPorStatus(status);
+         return this.doacaoRepositorio.recuperarPorStatus(status, cnpj);
     }
 }

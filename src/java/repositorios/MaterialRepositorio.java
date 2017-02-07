@@ -116,12 +116,22 @@ public class MaterialRepositorio implements RepositorioGenerico<MaterialDoacao> 
     }
 
     @Override
-    public List<MaterialDoacao> recuperarPorStatus(String status) {
+    public List<MaterialDoacao> recuperarPorStatus(String status, String cnpj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void alterarStatus(String status, int codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean alterarSenha(MaterialDoacao t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean checar(MaterialDoacao t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

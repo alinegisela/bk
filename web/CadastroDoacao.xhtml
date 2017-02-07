@@ -17,8 +17,8 @@ and open the template in the editor.
         <ui:include src="menu-doador.xhtml"/>
 
         <h:form id="form">
-            <p:fieldset legend="Fazer doação">
-            
+            <p:fieldset legend="Nome da instituição: #{cInstituicao.getInstituicaoSelecionada().nome}">
+                <p:panel header="Fazer doação">
                         <p:messages/>
                         <h:panelGrid columns="3">
 
@@ -56,6 +56,7 @@ and open the template in the editor.
                                 
                                 
                             </p:dataTable>
+                </p:panel>
                         <br/>
                         
                          <p:commandButton action="#{cDoacao.inserir(bDoacao.build(login.doador,

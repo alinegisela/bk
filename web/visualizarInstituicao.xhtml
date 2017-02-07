@@ -20,9 +20,9 @@ and open the template in the editor.
             <p:fieldset legend="Nome da instituição: #{cInstituicao.getInstituicaoSelecionada().nome}">
                
                     <p:messages/>
-                    <h:panelGrid columns="2">
+                    <h:panelGrid columns="2"  width="1000px">
 
-                        <h:outputText value="Sobre nós: "/>
+                        <h:outputText value="Sobre nós: " style="text-align: center" />
                         <h:outputText value="#{cInstituicao.getInstituicaoSelecionada().descricao}" />
 
                         <h:outputText value="Endereço: "/>

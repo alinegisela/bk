@@ -14,7 +14,7 @@
                 <p:panel header="Doações concluídas">
                         <h:panelGrid style="text-align: center">
                         <p:messages/>
-                        <p:dataTable id="tableDoacao" var="doacao" value="#{cDoacao.recuperarPorStatus(cDoacao.concluida)}">
+                        <p:dataTable id="tableDoacao" emptyMessage="Nenhuma doação foi concluída" var="doacao" value="#{cDoacao.recuperarPorStatus(cDoacao.concluida, login.instituicao.cnpj)}">
 
                             <p:column headerText="Doador" sortBy="#{doacao.dataVisita}">
                                 <h:outputText value="#{doacao.doador.nome}"/>

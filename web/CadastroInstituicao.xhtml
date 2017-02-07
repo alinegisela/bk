@@ -16,9 +16,9 @@ and open the template in the editor.
         <ui:include src="menu.xhtml"/>
 
         <h:form id="form">
-            <p:wizard>
-                <p:tab id="dadosInstituicao" title="Insira os dados da instituição"> 
-                    <p:panel >
+            <p:fieldset legend="Cadastro de instituição">
+       
+                <p:panel header="Insira os dados da instituição" >
                         <p:messages/>
                         <h:panelGrid columns="3">
 
@@ -28,14 +28,13 @@ and open the template in the editor.
                             <p:message id="messageNome" for="inputNome" />
 
                             <h:outputText value="Endereço: "/>
-                            <p:inputText id="inputEndereco" value="#{bInstituicao.endereco}" required="true"
+                            <p:inputText  id="inputEndereco"  value="#{bInstituicao.endereco}" required="true"
                                          requiredMessage="Digite o Endereço"/>
                             <p:message id="messageEndereco" for="inputEndereco"/>
 
-                            <h:outputText value="Descrição: "/>
-                            <p:inputText id="inputDescricao" value="#{bInstituicao.descricao}" required="true"
-                                         requiredMessage="Digite uma descrição"/>
-                            <p:message id="messageDescricao" for="inputDescricao" />
+                            <h:outputText value="Descrição: "  />
+                            <p:inputTextarea  maxlength="300" rows="2" cols="19" id="inputDescricao" value="#{bInstituicao.descricao}"/>
+                            <h:outputText/>
 
                             <h:outputText value="CNPJ: "/>
                             <p:inputText id="inputCNPJ" value="#{bInstituicao.cnpj}" required="true" 
@@ -47,23 +46,22 @@ and open the template in the editor.
                             <h:outputText/>
 
                             <h:outputText value="E-mail: "/>
-                            <p:inputText value="#{bInstituicao.email}"/>
-                            <h:outputText/>
+                            <p:inputText  id="inputEmail" value="#{bInstituicao.email}" required="true" requiredMessage="Digite o email"/>
+                             <p:message id="messageEmail" for="inputEmail" />
 
-                            <h:outputText value="Senha: "/>
-                            <p:password id="inputSenha" value="#{bInstituicao.senha}"/>
-                            <h:outputText/>
+                            <h:outputText value="Senha: " />
+                            <p:password   id="inputSenha" value="#{bInstituicao.senha}" required="true" requiredMessage="Digite uma senha"/>
+                             <p:message for="inputSenha" />
 
-                            <p:commandButton value="Cadastrar"  action="#{cInstituicao.inserir(bInstituicao.build())}"
-                                         style="left:600px" ajax="false"/>
+                            
                             
                         </h:panelGrid>  
                         
                     </p:panel>
-                </p:tab>
-            </p:wizard>
-
-
+                <br/>
+                <p:commandButton value="Cadastrar"  action="#{cInstituicao.checar(bInstituicao.build())}"
+                                         style="left:580px" ajax="false" />
+            </p:fieldset>
         </h:form>
 
 

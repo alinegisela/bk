@@ -23,6 +23,8 @@ public class Doador {
  private String telefone;
  private String email;
  private String senha;
+ private String senhaConfirmacao;
+ private String novaSenha;
 
     public Doador(String nome, String cpf, String endereco, String telefone, String email, String senha) {
         this.nome = nome;
@@ -42,6 +44,22 @@ public class Doador {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getSenhaConfirmacao() {
+        return senhaConfirmacao;
+    }
+
+    public void setSenhaConfirmacao(String senhaConfirmacao) {
+        this.senhaConfirmacao = senhaConfirmacao;
+    }
+
+    public String getNovaSenha() {
+        return novaSenha;
+    }
+
+    public void setNovaSenha(String novaSenha) {
+        this.novaSenha = novaSenha;
     }
     
     

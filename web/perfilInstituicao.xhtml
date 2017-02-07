@@ -15,10 +15,11 @@
             <p:fieldset legend="Perfil">
                 <p:panel header="Dados da instituição">
                         <p:messages/>
-                        <h:panelGrid columns="2">
+                        <h:panelGrid columns="2" width="1000px" style="text-align: center">
                             
-                            <h:outputText value="Nome: "/>
+                            <h:outputText value="Nome: " style=""/>
                             <h:outputText value="#{login.instituicao.nome}"/>
+                            
                             
                             <h:outputText value="Sobre nós: "/>
                             <h:outputText value="#{login.instituicao.descricao}" />
@@ -41,7 +42,7 @@
                         <p:panel header="Materiais de prioridade">
                         <h:panelGrid style="text-align: center" >
                             
-                            <p:dataTable  var="material" value="#{cInstituicao.recuperarMateriais(login.instituicao.getCnpj())}" >
+                            <p:dataTable  var="material" emptyMessage="Nenhum material adicionado" value="#{cInstituicao.recuperarMateriais(login.instituicao.getCnpj())}" >
                                 <p:column headerText="Nome" sortBy="#{material.prioridade}">
                                     <h:outputText value="#{material.getInsumo().nome}"/>
                                 </p:column>
@@ -60,8 +61,8 @@
                         </p:panel>
                         <br/>
                         
-                        <p:commandButton value="Alterar" action="#{cInstituicao.alterarMateriais(login.instituicao)}" style="left:600px" ajax="false"/>
-                 
+                        <p:commandButton value="Alterar dados" action="#{cInstituicao.alterarMateriais(login.instituicao)}" style="left:480px" ajax="false"/>
+                         <p:button value="Alterar senha" outcome="alterarSenhaInstituicao" style="left:500px"/>
                    
             </p:fieldset>
         </h:form>
