@@ -11,6 +11,26 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Doações</title>
+        <style>
+            body{
+                background-image: url("nuvem-binaria.jpg");
+                background-size: 100%;
+                background-position-y: -200px;
+                    
+            }
+            
+            form{
+                margin-left: 15%; 
+                margin-top: 5%;
+                width:70%;
+                height:100%;
+            }
+            form.menu-doador{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
     </h:head>
     <h:body>
         <ui:include src="menu-doador.xhtml" />
@@ -18,7 +38,7 @@ and open the template in the editor.
             <p:fieldset legend="Doação">
             
                         <p:messages/>
-                        <p:panel header="Minhas doações">
+                        <p:panel header="Minhas doações" style="text-align: center">
                         <h:panelGrid columns="2" style="text-align: center">
 
                             <p:dataTable id="tableDoacao" emptyMessage="Você ainda não fez nenhuma doação!" var="doacao" value="#{cDoacao.recuperarTodosDoador(login.doador.cpf)}"  rowIndexVar="rowIndex"

@@ -12,60 +12,80 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Instituição</title>
+        <style>
+            body{
+                background-image: url("nuvem-binaria.jpg");
+                background-size: 100%;
+                background-position-y: -200px;
+
+            }
+
+            form{
+                margin-left: 15%; 
+                margin-top: 5%;
+                width:70%;
+                height:100%;
+            }
+            form.menu-doador{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
     </h:head>
     <h:body>
         <ui:include src="menu-doador.xhtml" />
 
         <h:form>
             <p:fieldset legend="Nome: #{cInstituicao.getInstituicaoSelecionada().nome}">
-               
-                    <p:messages/>
-                    <p:panel header="Dados da instituição">
-                        <h:panelGrid  columns="2"  width="1050px" style="text-justify: auto">
 
-                        <h:outputText value="Sobre nós: " style="text-align: justify" />
-                        <h:outputText  value="#{cInstituicao.getInstituicaoSelecionada().descricao}" />
+                <p:messages/>
+                <p:panel header="Dados da instituição" style="text-align: center">
+                    <h:panelGrid  columns="2" width="720px" style="margin-left: 10%; text-align: left">
 
-                        <h:outputText value="Endereço: "/>
+                        <h:outputText value="Sobre nós: "  style="font-weight: normal" />                   
+                        <h:outputText  value="#{cInstituicao.getInstituicaoSelecionada().descricao}"  />
+
+                        <h:outputText value="Endereço: " style="font-weight: normal; padding-right: 6em" />    
                         <h:outputText value="#{cInstituicao.getInstituicaoSelecionada().endereco}" />
 
-                        <h:outputText value="Telefone: "/>
+                        <h:outputText value="Telefone: " style="font-weight: normal" />                    
                         <h:outputText value="#{cInstituicao.getInstituicaoSelecionada().tel}" />
 
-                        <h:outputText value="Email: "/>
+                        <h:outputText value="Email: " style="font-weight: normal" />                   
                         <h:outputText value="#{cInstituicao.getInstituicaoSelecionada().email}" />
 
 
                     </h:panelGrid>  
-                    </p:panel>
-                    <br/>
-                    <p:panel header="Materiais de prioridade">
-                        <h:panelGrid style="text-align: center" >
+                </p:panel>
+                <br/>
+                <p:panel header="Materiais de prioridade">
+                    <h:panelGrid style="text-align: center" >
 
-                            <p:dataTable  var="material" value="#{cInstituicao.recuperarMateriais(cInstituicao.getInstituicaoSelecionada().getCnpj())}">
-                                <p:column headerText="Nome" sortBy="#{material.prioridade}">
-                                    <h:outputText value="#{material.getInsumo().nome}"/>
-                                </p:column>
+                        <p:dataTable  var="material" value="#{cInstituicao.recuperarMateriais(cInstituicao.getInstituicaoSelecionada().getCnpj())}">
+                            <p:column headerText="Nome" sortBy="#{material.prioridade}">
+                                <h:outputText value="#{material.getInsumo().nome}"/>
+                            </p:column>
 
-                                <p:column headerText="Tipo">
-                                    <h:outputText value="#{material.getInsumo().tipo}"/>
-                                </p:column>
+                            <p:column headerText="Tipo">
+                                <h:outputText value="#{material.getInsumo().tipo}"/>
+                            </p:column>
 
-                                <p:column headerText="Descrição">
-                                    <h:outputText value="#{material.getInsumo().descricao}"/>
-                                </p:column>
-
-
+                            <p:column headerText="Descrição">
+                                <h:outputText value="#{material.getInsumo().descricao}"/>
+                            </p:column>
 
 
-                            </p:dataTable>
-                        </h:panelGrid>
-                    </p:panel>
 
-                   
-               <br/>
-                 <p:button value="Voltar" outcome="ApresentarInstituicao" style="left:510px"/>
-                  <p:button value="Fazer doação" outcome="CadastroDoacao" style="left:520px"/>
+
+                        </p:dataTable>
+                    </h:panelGrid>
+                </p:panel>
+
+
+                <br/>
+                <p:button value="Voltar" outcome="ApresentarInstituicao" style="left:330px"/>
+                <p:button value="Fazer doação" outcome="CadastroDoacao" style="left:340px"/>
             </p:fieldset>
         </h:form>
     </h:body>

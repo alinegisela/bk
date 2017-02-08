@@ -10,7 +10,27 @@ and open the template in the editor.
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Cadastro de Instituicao</title>
+        <title>Cadastro de Instituição</title>
+         <style>
+            body{
+                background-image: url("nuvem-binaria.jpg");
+                background-size: 100%;
+                background-position-y: -200px;
+                    
+            }
+            
+            form{
+                margin-left: 25%; 
+                margin-top: 5%;
+                width:50%;
+                height:100%;
+            }
+            form.menu{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
     </h:head>
     <h:body>
         <ui:include src="menu.xhtml"/>
@@ -18,9 +38,9 @@ and open the template in the editor.
         <h:form id="form">
             <p:fieldset legend="Cadastro de instituição">
        
-                <p:panel header="Insira os dados da instituição" >
+                <p:panel header="Insira os dados da instituição" style="text-align: center">
                         <p:messages/>
-                        <h:panelGrid columns="3">
+                        <h:panelGrid columns="3" style="margin-left: 20%">
 
                             <h:outputText value="Nome: "/>
                             <p:inputText id="inputNome" value="#{bInstituicao.nome}" required="true"
@@ -33,7 +53,7 @@ and open the template in the editor.
                             <p:message id="messageEndereco" for="inputEndereco"/>
 
                             <h:outputText value="Descrição: "  />
-                            <p:inputTextarea  maxlength="300" disabled="true" rows="2" cols="19" id="inputDescricao" value="#{bInstituicao.descricao}"/>
+                            <p:inputTextarea  maxlength="300" rows="2" cols="19" id="inputDescricao" value="#{bInstituicao.descricao}"/>
                             <h:outputText/>
 
                             <h:outputText value="CNPJ: "/>
@@ -59,8 +79,9 @@ and open the template in the editor.
                         
                     </p:panel>
                 <br/>
+                <p:button outcome="home" value="Voltar" style="left:210px"/>
                 <p:commandButton value="Cadastrar"  action="#{cInstituicao.checar(bInstituicao.build())}"
-                                         style="left:580px" ajax="false" />
+                                         style="left:220px" ajax="false" />
             </p:fieldset>
         </h:form>
 

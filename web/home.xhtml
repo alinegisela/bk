@@ -5,14 +5,38 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Início</title>
+         <style>
+            body{
+                background-image: url("nuvem-binaria.jpg");
+                background-size: 100%;
+                background-position-y: -200px;
+                    
+            }
+            
+            form{
+                margin-left: 25%; 
+                margin-top: 5%;
+                width:50%;
+                height:100%;
+            }
+            form.menu{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
     </h:head>
-    <h:body>
-        <ui:include src="menu.xhtml"/>
+    
+    <h:body >
+        <ui:include src="menu.xhtml" />
 
         <h:form  >
-            <p:panel header="Login" >
-                <h:panelGrid columns="2" style="text-align: center" >
+            <br/>
+            <br/>
+            <p:panel header="Login" style="text-align: center">
+                
+                <h:panelGrid columns="2" style="text-align: center; margin-left: 25%"  >
                     <p:outputLabel for="emailUsuario" value="Email:" />
                     <p:inputText id="emailUsuario" value="#{login.usuario.email}" />
 
@@ -22,22 +46,22 @@
 
                 </h:panelGrid>
                 <br/>
-                    <p:commandButton value="Doador" style="left:20px" icon="ui-icon-person" action="#{login.enviaDoador}" ajax="false" onclick="PF('fpLayoutWidget').toggle('south')">
+                    <p:commandButton value="Doador"  icon="ui-icon-person" action="#{login.enviaDoador}" ajax="false" onclick="PF('fpLayoutWidget').toggle('south')">
                     </p:commandButton>
 
-                    <p:commandButton value="Instituição" style="left:50px" icon="ui-icon-home" action="#{login.enviaInstituicao}" ajax="false">
+                    <p:commandButton value="Instituição" style="left:10px" icon="ui-icon-home" action="#{login.enviaInstituicao}" ajax="false">
                     </p:commandButton>
             </p:panel>
             <br/>
 
-            <p:panel header="Se cadastre">
-               
-                    <p:button value="Doador" style="left:20px" icon="ui-icon-person" outcome="CadastroDoador"  >
+            <p:panel header="Se cadastre" style="text-align: center">
+                <h:panelGrid columns="2" style="text-align: center; margin-left: 25%"  >
+                    <p:button value="Doador" style="left:15px" icon="ui-icon-person" outcome="CadastroDoador"  >
                     </p:button>
 
-                    <p:button style="left:50px" value="Instituição" icon="ui-icon-home"  outcome="CadastroInstituicao" >
+                    <p:button style="left:20px" value="Instituição" icon="ui-icon-home"  outcome="CadastroInstituicao" >
                     </p:button>
-                
+                </h:panelGrid>
             </p:panel>
         </h:form>
     </h:body>

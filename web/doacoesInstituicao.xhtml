@@ -6,14 +6,34 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Doações</title>
+         <style>
+            body{
+                background-image: url("nuvem-binaria.jpg");
+                background-size: 100%;
+                background-position-y: -200px;
+
+            }
+
+            form{
+                margin-left: 15%; 
+                margin-top: 5%;
+                width:70%;
+                height:100%;
+            }
+            form.menu-instituicao{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
     </h:head>
     <h:body>
         <ui:include src="menu-instituicao.xhtml" />
         <h:form id="form">
             <p:fieldset legend="Doações em aberto">
            
-                    <p:panel header="Novas doações">
+                    <p:panel header="Novas doações"  style="text-align: center">
                         <h:panelGrid style="text-align: center">
                         <p:messages/>
                         <p:dataTable id="tableDoacao" emptyMessage="Você não tem novas doações" var="doacao" value="#{cDoacao.recuperarPorStatus(cDoacao.aguardando_confirmacao, login.instituicao.cnpj)}" >
@@ -44,7 +64,7 @@
                     </p:panel>     
                 <br/>
                     
-                    <p:panel header="Doações em andamento">
+                    <p:panel header="Doações em andamento"  style="text-align: center">
                         <h:panelGrid style="text-align: center">
                         <p:messages/>
                         <p:dataTable id="tableDoacao2" var="doacao" emptyMessage="Nenhuma doação em andamento" value="#{cDoacao.recuperarPorStatus(cDoacao.em_andamento, login.instituicao.cnpj)}" >

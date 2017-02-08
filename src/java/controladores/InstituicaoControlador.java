@@ -175,9 +175,7 @@ public class InstituicaoControlador implements Serializable{
         this.instituicaoRepositorio.inserir(d);
         this.instituicaoSelecionada = d;
 
-        FacesContext.getCurrentInstance().
-                addMessage(null, new FacesMessage("Cadastro concluído com sucesso!"));
-
+        
         this.setInstituicaoSelecionada(d);
         return "CadastroMaterial.xhtml";
     }

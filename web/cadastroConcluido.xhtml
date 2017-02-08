@@ -10,8 +10,28 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Cadastro de Doadores</title>
+        <title>Cadastro</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            body{
+                background-image: url("nuvem-binaria.jpg");
+                background-size: 100%;
+                background-position-y: -200px;
+                    
+            }
+            
+            form{
+                margin-left: 25%; 
+                margin-top: 5%;
+                width:50%;
+                height:100%;
+            }
+            form.menu{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
     </h:head>
     <h:body>
         <ui:include src="menu.xhtml"/>
@@ -19,8 +39,8 @@ and open the template in the editor.
         <h:form id="form" >
             <p:fieldset legend="Cadastro concluído">
                 
-                <p:panel header="Faça seu login: ">
-                        <p:button value="Login" icon="ui-icon-star" outcome="home" style="left:580px">
+                <p:panel header="Faça seu login: " style="text-align: center">
+                        <p:button value="Login" icon="ui-icon-star" outcome="home" style="left:-5px">
                             </p:button>
 
                     </p:panel>

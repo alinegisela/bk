@@ -7,14 +7,21 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form id="formMenu" >
+        <h:form id="formMenu" class="menu-instituicao" >
              <p:growl id="gro" showDetail="true" life="4000" sticky="false"/>
             <p:menubar>
+                 <p:menuitem disabled="true"/>
+                <p:menuitem  >
+                    <p:graphicImage width="30px" height="30px" url="liberdade.png"/>
+                </p:menuitem>
+                <p:menuitem disabled="true"/>
                 <p:menuitem value="Perfil" url="perfilInstituicao.xhtml" icon="ui-icon-contact"></p:menuitem>
+                <p:menuitem disabled="true"/>
                 <p:submenu label="Doações" icon="ui-icon-circle-plus">
                     <p:menuitem value="Em aberto" url="doacoesInstituicao.xhtml" icon="ui-icon-play"></p:menuitem>
                     <p:menuitem value="Histórico" url="historicoInstituicao.xhtml" icon="ui-icon-script"></p:menuitem>
                 </p:submenu>
+                <p:menuitem disabled="true"/>
                 <p:menuitem value="Sair" action="#{login.logout}" icon="ui-icon-close"></p:menuitem>
             </p:menubar>
             <p:separator/>

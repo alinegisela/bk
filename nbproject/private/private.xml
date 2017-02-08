@@ -5,7 +5,7 @@
             <url>src/java/dao/DoadorDAO.java</url>
             <bookmark id="1">
                 <name/>
-                <line>145</line>
+                <line>208</line>
                 <key/>
             </bookmark>
         </file>
@@ -19,14 +19,6 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/web/AlterarInstituicao.xhtml</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/web/AlterarDoador.xhtml</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/web/doacoesInstituicao.xhtml</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/src/java/dao/DoacaoDAO.java</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/web/ApresentarDoacao.xhtml</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/web/home.xhtml</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/src/java/controladores/DoacaoControlador.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

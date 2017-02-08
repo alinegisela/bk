@@ -10,17 +10,37 @@ and open the template in the editor.
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Alterar Doador</title>
+        <title>Alterar dados</title>
+        <style>
+            body{
+                background-image: url("nuvem-binaria.jpg");
+                background-size: 100%;
+                background-position-y: -200px;
+                    
+            }
+            
+            form{
+                margin-left: 25%; 
+                margin-top: 5%;
+                width:50%;
+                height:100%;
+            }
+            form.menu-doador{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
     </h:head>
     
     <h:body>
         <ui:include src="menu-doador.xhtml"/>
         <h:form id="form">
             <p:fieldset legend="Alterar dados">
-                <p:panel header="Insira os novos dados">
+                <p:panel header="Insira os novos dados" style="text-align: center">
                     
                         <p:messages/>
-                        <h:panelGrid columns="3">
+                        <h:panelGrid columns="3" width="400px"  style="margin-left: 25%; text-align: left">
 
                             <h:outputText value="Nome"/>
                             <p:inputText id="inputNome" value="#{login.doador.nome}" required="true" requiredMessage="Digite o seu nome"/>
@@ -43,9 +63,9 @@ and open the template in the editor.
                         
                 </p:panel>
                 <br/>
-                 <p:button value="Voltar" outcome="perfilDoador" style="left:530px"/>
+                 <p:button value="Voltar" outcome="perfilDoador" style="left:220px"/>
                  <p:commandButton value="Alterar" action="#{cDoador.alterar(login.doador)}" 
-                                             update="form" ajax="false" style="left: 550px">
+                                             update="form" ajax="false" style="left: 240px">
                             </p:commandButton>
             </p:fieldset>
         </h:form>

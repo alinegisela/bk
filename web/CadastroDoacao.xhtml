@@ -10,7 +10,27 @@ and open the template in the editor.
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Cadastro de Doações</title>
+        <title>Fazer doação</title>
+         <style>
+            body{
+                background-image: url("nuvem-binaria.jpg");
+                background-size: 100%;
+                background-position-y: -200px;
+
+            }
+
+            form{
+                margin-left: 15%; 
+                margin-top: 5%;
+                width:70%;
+                height:100%;
+            }
+            form.menu-doador{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
     </h:head>
     
     <h:body>
@@ -18,9 +38,9 @@ and open the template in the editor.
 
         <h:form id="form">
             <p:fieldset legend="Nome da instituição: #{cInstituicao.getInstituicaoSelecionada().nome}">
-                <p:panel header="Fazer doação">
+                <p:panel header="Fazer doação" style="text-align: center">
                         <p:messages/>
-                        <h:panelGrid columns="3">
+                        <h:panelGrid columns="3" width="500px" style="text-align: left; margin-left: 20%">
 
                             <h:outputText value="Instituição selecionada:"/>
                             <h:outputText value="#{cInstituicao.getInstituicaoSelecionada().nome}"/>
@@ -35,9 +55,14 @@ and open the template in the editor.
 
                         </h:panelGrid>
                         
-                        <h:outputText value="Material para doação:"/>
+                        <br/>
+                        <h:panelGrid style="text-align: left">
+                        
                            <p:dataTable var="material" value="#{cInstituicao.recuperarMateriais(cInstituicao.getInstituicaoSelecionada().cnpj)}"
                                         selection="#{cDoacao.materiais}" rowKey="#{material.codigo}">
+                               <f:facet name="header">
+                                   <h:outputText value="Material para doação:" />
+                               </f:facet>
                                 <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
                                 
                                <p:column headerText="Nome" sortBy="#{material.insumo.tipo}">
@@ -56,12 +81,14 @@ and open the template in the editor.
                                 
                                 
                             </p:dataTable>
+                        </h:panelGrid>
                 </p:panel>
                         <br/>
                         
+                        <p:button outcome="visualizarInstituicao" value="Voltar" style="left: 340px"/>
                          <p:commandButton action="#{cDoacao.inserir(bDoacao.build(login.doador,
                                                                              cInstituicao.getInstituicaoSelecionada()), cDoacao.materiais)}" process="tableMaterial" icon="ui-icon-search" 
-                                                     value="Concluir"  ajax="false" update="form" style="left:580px"/>
+                                                     value="Concluir"  ajax="false" update="form" style="left:360px"/>
                              
                    
             </p:fieldset>

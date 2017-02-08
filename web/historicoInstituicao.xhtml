@@ -5,13 +5,33 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Doações</title>
+         <style>
+            body{
+                background-image: url("nuvem-binaria.jpg");
+                background-size: 100%;
+                background-position-y: -200px;
+
+            }
+
+            form{
+                margin-left: 15%; 
+                margin-top: 5%;
+                width:70%;
+                height:100%;
+            }
+            form.menu-instituicao{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
     </h:head>
     <h:body>
         <ui:include src="menu-instituicao.xhtml" />
         <h:form id="form">
             <p:fieldset legend="Histórico">
-                <p:panel header="Doações concluídas">
+                <p:panel header="Doações concluídas" style="text-align: center">
                         <h:panelGrid style="text-align: center">
                         <p:messages/>
                         <p:dataTable id="tableDoacao" emptyMessage="Nenhuma doação foi concluída" var="doacao" value="#{cDoacao.recuperarPorStatus(cDoacao.concluida, login.instituicao.cnpj)}">

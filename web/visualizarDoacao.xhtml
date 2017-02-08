@@ -5,16 +5,36 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Doações</title>
+        <style>
+            body{
+                background-image: url("nuvem-binaria.jpg");
+                background-size: 100%;
+                background-position-y: -200px;
+                    
+            }
+            
+            form{
+                margin-left: 15%; 
+                margin-top: 5%;
+                width:70%;
+                height:100%;
+            }
+            form.menu-doador{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
     </h:head>
     <h:body>
         <ui:include src="menu-doador.xhtml" />
         <h:form>
-            <p:fieldset legend="Minhas doações">
+            <p:fieldset legend="Doação">
           
-                    <p:panel header="Informações da doação" >
+                    <p:panel header="Informações da doação" style="text-align: center">
                         <p:messages/>
-                        <h:panelGrid style="text-align:center"  width="1000px">
+                        <h:panelGrid style="text-align:center"  >
 
                             
                             <p:dataTable id="tableDoacao"  var="doacao" value="#{cDoacao.doacaoSelecionada}" >
@@ -42,7 +62,7 @@
                         </h:panelGrid>
                     </p:panel>
 
-                        <p:panel header="Material doado" >
+                        <p:panel header="Material doado" style="text-align: center">
                             <h:panelGrid style="text-align:center">
 
                                 <p:dataTable id="tableMaterial" var="material" value="#{cMaterial.recuperarTodosDoacao(cDoacao.doacaoSelecionada.codigo)}" >
@@ -66,7 +86,7 @@
                             
                         </p:panel>
                 <br/>
-                   <p:button value="Voltar" outcome="ApresentarDoacao" style="left:600px"/>
+                   <p:button value="Voltar" outcome="ApresentarDoacao" style="left:45%"/>
             </p:fieldset>
         </h:form>
     </h:body>

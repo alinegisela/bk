@@ -7,15 +7,35 @@
     
     <h:head>
         <title>Alterar senha</title>
+        <style>
+            body{
+                background-image: url("nuvem-binaria.jpg");
+                background-size: 100%;
+                background-position-y: -200px;
+                    
+            }
+            
+            form{
+                margin-left: 25%; 
+                margin-top: 5%;
+                width:50%;
+                height:100%;
+            }
+            form.menu-doador{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
     </h:head>
     <h:body>
         <ui:include src="menu-doador.xhtml"/>
         <h:form id="form">
             <p:fieldset legend="Alterar senha">
-                <p:panel header="Insira os dados">
+                <p:panel header="Insira os dados" style="text-align: center">
                     
                         <p:messages/>
-                        <h:panelGrid columns="2">
+                        <h:panelGrid columns="2" style="margin-left: 25%; text-align: left">
 
                             
                              
@@ -30,9 +50,9 @@
                         
                 </p:panel>
                 <br/>
-                <p:button value="Voltar" outcome="perfilDoador" style="left:530px"/>
+                <p:button value="Voltar" outcome="perfilDoador" style="left:220px"/>
                  <p:commandButton value="Alterar" action="#{cDoador.alterarSenha(login.doador)}" 
-                                             update="form" ajax="false" style="left: 550px">
+                                             update="form" ajax="false" style="left: 240px">
                             </p:commandButton>
             </p:fieldset>
         </h:form>

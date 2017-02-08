@@ -6,22 +6,42 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Perfil</title>
+         <style>
+            body{
+                background-image: url("nuvem-binaria.jpg");
+                background-size: 100%;
+                background-position-y: -200px;
+                    
+            }
+            
+            form{
+                margin-left: 15%; 
+                margin-top: 5%;
+                width:70%;
+                height:100%;
+            }
+            form.menu-instituicao{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
     </h:head>
     <h:body>
         <ui:include src="menu-instituicao.xhtml" />
 
         <h:form>
             <p:fieldset legend="Perfil">
-                <p:panel header="Dados da instituição">
+                <p:panel header="Dados da instituição" style="text-align: center">
                     <p:messages/>
-                    <h:panelGrid columns="2" width="1050px" >
+                    <h:panelGrid columns="2" width="800px" style="text-align: justify; margin-left: 5% ">
 
                         <h:outputText value="Nome: " style=""/>
-                        <h:outputText value="#{login.instituicao.nome}"/>
+                        <h:outputText value="#{login.instituicao.nome}" />
 
 
-                        <h:outputText value="Sobre nós: "/>
+                        <h:outputText value="Sobre nós: " style="padding-right: 6em"/>
                         <h:outputText value="#{login.instituicao.descricao}" />
 
                         <h:outputText value="Endereço: "/>
@@ -61,8 +81,8 @@
                 </p:panel>
                 <br/>
 
-                <p:commandButton value="Alterar dados" action="#{cInstituicao.alterarMateriais(login.instituicao)}" style="left:480px" ajax="false"/>
-                <p:button value="Alterar senha" outcome="alterarSenhaInstituicao" style="left:500px"/>
+                <p:commandButton value="Alterar dados" action="#{cInstituicao.alterarMateriais(login.instituicao)}" style="left:280px" ajax="false"/>
+                <p:button value="Alterar senha" outcome="alterarSenhaInstituicao" style="left:300px"/>
 
             </p:fieldset>
         </h:form>

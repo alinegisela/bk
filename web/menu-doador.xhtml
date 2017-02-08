@@ -11,12 +11,20 @@ and open the template in the editor.
         <title>home</title>
     </h:head>
     <h:body>
-        <h:form id="formMenu" >
+        <h:form id="formMenu" class="menu-doador" >
              <p:growl id="gro" showDetail="true" life="4000" sticky="false"/>
             <p:menubar>
+                 <p:menuitem disabled="true"/>
+                <p:menuitem  >
+                    <p:graphicImage width="30px" height="30px" url="liberdade.png"/>
+                </p:menuitem>
+                <p:menuitem disabled="true"/>
                 <p:menuitem value="Perfil" url="perfilDoador.xhtml" icon="ui-icon-person"></p:menuitem>
+                <p:menuitem disabled="true"/>
                 <p:menuitem value="Doação" url="ApresentarDoacao.xhtml" icon="ui-icon-circle-plus"></p:menuitem>
+                <p:menuitem disabled="true"/>
                 <p:menuitem value="Instituição" url="ApresentarInstituicao.xhtml" icon="ui-icon-home"></p:menuitem>
+                <p:menuitem disabled="true"/>
                 <p:menuitem value="Sair" action="#{login.logout}" icon="ui-icon-close"></p:menuitem>
             </p:menubar>
             <p:separator/>

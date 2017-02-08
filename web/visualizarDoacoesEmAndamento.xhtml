@@ -6,16 +6,36 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Doações</title>
+         <style>
+            body{
+                background-image: url("nuvem-binaria.jpg");
+                background-size: 100%;
+                background-position-y: -200px;
+
+            }
+
+            form{
+                margin-left: 15%; 
+                margin-top: 5%;
+                width:70%;
+                height:100%;
+            }
+            form.menu-instituicao{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
     </h:head>
     <h:body>
         <ui:include src="menu-instituicao.xhtml" />
         <h:form id="form">
             <p:fieldset legend="Doações em andamento">
 
-                <p:panel header="Dados do doador" >
+                <p:panel header="Dados do doador" style="text-align: center">
                     <p:messages/>
-                    <h:panelGrid columns="2">
+                    <h:panelGrid columns="2" width="300px" style="margin-left: 35%; text-align: left">
 
                         <h:outputText value="Nome: "/>
                         <h:outputText value="#{cDoacao.doacaoSelecionada.doador.nome}" />
@@ -38,8 +58,8 @@
                 </p:panel>
                 <br/>
 
-                <p:panel header="Material doado" >
-                    <h:panelGrid style="text-align: center">
+                <p:panel header="Material doado"  style="text-align: center" >
+                    <h:panelGrid style="text-align: center" >
 
                         <p:dataTable id="tableMaterial" var="material" value="#{cMaterial.recuperarTodosDoacao(cDoacao.doacaoSelecionada.codigo)}">
 
@@ -61,8 +81,8 @@
                 </p:panel>
                 <br/>
 
-                <p:panel header="Dados da doação">
-                    <p:panelGrid columns="2">
+                <p:panel header="Dados da doação"  style="text-align: center" >
+                    <h:panelGrid columns="2" width="400px" style="margin-left: 25%; text-align: left">
                         <h:outputText value="Status da doação: "/>
                         <h:outputText value="#{cDoacao.doacaoSelecionada.status}" />
 
@@ -73,13 +93,13 @@
                         <h:outputText value="#{cDoacao.doacaoSelecionada.dataVisitaString}" />
 
 
-                    </p:panelGrid>
+                    </h:panelGrid>
 
                 </p:panel>
                 <br/>
-                <p:button value="Voltar" outcome="doacoesInstituicao" style="left:480px"/>
+                <p:button value="Voltar" outcome="doacoesInstituicao" style="left:310px"/>
                     <p:commandButton value="Marcar como concluída" action="#{cDoacao.alterarStatus(cDoacao.concluida, cDoacao.doacaoSelecionada.codigo)}" 
-                                     ajax="false" style="left:500px" />
+                                     ajax="false" style="left:330px" />
 
             </p:fieldset>
         </h:form>

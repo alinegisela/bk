@@ -10,13 +10,33 @@ and open the template in the editor.
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Instituições</title>
+        <style>
+            body{
+                background-image: url("nuvem-binaria.jpg");
+                background-size: 100%;
+                background-position-y: -200px;
+                    
+            }
+            
+            form{
+                margin-left: 15%; 
+                margin-top: 5%;
+                width:70%;
+                height:100%;
+            }
+            form.menu-doador{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
     </h:head>
     <h:body>
         <ui:include src="menu-doador.xhtml" />
         <h:form>
             
             <p:fieldset legend="Instituições cadastradas">
-                <p:panel header="Todas as instituições">
+                <p:panel header="Todas as instituições" style="text-align: center">
                 <h:panelGrid style="text-align: center" columns="1">
                     
                     <p:dataTable var="instituicao" emptyMessage="Nenhuma instituição cadastrada" value="#{cInstituicao.recuperarTodos()}">

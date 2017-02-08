@@ -7,15 +7,35 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Perfil</title>
+         <style>
+            body{
+                background-image: url("nuvem-binaria.jpg");
+                background-size: 100%;
+                background-position-y: -200px;
+                    
+            }
+            
+            form{
+                margin-left: 25%; 
+                margin-top: 5%;
+                width:50%;
+                height:100%;
+            }
+            form.menu-doador{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
     </h:head>
     <h:body>
          <ui:include src="menu-doador.xhtml" />
       
         <h:form >
             <p:fieldset legend="Perfil">
-                <p:panel header="Meus dados">
+                <p:panel header="Meus dados" style="text-align: center">
                         <p:messages/>
-                        <h:panelGrid columns="2">
+                        <h:panelGrid columns="2" width="250px"  style="margin-left: 32%; text-align: left">
                             
                             <h:outputText value="Nome: "/>
                             <h:outputText value="#{login.doador.nome}" />
@@ -39,8 +59,8 @@
                     
                 </p:panel>
                 <br/>
-                 <p:button value="Alterar dados" outcome="AlterarDoador" style="left:480px"/>
-                 <p:button value="Alterar senha" outcome="alterarSenhaDoador" style="left:500px"/>
+                 <p:button value="Alterar dados" outcome="AlterarDoador" style="left:150px"/>
+                 <p:button value="Alterar senha" outcome="alterarSenhaDoador" style="left:170px"/>
             </p:fieldset>
             
         </h:form>

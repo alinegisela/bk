@@ -11,15 +11,35 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Alterar Instituição</title>
+        <title>Alterar instituição</title>
+        <style>
+            body{
+                background-image: url("nuvem-binaria.jpg");
+                background-size: 100%;
+                background-position-y: -200px;
+                    
+            }
+            
+            form{
+                margin-left: 15%; 
+                margin-top: 5%;
+                width:70%;
+                height:100%;
+            }
+            form.menu-instituicao{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
     </h:head>
     <h:body>
         <ui:include src="menu-instituicao.xhtml"/>
         <h:form id="form">
             <p:messages/>
             <p:fieldset legend="Alterar dados da instituição">
-                <p:panel header="Insira os novos dados">
-                    <h:panelGrid columns="3">
+                <p:panel header="Insira os novos dados"  style="text-align: center">
+                    <h:panelGrid columns="3" width="750px" style="text-align: center; margin-left: 5%">
 
                         <h:outputText value="Nome: "/>
                         <p:inputText id="inputNome" value="#{login.instituicao.nome}" required="true"
@@ -27,7 +47,7 @@ and open the template in the editor.
                         <p:message id="messageNome" for="inputNome" />
 
                         <h:outputText value="Sobre nós: "/>
-                       <p:inputTextarea  maxlength="300" rows="4" cols="100" id="inputDescricao" value="#{login.instituicao.descricao}" />
+                        <p:inputTextarea   maxlength="300" rows="4" cols="38" id="inputDescricao" value="#{login.instituicao.descricao}" />
                         <h:outputText/>
 
                         <h:outputText value="Endereço: " />
@@ -49,7 +69,7 @@ and open the template in the editor.
                 </p:panel>
 
                 <br/>
-                <p:panel header="Selecione os materiais de prioridade">
+                <p:panel header="Selecione os materiais de prioridade" style="text-align: center">
                     <h:panelGrid style="text-align: center">
 
                     <p:dataTable id="tableMaterial"  var="insumo" value="#{cInstituicao.materiaisRec}" 
@@ -75,9 +95,9 @@ and open the template in the editor.
                     </h:panelGrid>
                 </p:panel>
                 <br/>
-                <p:button value="Voltar" outcome="perfilInstituicao" style="left:530px"/>
+                <p:button value="Voltar" outcome="perfilInstituicao" style="left:320px"/>
                 <p:commandButton action="#{cInstituicao.alterar(login.instituicao)}" process="tableMaterial" icon="ui-icon-search" 
-                                 value="Alterar"  ajax="false" update="form" style="left: 550px"/>
+                                 value="Alterar"  ajax="false" update="form" style="left: 350px"/>
             </p:fieldset>
 
         </h:form>
