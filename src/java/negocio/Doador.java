@@ -25,6 +25,7 @@ public class Doador {
  private String senha;
  private String senhaConfirmacao;
  private String novaSenha;
+ private String nomePrimeiro="";
 
     public Doador(String nome, String cpf, String endereco, String telefone, String email, String senha) {
         this.nome = nome;
@@ -38,6 +39,24 @@ public class Doador {
     public Doador(){
     }
 
+    public String getNomePrimeiro() {
+        nomePrimeiro="";
+        for(int i=0;i<getNome().length();i++){
+            if(getNome().charAt(i) != ' '){
+                nomePrimeiro+=getNome().charAt(i);
+            }else{
+                break;
+            }
+        }
+        return nomePrimeiro ;
+    }
+
+    public void setNomePrimeiro(String nomePrimeiro) {
+        this.nomePrimeiro = nomePrimeiro;
+    }
+
+    
+    
     public String getSenha() {
         return senha;
     }

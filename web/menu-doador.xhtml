@@ -25,7 +25,19 @@ and open the template in the editor.
                 <p:menuitem disabled="true"/>
                 <p:menuitem value="Instituição" url="ApresentarInstituicao.xhtml" icon="ui-icon-home"></p:menuitem>
                 <p:menuitem disabled="true"/>
-                <p:menuitem value="Sair" action="#{login.logout}" icon="ui-icon-close"></p:menuitem>
+                <p:menuitem value="Tutorial" url="tutorial-doador.xhtml" icon=""/>
+                 <p:menuitem disabled="true" style="width: 620px"/>
+                 <p:submenu label="Bem vindo(a)" >
+                 
+                     <p:menuitem value="#{login.doador.getNomePrimeiro()}" icon="ui-icon-person" url="perfilDoador.xhtml" />
+                     
+                      <p:menuitem value="Sair" action="#{login.logout}" icon="ui-icon-close"></p:menuitem>
+                  
+                </p:submenu>
+               
+                
+                
+              
             </p:menubar>
             <p:separator/>
         </h:form>

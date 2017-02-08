@@ -22,7 +22,14 @@
                     <p:menuitem value="Histórico" url="historicoInstituicao.xhtml" icon="ui-icon-script"></p:menuitem>
                 </p:submenu>
                 <p:menuitem disabled="true"/>
-                <p:menuitem value="Sair" action="#{login.logout}" icon="ui-icon-close"></p:menuitem>
+                <p:menuitem value="Tutorial"  url="tutorial-instituicao.xhtml" icon=""/>
+                  <p:menuitem disabled="true" style="width: 720px"/>
+                 <p:submenu label="Bem vindo(a)" >
+                 
+                     <p:menuitem value="#{login.instituicao.getPrimeironome()}" icon="ui-icon-person" url="perfilInstituicao.xhtml" />
+                     
+                      <p:menuitem value="Sair" action="#{login.logout}" icon="ui-icon-close"></p:menuitem>
+                 </p:submenu>
             </p:menubar>
             <p:separator/>
         </h:form>

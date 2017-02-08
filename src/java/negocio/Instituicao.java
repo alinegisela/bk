@@ -23,7 +23,8 @@ public class Instituicao {
     private String email;
     private String senha;
     private String senhaConfirmacao;
-     private String novaSenha;
+    private String novaSenha;
+    public String primeironome="";
     private ArrayList<MaterialDoacao> prioridades = new ArrayList<>();
     private ArrayList<Insumo> prioridadesInsumo = new ArrayList<>();
 
@@ -43,6 +44,23 @@ public class Instituicao {
 
     }
 
+    public String getPrimeironome() {
+        primeironome="";
+        for (int i = 0; i < getNome().length(); i++) {
+            if (getNome().charAt(i) != ' ') {
+                primeironome += getNome().charAt(i);
+            }else{
+                break;
+            }
+        }
+        return primeironome;
+    }
+
+    public void setPrimeironome(String primeironome) {
+        this.primeironome = primeironome;
+    }
+
+
     @Override
     public String toString() {
         return "Instituicao " + nome + "\nEndere�o: " + endereco + "\nDescricao: " + descricao + "\nCnpj: " + cnpj
@@ -56,8 +74,6 @@ public class Instituicao {
     public void setPrioridadesInsumo(ArrayList<Insumo> prioridadesInsumo) {
         this.prioridadesInsumo = prioridadesInsumo;
     }
-    
-    
 
     public String getNome() {
         return nome;
@@ -91,8 +107,6 @@ public class Instituicao {
         this.novaSenha = novaSenha;
     }
 
-    
-    
     public String getEndereco() {
         return endereco;
     }

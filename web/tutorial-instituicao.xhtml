@@ -20,7 +20,7 @@
                 width:50%;
                 height:100%;
             }
-            form.menu-doador{
+            form.menu-instituicao{
                 width:100%;
                 margin-left: 0px;
                 margin-top: 0px;
@@ -39,10 +39,10 @@
         </style>
     </h:head>
     <h:body>
-        <ui:include src="menu.xhtml"/>
+        <ui:include src="menu-instituicao.xhtml"/>
         <h:form>
-            <p:fieldset legend="Tutorial" >
-                <p:panel header="Nosso objetivo" style="text-align: justify">
+            <p:fieldset legend="Tutorial">
+                 <p:panel header="Nosso objetivo" style="text-align: justify">
                     Queremos facilitar o processo de doação à instituições beneficentes, dando um espaço para que organizações
                     informem quais produtos estão precisando naquele momento e doadores agendem doações pelo próprio sistema.
                     Ao se ter acesso ao perfil de diferentes instituições e ao trabalho de assistência que elas estão realizando,
@@ -67,7 +67,7 @@
                 </p:panel>
                 <br/>
                 
-                <p:button outcome="home" value="Voltar" style="left: 42%"/>
+                <p:button outcome="perfilInstituicao" value="Voltar" style="left: 42%"/>
             </p:fieldset>
         </h:form>
          <div id="footer">
