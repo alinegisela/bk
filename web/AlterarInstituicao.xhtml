@@ -31,6 +31,17 @@ and open the template in the editor.
                 margin-left: 0px;
                 margin-top: 0px;
             }
+            form.menu{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+             #footer{    
+                position:relative;
+                bottom:0; 
+                width:100%;
+                margin-top: 50px;
+            }
         </style>
     </h:head>
     <h:body>
@@ -47,7 +58,7 @@ and open the template in the editor.
                         <p:message id="messageNome" for="inputNome" />
 
                         <h:outputText value="Sobre nós: "/>
-                        <p:inputTextarea   maxlength="300" rows="4" cols="38" id="inputDescricao" value="#{login.instituicao.descricao}" />
+                        <p:inputTextarea   maxlength="500" rows="4" cols="38" id="inputDescricao" value="#{login.instituicao.descricao}" />
                         <h:outputText/>
 
                         <h:outputText value="Endereço: " />
@@ -69,6 +80,61 @@ and open the template in the editor.
                 </p:panel>
 
                 <br/>
+                
+                <!--Datatable da alteração-->
+                 <p:panel header="Selecione os materiais de prioridade" style="text-align: center">
+                    <h:panelGrid style="text-align: center">
+
+                    <p:dataTable id="tableMaterial"  var="insumo" value="#{cInstituicao.materiaisRec}" 
+                                 selection="#{login.instituicao.prioridadesInsumo}" rowKey="#{insumo.codigo}">
+                        <p:column selectionMode="multiple"  style="width:16px;text-align:center"/>
+
+                        <p:column headerText="Nome" sortBy="#{insumo.tipo}">
+                            <h:outputText value="#{insumo.nome}"/>
+                        </p:column>
+
+                        <p:column headerText="Tipo">
+                            <h:outputText value="#{insumo.tipo}"/>
+                        </p:column>
+
+                        <p:column headerText="Descrição">
+                            <h:outputText value="#{insumo.descricao}"/>
+                        </p:column>
+
+
+
+                    </p:dataTable>
+
+                    </h:panelGrid>
+                </p:panel>
+                
+                 <p:panel header="Adicionar outros materiais" style="text-align: center">
+                    <h:panelGrid style="text-align: center">
+
+                    <p:dataTable id="tableMaterialOutros"  var="insumo" value="#{cInstituicao.insumo}" >
+
+                        <p:column headerText="Nome" >
+                            <p:inputText size="15" value="#{insumo.nome}"/>
+                        </p:column>
+
+                        <p:column headerText="Tipo">
+                            <p:inputText size="15" value="#{insumo.tipo}"/>
+                        </p:column>
+
+                        <p:column headerText="Descrição">
+                            <p:inputText size="15" value="#{insumo.descricao}"/>
+                        </p:column>
+
+                        <p:column >
+                            <p:commandButton  value="Add à lista" ajax="false" update="tableMaterialOutros"  action="#{cInstituicao.addInsumo(insumo)}"/>
+                        </p:column>
+
+                    </p:dataTable>
+
+                    </h:panelGrid>
+                </p:panel>
+                
+                <!-- Painel antes da alteração
                 <p:panel header="Selecione os materiais de prioridade" style="text-align: center">
                     <h:panelGrid style="text-align: center">
 
@@ -94,6 +160,9 @@ and open the template in the editor.
 
                     </h:panelGrid>
                 </p:panel>
+                -->
+                
+                
                 <br/>
                 <p:button value="Voltar" outcome="perfilInstituicao" style="left:320px"/>
                 <p:commandButton action="#{cInstituicao.alterar(login.instituicao)}" process="tableMaterial" icon="ui-icon-search" 
@@ -101,5 +170,8 @@ and open the template in the editor.
             </p:fieldset>
 
         </h:form>
+         <div id="footer">
+            <ui:include src="rodape.xhtml"  />
+        </div>
     </h:body>
 </html>

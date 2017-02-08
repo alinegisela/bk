@@ -30,6 +30,14 @@ and open the template in the editor.
                 margin-left: 0px;
                 margin-top: 0px;
             }
+             #footer{    
+                position:relative;
+                bottom:0; 
+                width:100%;
+               
+                margin-top: 50px;
+            }
+          
         </style>
     </h:head>
     <h:body>
@@ -60,10 +68,42 @@ and open the template in the editor.
                         </h:panelGrid>  
                     </p:panel>
                 <br/>
+                
+                 
+                 <p:panel header="Adicionar outros materiais" style="text-align: center">
+                    <h:panelGrid style="text-align: center">
+
+                    <p:dataTable id="tableMaterialOutros"  var="insumo" value="#{cInstituicao.insumo}" >
+
+                        <p:column headerText="Nome" >
+                            <p:inputText size="15" value="#{insumo.nome}"/>
+                        </p:column>
+
+                        <p:column headerText="Tipo">
+                            <p:inputText size="15" value="#{insumo.tipo}"/>
+                        </p:column>
+
+                        <p:column headerText="Descrição">
+                            <p:inputText size="15" value="#{insumo.descricao}"/>
+                        </p:column>
+
+                        <p:column >
+                            <p:commandButton  value="Add à lista" ajax="false" update="tableMaterialOutros"  action="#{cInstituicao.addInsumoCadastro(insumo)}"/>
+                        </p:column>
+
+                    </p:dataTable>
+
+                    </h:panelGrid>
+                </p:panel>
+                <br/>
+                
                  <p:commandButton action="#{cInstituicao.addLista()}" process="tableMaterial" icon="ui-icon-search" 
                                                      value="Adicionar" style="left: 390px"  ajax="false" update="form"/>
             </p:fieldset>
         </h:form>
+          <div id="footer">
+            <ui:include src="rodape.xhtml"  />
+        </div>
     </h:body>
 </html>
 

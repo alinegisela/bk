@@ -6,14 +6,14 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Início</title>
-         <style>
+        <style>
             body{
                 background-image: url("nuvem-binaria.jpg");
                 background-size: 100%;
                 background-position-y: -200px;
-                    
+
             }
-            
+
             form{
                 margin-left: 25%; 
                 margin-top: 5%;
@@ -25,17 +25,23 @@
                 margin-left: 0px;
                 margin-top: 0px;
             }
+            #footer{    
+                position:absolute;
+                bottom:0; 
+                width:99%;   
+                margin-top: 50px;
+            }
         </style>
     </h:head>
-    
+
     <h:body >
-        <ui:include src="menu.xhtml" />
+        <ui:include src="menu.xhtml"  />
 
         <h:form  >
             <br/>
-            <br/>
+           
             <p:panel header="Login" style="text-align: center">
-                
+
                 <h:panelGrid columns="2" style="text-align: center; margin-left: 25%"  >
                     <p:outputLabel for="emailUsuario" value="Email:" />
                     <p:inputText id="emailUsuario" value="#{login.usuario.email}" />
@@ -46,11 +52,11 @@
 
                 </h:panelGrid>
                 <br/>
-                    <p:commandButton value="Doador"  icon="ui-icon-person" action="#{login.enviaDoador}" ajax="false" onclick="PF('fpLayoutWidget').toggle('south')">
-                    </p:commandButton>
+                <p:commandButton value="Doador"  icon="ui-icon-person" action="#{login.enviaDoador}" ajax="false" onclick="PF('fpLayoutWidget').toggle('south')">
+                </p:commandButton>
 
-                    <p:commandButton value="Instituição" style="left:10px" icon="ui-icon-home" action="#{login.enviaInstituicao}" ajax="false">
-                    </p:commandButton>
+                <p:commandButton value="Instituição" style="left:10px" icon="ui-icon-home" action="#{login.enviaInstituicao}" ajax="false">
+                </p:commandButton>
             </p:panel>
             <br/>
 
@@ -64,6 +70,11 @@
                 </h:panelGrid>
             </p:panel>
         </h:form>
+        <div id="footer">
+            <ui:include src="rodape.xhtml"  />
+        </div>
+
+
     </h:body>
 </html>
 

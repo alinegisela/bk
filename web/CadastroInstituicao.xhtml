@@ -21,7 +21,7 @@ and open the template in the editor.
             
             form{
                 margin-left: 25%; 
-                margin-top: 5%;
+                margin-top: 40px;
                 width:50%;
                 height:100%;
             }
@@ -30,6 +30,14 @@ and open the template in the editor.
                 margin-left: 0px;
                 margin-top: 0px;
             }
+             #footer{    
+                position:relative;
+                bottom:0; 
+                width:100%;
+               
+                margin-top: 70px;
+            }
+            
         </style>
     </h:head>
     <h:body>
@@ -40,37 +48,37 @@ and open the template in the editor.
        
                 <p:panel header="Insira os dados da instituição" style="text-align: center">
                         <p:messages/>
-                        <h:panelGrid columns="3" style="margin-left: 20%">
+                        <h:panelGrid columns="3" style="margin-left: 0%">
 
                             <h:outputText value="Nome: "/>
-                            <p:inputText id="inputNome" value="#{bInstituicao.nome}" required="true"
+                            <p:inputText id="inputNome" value="#{bInstituicao.nome}" size="40" required="true"
                                          requiredMessage="Digite o Nome"/>
                             <p:message id="messageNome" for="inputNome" />
 
                             <h:outputText value="Endereço: "/>
-                            <p:inputText  id="inputEndereco"  value="#{bInstituicao.endereco}" required="true"
+                            <p:inputText  id="inputEndereco" size="40"  value="#{bInstituicao.endereco}" required="true"
                                          requiredMessage="Digite o Endereço"/>
                             <p:message id="messageEndereco" for="inputEndereco"/>
 
                             <h:outputText value="Descrição: "  />
-                            <p:inputTextarea  maxlength="300" rows="2" cols="19" id="inputDescricao" value="#{bInstituicao.descricao}"/>
+                            <p:inputTextarea  maxlength="500" rows="2" cols="39" id="inputDescricao" value="#{bInstituicao.descricao}"/>
                             <h:outputText/>
 
                             <h:outputText value="CNPJ: "/>
-                            <p:inputText id="inputCNPJ" value="#{bInstituicao.cnpj}" required="true" 
+                            <p:inputText id="inputCNPJ" size="40" value="#{bInstituicao.cnpj}" required="true" 
                                          requiredMessage="Digite o CNPJ" />
                             <p:message id="messageCNPJ" for="inputCNPJ"/>
 
                             <h:outputText value="Telefone: "/>
-                            <p:inputText value="#{bInstituicao.tel}"/>
+                            <p:inputText size="40" value="#{bInstituicao.tel}"/>
                             <h:outputText/>
 
                             <h:outputText value="E-mail: "/>
-                            <p:inputText  id="inputEmail" value="#{bInstituicao.email}" required="true" requiredMessage="Digite o email"/>
+                            <p:inputText  id="inputEmail" size="40" value="#{bInstituicao.email}" required="true" requiredMessage="Digite o email"/>
                              <p:message id="messageEmail" for="inputEmail" />
 
                             <h:outputText value="Senha: " />
-                            <p:password   id="inputSenha" value="#{bInstituicao.senha}" required="true" requiredMessage="Digite uma senha"/>
+                            <p:password   id="inputSenha" size="40" value="#{bInstituicao.senha}" required="true" requiredMessage="Digite uma senha"/>
                              <p:message for="inputSenha" />
 
                             
@@ -85,7 +93,9 @@ and open the template in the editor.
             </p:fieldset>
         </h:form>
 
-
+ <div id="footer">
+            <ui:include src="rodape.xhtml"  />
+        </div>
     </h:body>
 </html>
 

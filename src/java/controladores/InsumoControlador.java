@@ -48,10 +48,7 @@ public class InsumoControlador {
     
     public void inserir(Insumo d){
         this.insumoRepositorio.inserir(d);
-        
-        FacesContext.getCurrentInstance().
-                addMessage(null, new FacesMessage("Cadastro concluído com sucesso!"));
-        
+      
         //return "ApresentaAnimal.xhtml";
     }
     

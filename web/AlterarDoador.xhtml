@@ -30,6 +30,17 @@ and open the template in the editor.
                 margin-left: 0px;
                 margin-top: 0px;
             }
+             form.menu{
+                width:100%;
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+             #footer{    
+                position:absolute;
+                bottom:0; 
+                width:99%;
+                margin-top: 50px;
+            }
         </style>
     </h:head>
     
@@ -40,23 +51,23 @@ and open the template in the editor.
                 <p:panel header="Insira os novos dados" style="text-align: center">
                     
                         <p:messages/>
-                        <h:panelGrid columns="3" width="400px"  style="margin-left: 25%; text-align: left">
+                        <h:panelGrid columns="3" width="400px"  style="margin-left: 0%; text-align: center">
 
                             <h:outputText value="Nome"/>
-                            <p:inputText id="inputNome" value="#{login.doador.nome}" required="true" requiredMessage="Digite o seu nome"/>
+                            <p:inputText id="inputNome" size="40" value="#{login.doador.nome}" required="true" requiredMessage="Digite o seu nome"/>
                             <p:message for="inputNome"/>
 
                             <h:outputText value="Endereço"/>
-                            <p:inputText id="inputEndereco" value="#{login.doador.endereco}" required="true" requiredMessage="Digite o seu endereço"/>
+                            <p:inputText id="inputEndereco" size="40" value="#{login.doador.endereco}" required="true" requiredMessage="Digite o seu endereço"/>
                             <p:message for="inputEndereco"/>
                             
                             <h:outputText value="Telefone"/>
-                            <p:inputText id="inputTelefone" value="#{login.doador.telefone}"/>
+                            <p:inputText id="inputTelefone"  size="40" value="#{login.doador.telefone}"/>
                             <h:outputText/>
                             
 
                             <h:outputText value="Email"/>
-                            <p:inputText id="inputEmail" value="#{login.doador.email}" required="true" requiredMessage="Digite seu email"/>
+                            <p:inputText id="inputEmail" size="40" value="#{login.doador.email}" required="true" requiredMessage="Digite seu email"/>
                             <p:message for="inputEmail"/> 
                             
                         </h:panelGrid>
@@ -69,5 +80,8 @@ and open the template in the editor.
                             </p:commandButton>
             </p:fieldset>
         </h:form>
+         <div id="footer">
+            <ui:include src="rodape.xhtml"  />
+        </div>
     </h:body>
 </html>
