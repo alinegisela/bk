@@ -12,8 +12,7 @@ import java.util.logging.Logger;
 import negocio.Instituicao;
 import negocio.Insumo;
 import negocio.MaterialDoacao;
-import negocio.StatusEnum;
-import negocio.TipoEnum;
+
 
 /**
  *

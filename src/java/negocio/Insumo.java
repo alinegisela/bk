@@ -61,7 +61,6 @@ public class Insumo {
     
 
     public int getCodigo() {
-        System.out.println("www");
         return codigo;
     }
 

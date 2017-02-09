@@ -13,7 +13,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
 import negocio.Insumo;
 import negocio.MaterialDoacao;
-import negocio.PrioridadeEnum;
 
 /**
  *

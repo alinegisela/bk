@@ -18,7 +18,7 @@ import negocio.Doacao;
 import negocio.Doador;
 import negocio.Instituicao;
 import negocio.MaterialDoacao;
-import negocio.StatusEnum;
+
 
 /**
  *

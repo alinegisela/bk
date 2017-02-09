@@ -16,7 +16,6 @@ import java.util.List;
 import negocio.Doacao;
 import negocio.Doador;
 import negocio.Instituicao;
-import negocio.StatusEnum;
 
 /**
  *

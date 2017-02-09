@@ -14,9 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import negocio.Insumo;
 import negocio.MaterialDoacao;
-import negocio.PrioridadeEnum;
-import negocio.StatusEnum;
-import negocio.TipoEnum;
 
 /**
  *

@@ -8,7 +8,6 @@ package builders;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import negocio.Insumo;
-import negocio.TipoEnum;
 
 /**
  *

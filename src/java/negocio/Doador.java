@@ -80,8 +80,6 @@ public class Doador {
     public void setNovaSenha(String novaSenha) {
         this.novaSenha = novaSenha;
     }
-    
-    
 
     public String getNome() {
         return nome;

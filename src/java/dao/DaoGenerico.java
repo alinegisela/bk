@@ -11,7 +11,6 @@ import java.util.List;
 import negocio.Doacao;
 import negocio.Doador;
 import negocio.Instituicao;
-import negocio.StatusEnum;
 
 /**
  *
@@ -23,9 +22,9 @@ public interface DaoGenerico<T> {
 
     public void excluir(Doacao doacao);
 
-    public boolean alterar(int codigo, Doador doador, Instituicao instituicao, StatusEnum status, Date dataDoacao, Date dataVisita);
+    public boolean alterar(int codigo, Doador doador, Instituicao instituicao, String status, Date dataDoacao, Date dataVisita);
 
-    public boolean inserir(int codigo, Doador doador, Instituicao instituicao,/*MaterialDoacao materialDoacao, */ StatusEnum status, Date dataDoacao, Date dataVisita);
+    public boolean inserir(int codigo, Doador doador, Instituicao instituicao,/*MaterialDoacao materialDoacao, */ String status, Date dataDoacao, Date dataVisita);
 
     public boolean alterar(String nome, String cpf, String endereco, String telefone, String email);
 

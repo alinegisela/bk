@@ -2,11 +2,11 @@
 import builders.DoacaoBuilder;
 import builders.DoadorBuilder;
 import builders.InstituicaoBuilder;
-import builders.VisitaBuilder;
+
 import controladores.DoacaoControlador;
 import controladores.DoadorControlador;
 import controladores.InstituicaoControlador;
-import controladores.VisitaControlador;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,9 +15,6 @@ import negocio.Doador;
 import negocio.Instituicao;
 import negocio.Insumo;
 import negocio.MaterialDoacao;
-import negocio.PrioridadeEnum;
-import negocio.StatusEnum;
-import negocio.TipoEnum;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

@@ -15,7 +15,6 @@ import java.util.Date;
 import java.util.List;
 import negocio.Doador;
 import negocio.Instituicao;
-import negocio.StatusEnum;
 
 /**
  *
@@ -235,7 +234,7 @@ public class DoadorDAO {
         }
     }
 
-    public boolean inserir(int codigo, Doador doador, Instituicao instituicao, StatusEnum status, Date dataDoacao, Date dataVisita) {
+    public boolean inserir(int codigo, Doador doador, Instituicao instituicao, String status, Date dataDoacao, Date dataVisita) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

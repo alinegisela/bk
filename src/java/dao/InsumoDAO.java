@@ -16,8 +16,6 @@ import negocio.Doacao;
 import negocio.Doador;
 import negocio.Instituicao;
 import negocio.Insumo;
-import negocio.StatusEnum;
-import negocio.TipoEnum;
 
 /**
  *
