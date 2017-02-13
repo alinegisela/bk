@@ -5,7 +5,7 @@
             <url>src/java/dao/DoadorDAO.java</url>
             <bookmark id="1">
                 <name/>
-                <line>208</line>
+                <line>207</line>
                 <key/>
             </bookmark>
         </file>
@@ -20,18 +20,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/src/java/builders/InsumoBuilder.java</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/src/java/negocio/Visita.java</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/src/java/negocio/Doacao.java</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/src/java/negocio/Login.java</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/src/java/builders/MaterialBuilder.java</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/src/java/builders/VisitaBuilder.java</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/src/java/negocio/Instituicao.java</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/src/java/negocio/Insumo.java</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/src/java/negocio/Usuario.java</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/src/java/negocio/Doador.java</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/src/java/builders/DoacaoBuilder.java</file>
-            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/src/java/negocio/MaterialDoacao.java</file>
+            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/src/java/dao/DoadorDAO.java</file>
+            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/src/java/controladores/DoadorControlador.java</file>
+            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/web/AlterarDoador.xhtml</file>
+            <file>file:/C:/Users/Penguin/Documents/NetBeansProjects/PPO%20porra/web/home.xhtml</file>
         </group>
     </open-files>
 </project-private>

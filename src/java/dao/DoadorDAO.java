@@ -45,9 +45,7 @@ public class DoadorDAO {
             stmt.setString(1, cpf);
             ResultSet rs = stmt.executeQuery();
             
-            while(rs.next()){
-                System.out.println("sdfas " + rs.getString("nome"));
-            }
+          
 
             PreparedStatement stmt2 = this.con.
                     prepareStatement("select * from doador where email=?");
@@ -94,7 +92,7 @@ public class DoadorDAO {
 
     public boolean alterar(String nome, String endereco, String telefone, String email, String cpf) {
 
-        String sql = "update doador set nome=?, endereco=?, telefone=?,email=? where cpf=?";
+        String sql = "update doador set nome=?, endereco=?, telefone=? where cpf=? and email=?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, nome);
@@ -102,9 +100,11 @@ public class DoadorDAO {
             /*stmt.setDate(4, new Date(contato.getDataNascimento()
                  .getTimeInMillis()));*/
             stmt.setString(3, telefone);
-            stmt.setString(4, email);
-            stmt.setString(5, cpf);
-
+            stmt.setString(5, email);
+            stmt.setString(4, cpf);
+            
+            System.out.println("1");
+            
             stmt.execute();
 
             if (stmt.executeUpdate() == 1) {

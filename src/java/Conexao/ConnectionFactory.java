@@ -10,7 +10,7 @@ import java.sql.SQLException;
 	        try {
                     Class.forName("com.mysql.jdbc.Driver");
 	            return DriverManager.getConnection(
-	          "jdbc:mysql://localhost:3306/bk", "root", "root");
+	          "jdbc:mysql://localhost:3306/ppo", "root", "root");
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }

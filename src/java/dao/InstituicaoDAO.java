@@ -143,15 +143,15 @@ public class InstituicaoDAO {
 
     public boolean alterar(String nome, String endereco, String descricao, String tel, String email, String cnpj) {
 
-        String sql = "update instituicao set nome=?, endereco=?, descricao=?, tel=?, email=? where cnpj = ?";
+        String sql = "update instituicao set nome=?, endereco=?, descricao=?, tel=?  where cnpj = ? and email=?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, nome);
             stmt.setString(2, endereco);
             stmt.setString(3, descricao);
             stmt.setString(4, tel);
-            stmt.setString(5, email);
-            stmt.setString(6, cnpj);
+            stmt.setString(6, email);
+            stmt.setString(5, cnpj);
             stmt.execute();
 
             if (stmt.executeUpdate() == 1) {
